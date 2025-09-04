@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Александр Медведь | UX-Дизайнер</title>
+  <meta name="description" content="Кейс моего портфолио – сайт с нуля. Идентичность, UX/UI, мультиязычность и полный контроль над дизайном, кодом без шаблонов и ограничений.">
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  
+
+
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'gray-custom': '#6D6D6D',
+            'line-custom': '#CDC2C2',
+            'card-bg': '#F5F5F5',
+            'btn-blue': '#3D63C2',
+          },
+          
+          
+        }
+      }
+    }
+  </script>
+
+<!-- 3) Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<style>
+  /* Hamburger / X (your working version, thinned) */
+  .bar {
+    position: absolute;
+    top: 50%;
+    margin-top: -1px;
+    right: 0;
+    width: 100%;
+    height: 2px; /* thinner */
+    border-radius: 4px;
+    background-color: black;
+    transition: all 0.3s ease;
+  }
+  .bar--top { transform: translateY(-8px); }
+  .bar--bottom { transform: translateY(8px); }
+  body.nav-open .bar--top { transform: rotate(45deg) translateY(0); }
+  body.nav-open .bar--middle { opacity: 0; }
+  body.nav-open .bar--bottom { transform: rotate(-45deg) translateY(0); }
+</style>
+
+<body class="flex flex-col min-h-screen overflow-x-hidden font-raleway">
+
+<!-- =========================================
+     HEADER 
+========================================= -->
+<header class="sticky top-0 w-full bg-white z-50 pt-[14px] md:pt-[20px]">
+  <div class="relative max-w-[1440px] mx-auto flex items-center justify-between px-4 md:px-[84px]">
+
+    <!-- Mobile Hamburger -->
+    <div id="menu-toggle" class="md:hidden relative w-[29px] h-[26px] p-2 z-50">
+      <span class="bar bar--top"></span>
+      <span class="bar bar--middle"></span>
+      <span class="bar bar--bottom"></span>
+    </div>
+
+    <!-- Logo -->
+    <a href="../ru/index.html#home" class="absolute left-1/2 transform -translate-x-1/2 md:static md:transform-none z-40">
+      <img src="../assets/images/FullLogo_Transparent_NoBuffer.png"
+           alt="Logo" class="h-[56px] md:h-[96px] object-contain" />
+    </a>
+
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex flex-1 justify-center space-x-[60px] text-[20px]">
+      <a href="../ru/index.html#home" class="hover:text-[#6D6D6D]">Главная</a>
+      <a href="../ru/index.html#about" class="hover:text-[#6D6D6D]">Обо мне</a>
+      <a href="../ru/index.html#case-studies" class="hover:text-[#6D6D6D] hidden md:inline">Портфолио</a>
+      <a href="../ru/index.html#certificates" class="hover:text-[#6D6D6D] hidden lg:inline">Сертификаты</a>
+      <a href="../ru/index.html#contact" class="hover:text-[#6D6D6D] hidden xl:inline">Контакты</a>
+      <a href="../ru/impressum.html" class="hover:text-[#6D6D6D] hidden xl:inline">Импрессум</a>
+    </nav>
+
+    <!-- Language Dropdown -->
+<div class="relative min-w-max">
+  <button id="langBtn"
+          class="flex items-center gap-1 px-2 py-1 text-[18px]">
+    RU <span class="inline-block transform rotate-90">›</span>
+  </button>
+  <ul id="langMenu"
+      class="hidden absolute right-0 mt-2 bg-white border border-line-custom rounded shadow-lg text-[18px] text-center">
+    
+    <li class="px-4 py-2 border-b border-line-custom hover:bg-gray-100 cursor-pointer">
+      <a href="../de/case-study-portfolio.html" class="block w-full h-full">DE</a>
+    </li>
+    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+      <a href="../en/case-study-portfolio.html" class="block w-full h-full">EN</a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <!-- Divider -->
+  <div class="w-full px-4 md:px-[84px] mt-[8px]">
+    <hr class="border-0 h-[2px] bg-[#CDC2C2]" />
+  </div>
+</header>
+
+<!-- Mobile Slide-In Menu -->
+<div id="mobileMenu"
+     class="fixed inset-0 z-40 bg-white transform -translate-x-full transition-transform duration-300 overflow-x-hidden">
+  <nav class="flex flex-col px-4 py-6 space-y-4 text-[18px]">
+    <a href="../ru/index.html#home" class="hover:text-[#6D6D6D]">Главная</a>
+    <a href="../ru/index.html#about" class="hover:text-[#6D6D6D]">Обо мне</a>
+    <a href="../ru/index.html#case-studies" class="hover:text-[#6D6D6D]">Портфолио</a>
+    <a href="../ru/index.html#certificates" class="hover:text-[#6D6D6D]">Сертификаты</a>
+    <a href="../ru/index.html#contact" class="hover:text-[#6D6D6D]">Контакты</a>
+    <a href="../ru/impressum.html" class="hover:text-[#6D6D6D]">Импрессум</a>
+  </nav>
+</div>
+
+<!-- =========================================
+     MAIN: Case Study – Smellfigty
+========================================= -->
+<main class="flex-grow">
+
+  <!-- HERO -->
+  <section id="portfolio-site" class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px] scroll-mt-[76px] md:scroll-mt-[96px]">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-[32px] md:gap-[60px] items-center">
+    <!-- Text -->
+    <div>
+      <h1 class="text-[clamp(1.75rem,4vw,2.5rem)] font-bold mb-2">
+        Это портфолио своими руками с нуля
+      </h1>
+      <h2 class="text-[#6D6D6D] font-semibold text-[clamp(1.25rem,3vw,1.5rem)] mb-4">
+        Почему я не стал пользоваться шаблонами и разработал собственный многоязычный сайт
+      </h2>
+      <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+        UXfolio был слишком ограничивающим, а Behance хоть и удобен, но не совсем мой формат. Мне нужен был сайт, который будет расти вместе со мной, отражать мою идентичность и показывать настоящее продуктовое мышление и мои навыки в работе – поэтому я сам его спроектировал, задизайнил и написал для него тексты и код.
+      </p>
+    </div>
+
+    <!-- Image with caption -->
+    <figure class="w-full">
+      <!-- GIF (plays once) -->
+      <img
+        id="hero-gif"
+        src="../assets/images/video_full.gif"
+        alt="Portfolio website hero preview"
+        class="w-full max-w-[560px] mx-auto object-contain"
+      />
+      <!-- Static final frame (hidden at start) -->
+      <img
+        id="hero-static"
+        src="../assets/images/logo_screen.png"
+        alt="Portfolio static final frame"
+        class="hidden w-full max-w-[560px] mx-auto object-contain"
+      />
+      <figcaption class="text-[#6D6D6D] text-sm mt-2 text-center max-w-[520px] mx-auto">
+        В начале я создал логотип, на это ушло всего несколько часлов.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<script>
+  window.addEventListener("load", () => {
+    const gif = document.getElementById("hero-gif");
+    const staticImg = document.getElementById("hero-static");
+
+    // Adjust this to match your GIF’s duration in ms (e.g., 3200 for 3.2s)
+    const gifDuration = 3200;
+
+    setTimeout(() => {
+      gif.classList.add("hidden");
+      staticImg.classList.remove("hidden");
+    }, gifDuration);
+  });
+</script>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+
+  <!-- PROJECT IN A NUTSHELL -->
+  <section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+    <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-6">Проект в двух словах</h2>
+
+    <!-- Meta row -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-[24px] md:gap-[40px] mb-4">
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-1">Моя роль</h3>
+        <p class="text-black">
+          UX/UI-дизайн, UX-райтинг, бренд и логотип, фронтенд, локализация (EN → DE/RU), публикация
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-1">Сроки</h3>
+        <p class="text-black">~1 месяц нерегулярных вечеров после работы</p>
+      </div>
+
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-1">Инструменты</h3>
+        <p class="text-black">
+          Figma, VS Code, Tailwind, Jekyll, GitHub Pages, HTML/CSS/JS, ChatGPT, Google Docs, CodePen
+        </p>
+      </div>
+    </div>
+
+    <!-- Centered outlined chips -->
+    <div class="w-full mb-8">
+      <div class="flex flex-wrap justify-center gap-2">
+        <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">Идентичность и брендинг</span>
+        <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">UX / UI</span>
+        <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">Контент и ToV</span>
+        <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">Фронтенд</span>
+        <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">Локализация (EN / DE / RU)</span>
+      </div>
+    </div>
+
+    <!-- Challenge / Objectives -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[24px] md:gap-[40px] mb-8">
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] font-semibold mb-2">Вызовы</h3>
+        <p class="text-black leading-relaxed">
+          Создать профессиональную идентичность, придумать подходящий логотип и собрать адаптивное портфолио без шаблонов и без опыта full-time разработчика. Кроме того, нужно запустить сайт быстро и сделать его простым в обслуживании.
+        </p>
+      </div>
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] font-semibold mb-2">Задача</h3>
+        <p class="text-black leading-relaxed">
+          Создать адаптивный многоязычный сайт, который ясно рассказывает мою историю, показывает кейсы в едином формате и дает мне полный контроль над контентом, кодом и общей средой.
+        </p>
+      </div>
+    </div>
+
+    <!-- Highlights -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[24px] md:gap-[40px]">
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-2">Мои основные достижения</h3>
+        <ul class="list-disc ml-5 space-y-2 text-black">
+          <li>Свой стиль и логотип, отражающие голос и работу</li>
+          <li>Универсальный шаблон кейсов для единого сторителлинга</li>
+          <li>Многоязычная структура (EN → DE/RU) заложена с первого дня</li>
+          <li>Быстрый статический стек (Jekyll + GitHub Pages) с Tailwind</li>
+          <li>Доступные типографика и дизайн для легкого сканирования</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-2">Результаты</h3>
+        <ul class="list-disc ml-5 space-y-2 text-black">
+          <li>Сайт, который ощущается личным, внушает доверие и готов к росту</li>
+          <li>Четкий сторителлинг о навыках, процессе и реальных проектах</li>
+          <li>Полный контроль над хостингом, технической стороной и ядром SEO</li>
+          <li>Никакой привязки к провайдеру – всё работает из моего репозитория</li>
+          <li>Адаптивный сайт, которым я владею до последнего символа и пикселя</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+
+<!-- PROCESS -->
+<section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-[32px] md:gap-[60px] items-start">
+    <!-- Story-like text -->
+    <div>
+      <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-3">Процесс</h3>
+      <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-4">
+        Я подошел к созданию сайта как к небольшому продукту: небольшие блоки, реалистичные ограничения и быстрое обучение.
+        Целью было создать не просто «сайт», а понятную, развивающуюся систему, которая растет вместе с моей работой.
+      </p>
+      <ul class="space-y-3 text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+        <li><strong>Найти голос.</strong> Я наметил направления, собрал визуальные референсы и задал тон – простой, уверенный и теплый.</li>
+        <li><strong>Сформировать идентичность.</strong> За пару часов я создал логотип и проверил, как он отражает меня и как выглядит в мокапах.</li>
+        <li><strong>Спланировать работу.</strong> Далее я набросал в Figma первые страницы &nbsp;– Главная, Обо мне, Портфолио, Контакты&nbsp;– с упором на десктоп.</li>
+        <li><strong>Проверить ритм.</strong> Позже я сделал интерактивные мокапы, чтобы протестировать флоу, отступы и темп чтения до написания кода.</li>
+        <li><strong>Отточить главное.</strong> В ходе ревью проработал несколько итераций финального дизайна и выбрал лучшую.</li>
+        <li><strong>Собрать по блокам.</strong> С помощью HTML/Tailwind CSS/JS я разбил сайт на компонентные секции и подключил ChatGPT, ускорив разработку.</li>
+        <li><strong>Добавить языки.</strong> Сначала все тексты я написал на английском, затем локализовал на DE/RU, сохранив тон и ясность.</li>
+        <li><strong>Выйти в релиз.</strong> Опубликовал сайт на GitHub Pages, протестировал вживую и собрал документацию, чтобы будущие правки были проще.</li>
+      </ul>
+    </div>
+
+    <!-- Image + caption -->
+    <figure class="w-full">
+      <img
+        src="../assets/images/Iteration1.png"
+        alt="Early Figma concept board showing page map for desktop and mobile"
+        class="w-full object-contain border border-[#CDC2C2] shadow-md rounded"
+      />
+      <figcaption class="text-[#6D6D6D] text-center text-sm mt-2">
+        Ранний концепт-борд в Figma: первые страницы для запуска с акцентом на десктоп. Позже я переработал систему кейсов (отступы, пропорции и поля) для более плавного ритма чтения.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+
+<!-- KEY DECISIONS + DESIGN PRINCIPLES -->
+<section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+  <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-3">
+    Ключевые решения и принципы дизайна
+  </h3>
+  <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-6">
+    Вместо того чтобы выдавливать из себя раздел «до/после» для этого кейса, я хотел показать решения, которые сформировали этот сайт, и принципы, которые помогли поддержать его цельность – чтобы дизайн оставался ясным, гибким и отражал мою работу.
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Column: Key Decisions -->
+    <div class="bg-white border border-[#EAEAEA] rounded p-5">
+      <h4 class="font-semibold mb-3">Принятые решения</h4>
+      <ul class="space-y-3 text-black">
+        <li>
+          <span class="font-semibold">С нуля и без компромиссов:</span>
+          полный контроль, выше эффективность личный бренд, который отражает меня. Кроме того, это инвестиция в новые навыки.
+        </li>
+        <li>
+          <span class="font-semibold">Собственный логотип вместо вордмарка:</span>
+          современный и личный символ с характером, который можно использовать в favicon, соцсетях и печати.
+        </li>
+        <li>
+          <span class="font-semibold">Сначала desktop, mobile потом:</span>
+          кейсы чаще читают с компьютера, так что, задав ритм чтения там, я смог сделть мобильные версии чище и быстрее.
+        </li>
+        <li>
+          <span class="font-semibold">Локализация вручную:</span>
+          тон, терминология и контекст крайне важны. Живой перевод вызывает больше доверия и в лучше в плане SEO и общего UX.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Column: Design Principles in Action -->
+    <div class="bg-[#F7F7F7] border border-[#EAEAEA] rounded p-5">
+      <h4 class="font-semibold mb-3">Принципы дизайна на практике</h4>
+      <ul class="space-y-3 text-black">
+        <li>
+          <span class="font-semibold">Ясность:</span>
+          четкая иерархия в кейсах: роль, результат и эффект считываются мгновенно.
+        </li>
+        <li>
+          <span class="font-semibold">Последовательность:</span>
+          система отступов и типографический ритм держат страницы вместе, а повторяемые блоки выравнивают текст и дизайн.
+        </li>
+        <li>
+          <span class="font-semibold">Идентичность:</span>
+          логотип, тон всего портфолио и цветовые решения формируют спокойный, дружелюбный бренд – от хедера до футера.
+        </li>
+        <li>
+          <span class="font-semibold">Гибкость:</span>
+          сайт собран как система (Jekyll + Tailwind + модульный контент), поэтому добавлять новые кейсы можно быстро и эффективно.
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+  
+ <!-- IMPACT -->
+<section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+  <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-3">Результаты</h3>
+
+  <p class="text-black leading-relaxed mb-6">
+    Этот проект во многом изменил мой подход к дизайну и работе над проектами в целом. Я научился многим вещам, отточил существующие навыки и осознал всю мощь креативной свободы, когда нет ограничивающих факторов типа пейволов или прихотей площадки:
+  </p>
+
+  <!-- Two-column benefits -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-black mb-8">
+    <ul class="space-y-2">
+      <li><strong>Читаемость.</strong> Четкая структура помогает воспринимать даже длинные страницы.</li>
+      <li><strong>Мой бренд.</strong> Логотип и тон придают портфолио живой голос.</li>
+      <li><strong>Контроль.</strong> Весь контент и код в репозитории без привязок и лишних плагинов.</li>
+    </ul>
+    <ul class="space-y-2">
+      <li><strong>Локализация.</strong> Ручной перевод сохраняет нюансы и показывает профессионализм.</li>
+      <li><strong>Эффективность.</strong> Легкий билд делает страницы быстрыми и красивыми.</li>
+      <li><strong>Эмпатия к разработчикам.</strong> Я на своей шкуре прочувствовал, какого им бывает.</li>
+    </ul>
+  </div>
+
+<!-- Visuals row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-[20px] md:gap-[24px]">
+  <figure class="w-full flex flex-col items-center">
+    <img
+      src="../assets/images/Iteration2.png"
+      alt="Iteration 2 – reworked Case Studies layout with improved rhythm and spacing"
+      class="w-full max-w-[600px] h-[340px] object-contain border border-[#CDC2C2] shadow-md rounded bg-white"
+    />
+    <figcaption class="text-[#6D6D6D] text-sm mt-2 text-center max-w-[520px]">
+      Итерация 2, предпоследний макет – кейсы переработаны, система отступов пересмотрена, всё выверено и готово к переходу в код.
+    </figcaption>
+  </figure>
+
+  <figure class="w-full flex flex-col items-center">
+    <img
+      src="../assets/images/Localization.png"
+      alt="Early component frame showing aligned blocks and tidy structure"
+      class="w-full max-w-[600px] h-[340px] object-contain border border-[#CDC2C2] shadow-md rounded bg-white"
+    />
+    <figcaption class="text-[#6D6D6D] text-sm mt-2 text-center max-w-[520px]">
+      Все блоки создавались через систему компонентов, а тексты сразу собирались и переводились на три языка в удобной таблице.
+    </figcaption>
+  </figure>
+</div>
+</section> 
+   
+  <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div> 
+  
+ <!-- LEARNINGS (stacked, centered) -->
+<section class="max-w-[900px] mx-auto px-[16px] md:px-[40px] py-[50px] md:py-[70px] text-center">
+  <h3 class="font-semibold text-[clamp(1.5rem,3.5vw,1.75rem)] mb-4">Уроки</h3>
+  <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-8">
+    Этот проект – не просто упражнение в дизайне, это урок по созданию продукта от начала до конца. Я научился совмещать идентичность, структуру и код, сохраняя ясность и удобство.
+  </p>
+
+  <ul class="text-left space-y-6 text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+    <li class="flex items-start">
+      <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+      <p><strong>Системное мышление.</strong> Четкая система дизайна и сетка сэкономили часы при работе с кодом.</p>
+    </li>
+    <li class="flex items-start">
+      <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+      <p><strong>От дизайна к коду.</strong> Аккуратные компоненты в Figma превратились в чистый HTML/CSS.</p>
+    </li>
+    <li class="flex items-start">
+      <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+      <p><strong>Учет локализации.</strong> Знание особенностей локалей EN, DE и RU спасло от ломаных макетов.</p>
+    </li>
+    <li class="flex items-start">
+      <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+      <p><strong>Перфекционизм мешает.</strong> Самый лучший принцип: сперва создай, улучшить можно потом.</p>
+    </li>
+  </ul>
+  
+    <div class="mt-8 flex justify-center">
+      <button
+        id="open-contact-modal"
+        class="px-10 py-3 rounded bg-[#3D63C2] text-white font-semibold shadow-md hover:shadow-lg transition"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="contact-modal"
+        aria-expanded="false"
+      >
+        СВЯЗАТЬСЯ СО МНОЙ
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Modal: Contact form ===== -->
+<div
+  id="contact-modal"
+  class="fixed inset-0 z-[999] hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="contact-modal-title"
+>
+  <!-- Backdrop -->
+  <div id="contact-backdrop" class="absolute inset-0 bg-black/40"></div>
+
+  <!-- Dialog -->
+  <div
+    class="relative w-[min(92vw,720px)] mx-auto mt-[8vh]
+           bg-white border border-[#CDC2C2] rounded shadow-xl"
+  >
+    <!-- Close button -->
+    <button
+      id="close-contact-modal"
+      class="absolute right-3 top-3 text-[#6D6D6D] hover:text-black"
+      aria-label="Close"
+      type="button"
+    >
+      ✕
+    </button>
+
+    <!-- Form Container (IDs are -modal to avoid conflicts) -->
+    <form
+      action="https://formspree.io/f/xovwzoed"
+      method="POST"
+      class="w-full max-w-[631px] mx-auto p-[40px] flex flex-col items-center"
+    >
+      <p
+        id="contact-modal-title"
+        class="font-semibold text-black mb-[24px] text-center
+               text-[clamp(1rem,3vw,1.5rem)]"
+      >
+        Буду рад вашему сообщению в любое время!
+      </p>
+
+      <!-- Name -->
+      <input
+        id="contact-name-modal"
+        type="text"
+        name="name"
+        placeholder="Имя"
+        required
+        class="w-full border-b-2 border-[#CDC2C2]
+               text-center text-black
+               text-[clamp(1rem,3vw,1.25rem)]
+               placeholder:text-[#CCCCCC]
+               placeholder:text-[clamp(0.875rem,2vw,1rem)]
+               pb-[8px] mb-[24px]
+               focus:outline-none"
+      />
+
+      <!-- Email -->
+      <input
+        id="contact-email-modal"
+        type="email"
+        name="email"
+        placeholder="Email"
+        required
+        class="w-full border-b-2 border-[#CDC2C2]
+               text-center text-black
+               text-[clamp(1rem,3vw,1.25rem)]
+               placeholder:text-[#CCCCCC]
+               placeholder:text-[clamp(0.875rem,2vw,1rem)]
+               pb-[8px] mb-[8px]
+               focus:outline-none"
+      />
+
+      <!-- inline error message: hidden by default -->
+      <p
+        id="email-error-modal"
+        class="hidden text-red-500
+               text-[clamp(0.875rem,2vw,1rem)]
+               mt-[4px] mb-[16px]"
+      >
+        Введите email в правильном формате: primer@mail.com
+      </p>
+
+      <!-- Message -->
+      <textarea
+        id="contact-message-modal"
+        name="message"
+        rows="6"
+        maxlength="3500"
+        placeholder="Сообщение"
+        required
+        class="w-full border-b-2 border-[#CDC2C2]
+               text-center text-black
+               text-[clamp(1rem,3vw,1.25rem)]
+               placeholder:text-[#CCCCCC]
+               placeholder:text-[clamp(0.875rem,2vw,1rem)]
+               pb-[8px] mb-[8px]
+               focus:outline-none resize-none"
+      ></textarea>
+
+      <!-- Character counter -->
+      <div
+        id="char-count-modal"
+        class="self-end text-[#6D6D6D] mb-[24px]
+               text-[clamp(0.875rem,2vw,1rem)]"
+      >
+        0 / 3500
+      </div>
+
+      <!-- Send button -->
+      <button
+        id="contact-submit-modal"
+        type="submit"
+        disabled
+        class="bg-[#3F3B3B] text-white font-medium
+               py-[10px] px-[40px] rounded
+               text-[clamp(1rem,3vw,1.25rem)]
+               disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        ОТПРАВИТЬ
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  (function () {
+    // Modal open/close
+    const openBtn   = document.getElementById('open-contact-modal');
+    const modal     = document.getElementById('contact-modal');
+    const backdrop  = document.getElementById('contact-backdrop');
+    const closeBtn  = document.getElementById('close-contact-modal');
+
+    function openModal() {
+      modal.classList.remove('hidden');
+      openBtn.setAttribute('aria-expanded', 'true');
+      // focus first field
+      const first = document.getElementById('contact-name-modal');
+      if (first) first.focus();
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      openBtn.setAttribute('aria-expanded', 'false');
+      openBtn.focus();
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('hidden') && e.key === 'Escape') closeModal();
+    });
+
+    // ===== Form validation for the modal (IDs are -modal) =====
+    const nameInput   = document.getElementById('contact-name-modal');
+    const emailInput  = document.getElementById('contact-email-modal');
+    const emailError  = document.getElementById('email-error-modal');
+    const msgInput    = document.getElementById('contact-message-modal');
+    const counter     = document.getElementById('char-count-modal');
+    const submitBtn   = document.getElementById('contact-submit-modal');
+    const MAX         = 3500;
+    const emailRegex  = /^\S+@\S+\.\S+$/;
+
+    function updateCounter() {
+      let len = msgInput.value.length;
+      if (len > MAX) msgInput.value = msgInput.value.slice(0, MAX);
+      counter.textContent = `${msgInput.value.length} / ${MAX}`;
+      counter.classList.toggle('text-red-500', msgInput.value.length >= MAX);
+      validateForm();
+    }
+
+    function validateForm() {
+      const nameOK   = nameInput.value.trim().length > 0;
+      const emailVal = emailInput.value.trim();
+      const emailOK  = emailRegex.test(emailVal);
+      const msgLen   = msgInput.value.length;
+      const msgOK    = msgLen > 0 && msgLen <= MAX;
+
+      if (emailVal !== '' && !emailOK) {
+        emailError.classList.remove('hidden');
+      } else {
+        emailError.classList.add('hidden');
+      }
+      submitBtn.disabled = !(nameOK && emailOK && msgOK);
+    }
+
+    nameInput.addEventListener('input', validateForm);
+    emailInput.addEventListener('input', validateForm);
+    msgInput.addEventListener('input', updateCounter);
+
+    // initialize
+    updateCounter();
+    validateForm();
+  })();
+</script>
+
+</main>
+
+<!-- ----------------------------------------
+     FOOTER 
+---------------------------------------- -->
+
+<footer class="mt-auto w-full bg-[#545455] text-white">
+  <!-- Top row: left & right blocks -->
+  <div class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[16px]
+              grid grid-cols-2 items-start
+              md:flex md:justify-between md:items-start gap-y-3">
+
+    <!-- LEFT: site + email -->
+    <div class="text-left">
+      <a href="../ru/index.html#home"
+         class="block text-[clamp(1rem,2vw,1.25rem)] font-medium hover:underline">
+        alexmedved.com
+      </a>
+      <a href="mailto:smellfigty@gmail.com"
+         class="block text-[clamp(0.875rem,1.8vw,1rem)] hover:underline">
+        smellfigty@gmail.com
+      </a>
+    </div>
+
+    <!-- RIGHT: links (right-aligned) -->
+    <div class="justify-self-end text-right
+                text-[clamp(0.875rem,1.8vw,1rem)] space-y-1 md:space-y-0 md:flex md:gap-[40px]">
+      <a href="impressum.html" class="block hover:underline">Импрессум</a>
+      <a href="privacy.html"   class="block hover:underline">Политика конфиденциальности</a>
+    </div>
+  </div>
+
+  <!-- Bottom copyright -->
+  <div class="text-center py-[8px] text-[clamp(0.75rem,1.5vw,0.875rem)]">
+    &copy; 2025 Все права защищены.
+  </div>
+</footer>
+
+<!-- =========================================
+     JS: language toggles + mobile menu
+========================================= -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    /* ---------- Language Toggles ---------- */
+    const lBtn  = id => document.getElementById(id + 'Btn');
+    const lMenu = id => document.getElementById(id + 'Menu');
+
+    ['lang', 'mobileLang'].forEach(id => {
+      const btn = lBtn(id), menu = lMenu(id);
+      btn?.addEventListener('click', e => {
+        e.stopPropagation();
+        menu?.classList.toggle('hidden');
+      });
+    });
+
+    document.addEventListener('click', () => {
+      lMenu('lang')?.classList.add('hidden');
+      lMenu('mobileLang')?.classList.add('hidden');
+    });
+
+    /* ---------- Mobile Hamburger / Slide Menu ---------- */
+    const toggle     = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    toggle?.addEventListener('click', e => {
+      e.stopPropagation();
+      document.body.classList.toggle('nav-open');
+      mobileMenu?.classList.toggle('-translate-x-full');
+    });
+
+    document.addEventListener('click', e => {
+      if (mobileMenu && !mobileMenu.contains(e.target) && !toggle?.contains(e.target)) {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      }
+    });
+
+    mobileMenu?.querySelectorAll('a').forEach(link =>
+      link.addEventListener('click', () => {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      })
+    );
+
+    // Close if resized to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768 && mobileMenu) {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      }
+    });
+  });
+</script>
+</body>
+</html>

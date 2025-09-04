@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Александр Медведь | UX-Дизайнер</title>
+  <meta name="description" content="UX-дизайнер и специалист по локализации в Мюнхене, Германия. Портфолио Александра Медведя: интуитивные интерфейсы и тексты, адаптированные под любую аудиторию.">
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'gray-custom': '#6D6D6D',
+            'line-custom': '#CDC2C2',
+            'card-bg': '#F5F5F5',
+            'btn-blue': '#3D63C2',
+          },
+
+          },
+        }
+      }
+
+  </script>
+
+<!-- 3) Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<style>
+  .bar {
+    position: absolute;
+    top: 50%;
+    margin-top: -1px;
+    right: 0;
+    width: 100%;
+    height: 2px; /* ✅ Thinner */
+    border-radius: 4px;
+    background-color: black;
+    transition: all 0.3s ease;
+  }
+
+  .bar--top {
+    transform: translateY(-8px);
+  }
+
+  .bar--bottom {
+    transform: translateY(8px);
+  }
+
+  body.nav-open .bar--top {
+    transform: rotate(45deg) translateY(0);
+  }
+
+  body.nav-open .bar--middle {
+    opacity: 0;
+  }
+
+  body.nav-open .bar--bottom {
+    transform: rotate(-45deg) translateY(0);
+  }
+
+  /* Smooth anchor jumps + offset for sticky header */
+:root{ --header-offset: 96px; }                   /* desktop header height */
+html{
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-offset);       /* offset all #hash jumps */
+}
+@media (max-width: 767px){
+  :root{ --header-offset: 76px; }                 
+}  
+  
+</style>
+
+<body class="flex flex-col min-h-screen overflow-x-hidden">
+
+<!-- ----------------------------------------
+    HEADER
+---------------------------------------- -->
+
+<header class="sticky top-0 w-full bg-white z-50 pt-[14px] md:pt-[20px]">
+  <div class="relative max-w-[1440px] mx-auto flex items-center justify-between px-4 md:px-[84px]">
+
+    <!-- Mobile Hamburger -->
+    <div id="menu-toggle" class="md:hidden relative w-[29px] h-[20px] p-2 z-50">
+      <span class="bar bar--top"></span>
+      <span class="bar bar--middle"></span>
+      <span class="bar bar--bottom"></span>
+    </div>
+
+    <!-- Logo -->
+    <a href="#home" class="absolute left-1/2 transform -translate-x-1/2 md:static md:transform-none z-40">
+      <img src="../assets/images/FullLogo_Transparent_NoBuffer.png"
+           alt="Logo" class="h-[56px] md:h-[96px] object-contain" />
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex flex-1 justify-center items-center space-x-[60px] text-[20px]">
+      <a href="#home" class="hover:text-[#6D6D6D]">Главная</a>
+      <a href="#about" class="hover:text-[#6D6D6D]">Обо мне</a>
+      <a href="#case-studies" class="hover:text-[#6D6D6D] hidden md:inline">Портфолио</a>
+      <a href="#certificates" class="hover:text-[#6D6D6D] hidden lg:inline">Сертификаты</a>
+      <a href="#contact" class="hover:text-[#6D6D6D] hidden xl:inline">Контакты</a>
+      <a href="../ru/impressum.html" class="hover:text-[#6D6D6D] hidden xl:inline">Импрессум</a>
+    </nav>
+  
+    <!-- Language Dropdown -->
+<div class="relative min-w-max">
+  <button id="langBtn"
+          class="flex items-center gap-1 px-2 py-1 text-[18px]">
+    RU <span class="inline-block transform rotate-90">›</span>
+  </button>
+  <ul id="langMenu"
+      class="hidden absolute right-0 mt-2 bg-white border border-line-custom rounded shadow-lg text-[18px] text-center">
+    
+    <li class="px-4 py-2 border-b border-line-custom hover:bg-gray-100 cursor-pointer">
+      <a href="../de/index.html" class="block w-full h-full">DE</a>
+    </li>
+    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+      <a href="../en/index.html" class="block w-full h-full">EN</a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <!-- Divider -->
+  <div class="w-full px-4 md:px-[84px] mt-[8px]"> 
+    <hr class="border-0 h-[2px] bg-[#CDC2C2]" />
+  </div>
+</header>
+
+<!-- Mobile Slide-In Menu -->
+<div id="mobileMenu"
+     class="fixed inset-0 z-40 bg-white transform -translate-x-full transition-transform duration-300 overflow-x-hidden">
+  
+  <nav class="flex flex-col px-4 py-6 space-y-4 text-[18px]">
+    <a href="#home" class="hover:text-[#6D6D6D]">Главная</a>
+    <a href="#about" class="hover:text-[#6D6D6D]">Обо мне</a>
+    <a href="#case-studies" class="hover:text-[#6D6D6D]">Портфолио</a>
+    <a href="#certificates" class="hover:text-[#6D6D6D]">Сертификаты</a>
+    <a href="#contact" class="hover:text-[#6D6D6D]">Контакты</a>
+    <a href="../ru/impressum.html" class="hover:text-[#6D6D6D]">Импрессум</a>
+  </nav>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Language dropdown toggle
+    const langBtn = document.querySelector('#langBtn');
+    const langMenu = document.querySelector('#langMenu');
+
+    langBtn?.addEventListener('click', e => {
+      e.stopPropagation();
+      langMenu?.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', () => {
+      langMenu?.classList.add('hidden');
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuToggle?.addEventListener('click', e => {
+      e.stopPropagation();
+      document.body.classList.toggle('nav-open');
+      mobileMenu?.classList.toggle('-translate-x-full');
+    });
+
+    document.addEventListener('click', e => {
+      if (!mobileMenu?.contains(e.target) && !menuToggle?.contains(e.target)) {
+        document.body.classList.remove('nav-open');
+        mobileMenu?.classList.add('-translate-x-full');
+      }
+    });
+
+    mobileMenu?.querySelectorAll('a').forEach(link =>
+      link.addEventListener('click', () => {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      })
+    );
+
+    // Ensure menu closes on resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) {
+        document.body.classList.remove('nav-open');
+        mobileMenu?.classList.add('-translate-x-full');
+      }
+    });
+  });
+</script>
+
+
+  
+  <main class="flex-grow">   
+
+<!-- ----------------------------------------
+     SECTION 1: HERO
+---------------------------------------- -->
+<section
+  id="home"
+  class="scroll-mt-[76px] md:scroll-mt-[96px]
+         max-w-[1440px] mx-auto
+         px-[16px] md:px-[84px]
+         py-[40px] md:py-[59px]
+         flex flex-col md:flex-row items-center
+         gap-[32px] md:gap-[59px]">
+  
+  <!-- Portrait -->
+  <div class="w-[180px] md:w-[250px] rounded-[125px] overflow-hidden shadow-md flex-shrink-0">
+    <img
+      src="../assets/images/me.png"
+      alt="Aleksandr Medved"
+      class="w-full h-full object-contain bg-transparent"
+    />
+  </div>
+
+  <!-- Text Block -->
+  <div class="flex-1 flex flex-col
+              items-center md:items-start
+              text-center md:text-left">
+    <!-- Name + Title -->
+<h1 class="text-[clamp(1.5rem,5vw,2.5rem)] font-bold leading-snug mb-2">
+  Александр Медведь
+</h1>
+<h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-semibold leading-snug mb-[16px]">
+  UI/UX-дизайнер, редактор, локализатор
+</h2>
+
+<!-- Subtitle -->
+<div class="max-w-[600px] md:max-w-[850px] mb-[24px]">
+  <p class="text-[clamp(1.5rem,3vw,2rem)] text-black leading-snug">
+    Преобразую идеи в понятный дизайн с точной локализацией для любой аудитории.
+  </p>
+</div>
+
+
+    <!-- Stats (-->
+<div class="hidden md:block">
+  <div
+    class="flex items-center justify-start
+           gap-x-[clamp(1rem,2vw,2rem)]
+           text-[clamp(1.25rem,2.5vw,1.75rem)]
+           text-[#6D6D6D] whitespace-nowrap"
+  >
+    <span>Мюнхен, Бавария</span>
+    <span class="inline-block border-l border-line-custom h-[1em]"></span>
+    <span>Немецкий, Английский, Русский</span>
+    <span class="inline-block border-l border-line-custom h-[1em]"></span>
+    <span>7+ Лет Опыта</span>
+  </div>
+</div>
+
+<div class="md:hidden text-center text-[clamp(0.9rem,2.5vw,1.25rem)] text-[#6D6D6D]">
+  Мюнхен, Бавария • Немецкий, Английский, Русский • 7+ Лет Опыта
+</div>
+
+</section>
+
+<!-- ----------------------------------------
+     SECTION 2: ABOUT
+---------------------------------------- -->
+<section id="about" class="mt-[70px] mb-[70px]">
+  <!-- top divider (inset 84px) -->
+    <div class="w-full px-[84px] mt-[70px] mb-[70px]">
+    <hr class="border-b border-[#CDC2C2]" />
+  </div>
+
+   <!-- content wrapper -->
+  <div class="max-w-[1440px] mx-auto px-4 md:px-[84px] text-center mt-[70px]">
+    <!-- Title -->
+    <h3 class="font-bold mb-[8px]"
+        style="font-size: clamp(1.75rem, 4vw, 2.25rem);">
+      Обо мне
+    </h3>
+
+    <!-- Subtitle / tagline -->
+    <h4 class="text-[#6D6D6D] mb-[16px]"
+        style="font-size: clamp(1.5rem, 3vw, 2rem);">
+      Ваш UX-дизайнер в самом сердце Баварии
+    </h4>
+
+    <!-- Body copy -->
+    <p class="text-black leading-relaxed mx-auto max-w-[900px]"
+       style="font-size: clamp(1rem, 2.5vw, 1.5rem);">
+      Уже более семи лет я занимаюсь разработкой UX- и UI-решений для цифровых продуктов
+      и помогаю создавать интуитивные интерфейсы и культурно релевантные тексты для них.
+      С 2018 года я работаю в роли UX-дизайнера, писателя, редактора и переводчика в проектах в сфере SaaS,
+      технологий, маркетинга, гейминга и ПО. Моя главная цель – сделать итоговый
+      продукт и удобным, и понятным для всех пользователей.
+    </p>
+  </div>
+</section>
+
+  <!-- bottom divider (inset 84px, 70px below content) -->
+    <div class="w-full px-[84px] mt-[70px] mb-[70px]">
+    <hr class="border-b border-[#CDC2C2]" />
+  </div>
+
+<!-- ----------------------------------------
+     SECTION 3: CASE STUDIES
+---------------------------------------- -->
+<section id="case-studies"
+         class="max-w-[1440px] mx-auto px-[84px] scroll-mt-[76px] md:scroll-mt-[96px]">
+  
+  <!-- Section Title -->
+  <h3 class="text-[36px] font-bold text-center mb-[70px]">
+    Портфолио
+  </h3>
+  
+<!-- CASE STUDIES CARD  -->
+<div
+  class="border border-[#CDC2C2]
+         rounded-lg overflow-hidden mb-[70px]
+         shadow-md transition-transform duration-300 ease-out
+         hover:-translate-y-2"
+>
+  <div class="flex flex-col md:flex-row">
+    <!-- LEFT HALF -->
+    <div
+      class="bg-[#F5F5F5]
+             flex items-center justify-center p-[20px]
+             md:w-1/3"
+    >
+      <img
+        src="../assets/images/slott.png"
+        alt="Slott Fox"
+        class="max-h-[300px] object-contain"
+      />
+    </div>
+
+    <!-- RIGHT HALF -->
+    <div
+      class="bg-white p-[20px] md:w-2/3
+             flex flex-col justify-center items-center text-center"
+    >
+      <!-- Title: scales between 1.5rem (24px) and 2.5rem (40px), hitting 5vw in between -->
+      <h3 class="font-bold leading-snug mb-[16px]
+                 text-[clamp(1.5rem,5vw,2.5rem)]">
+        SLOTT.COM<br/>Проект с чистого листа
+      </h3>
+
+      <!-- Body: scales between 1rem (16px) and 1.75rem (28px) -->
+      <p
+        class="text-[#6D6D6D] leading-relaxed mb-[32px] max-w-[900px]
+               text-[clamp(1rem,3vw,1.75rem)]"
+      >
+        От концепции до запуска: UI/UX-дизайн, копирайтинг и локализация для новой игровой платформы в NeoGroup.
+      </p>
+
+      <!-- Button text scales between 1rem and 2rem -->
+<a href="case-study-slott.html"
+   class="bg-[#3D63C2] text-white font-medium
+          px-[80px] py-[2px] rounded shadow-md
+          text-[clamp(1rem,3vw,2rem)]
+          inline-block text-center">
+  ПОДРОБНЕЕ
+</a>
+    </div>
+  </div>
+</div>
+
+
+ <!-- — Card #2 — -->
+<div
+  class="border border-[#CDC2C2]
+         rounded-lg overflow-hidden mb-[70px]
+         shadow-md transition-transform duration-300 ease-out
+         hover:-translate-y-2"
+>
+  <div class="flex flex-col-reverse md:flex-row">
+    <!-- LEFT HALF: Text -->
+    <div
+      class="bg-white p-[20px] md:w-2/3
+             flex flex-col justify-center items-center text-center"
+    >
+      <!-- Title: 1.5rem→2.5rem by viewport -->
+      <h3
+        class="font-bold leading-snug mb-[16px]
+               text-[clamp(1.5rem,5vw,2.5rem)]"
+      >
+        BACHATA IN DUBAI<br/>
+        Лендинг для школы танцев за вечер
+      </h3>
+
+      <!-- Body: 1rem→1.75rem -->
+      <p
+        class="text-[#6D6D6D] leading-relaxed mb-[32px]
+               max-w-[900px]
+               text-[clamp(1rem,3vw,1.75rem)]"
+      >
+        Амбициозный проект одного дня: UX-ревью лендинга и написание убедительных, полезных для пользователя текстов.
+      </p>
+
+      <!-- Button: 1rem→2rem -->
+<a href="case-study-bachata.html"
+   class="bg-[#3D63C2] text-white font-medium
+          py-[2px] px-[80px] rounded shadow-md
+          text-[clamp(1rem,3vw,2rem)]
+          inline-block text-center">
+  ПОДРОБНЕЕ
+</a>
+    </div>
+
+    <!-- RIGHT HALF: Image -->
+    <div
+      class="bg-[#F5F5F5] flex items-center justify-center p-[20px]
+             md:w-1/3"
+    >
+      <img
+        src="../assets/images/Bachata Logo.png"
+        alt="BACHATA IN DUBAI"
+        class="max-h-[300px] object-contain"
+      />
+    </div>
+  </div>
+</div>
+
+<!-- — Card #3 — -->
+<div
+  class="border border-[#CDC2C2]
+         rounded-lg overflow-hidden mb-[70px]
+         shadow-md transition-transform duration-300 ease-out
+         hover:-translate-y-2"
+>
+  <div class="flex flex-col md:flex-row">
+    <!-- LEFT HALF: Logo -->
+    <div
+      class="bg-[#F5F5F5]
+             flex items-center justify-center p-[20px]
+             md:w-1/3"
+    >
+      <img
+        src="../assets/images/FullLogo_Transparent_NoBuffer.png"
+        alt="Smellfigty Logo"
+        class="max-h-[300px] object-contain"
+      />
+    </div>
+
+    <!-- RIGHT HALF: Text -->
+    <div
+      class="bg-white p-[20px] md:w-2/3
+             flex flex-col justify-center items-center text-center"
+    >
+      <!-- Title: 1.5rem→2.5rem -->
+      <h3
+        class="font-bold leading-snug mb-[16px]
+               text-[clamp(1.5rem,5vw,2.5rem)]"
+      >
+        ALEXMEDVED.COM<br/>
+        Веб-портфолио своими руками
+      </h3>
+
+      <!-- Body: 1rem→1.75rem -->
+      <p
+        class="text-[#6D6D6D] leading-relaxed mb-[32px]
+               max-w-[900px]
+               text-[clamp(1rem,3vw,1.75rem)]"
+      >
+        История создания этого портфолио достойна места в нем самом: от концепта в Figma до кода и хостинга.
+      </p>
+
+      <!-- Button: 1rem→2rem -->
+<a href="case-study-portfolio.html"
+   class="bg-[#3D63C2] text-white font-medium
+          py-[2px] px-[80px] rounded shadow-md
+          text-[clamp(1rem,3vw,2rem)]
+          inline-block text-center">
+  ПОДРОБНЕЕ
+</a>
+    </div>
+  </div>
+</div>
+</section>
+
+ <!-- divider before Certificates (70px top & bottom) -->
+  <div class="w-full px-[84px] mt-[70px] mb-[70px]">
+    <hr class="border-b border-[#CDC2C2]" />
+  </div>
+
+<!-- ----------------------------------------
+     SECTION 4: CERTIFICATES
+---------------------------------------- -->
+<section id="certificates"
+         class="max-w-[1440px] mx-auto px-[84px] scroll-mt-[76px] md:scroll-mt-[96px]">
+  
+  <!-- Title + 70px bottom margin -->
+  <h3 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold text-center mb-[70px]">
+    Сертификаты
+  </h3>
+
+  <!-- 3 cards, 84px gutters, 40px row-gap, 70px bottom-gap -->
+  <div class="flex flex-col md:flex-row justify-center gap-x-[84px] gap-y-[40px] mb-[70px]">
+    <!-- Certificate #1 -->
+    <a href="certificate-google.html"
+       class="flex-1 flex flex-col items-center
+              transform transition-transform
+              duration-300 ease-out hover:-translate-y-2"
+    >
+      <img
+        src="../assets/images/Google UX-1.png"
+        alt="UX Design Professional Certificate by Google"
+        class="max-h-[347px] object-contain
+               border border-[#CDC2C2] shadow-md"
+      />
+      <h4 class="mt-[16px] text-[clamp(1.125rem,3vw,1.5rem)] font-medium text-center">
+        UX Design Professional<br/>от Google
+      </h4>
+      <span class="mt-[4px] text-[clamp(1rem,2.5vw,1.25rem)] text-[#6D6D6D]">
+        2025
+      </span>
+    </a>
+
+    <!-- Certificate #2 -->
+    <a href="certificate-netology.html"
+       class="flex-1 flex flex-col items-center
+              transform transition-transform
+              duration-300 ease-out hover:-translate-y-2"
+    >
+      <img
+        src="../assets/images/certificatenetology_ru-1.png"
+        alt="UX Writer & Editor by Netology"
+        class="max-h-[347px] object-contain
+               border border-[#CDC2C2] shadow-md"
+      />
+      <h4 class="mt-[16px] text-[clamp(1.125rem,3vw,1.5rem)] font-medium text-center">
+        UX-писатель и редактор<br/>от Нетологии
+      </h4>
+      <span class="mt-[4px] text-[clamp(1rem,2.5vw,1.25rem)] text-[#6D6D6D]">
+        2024
+      </span>
+    </a>
+
+    <!-- Certificate #3 -->
+    <a href="certificate-goethe.html"
+       class="flex-1 flex flex-col items-center
+              transform transition-transform
+              duration-300 ease-out hover:-translate-y-2"
+    >
+      <img
+        src="../assets/images/GoetheC1Medved-1.png"
+        alt="Goethe-Zertifikat C1 by Goethe-Institut"
+        class="max-h-[327px] object-contain
+               border border-[#CDC2C2] shadow-md"
+      />
+      <h4 class="mt-[16px] text-[clamp(1.125rem,3vw,1.5rem)] font-medium text-center">
+        Goethe-Zertifikat C1<br/>от Goethe-Institut
+      </h4>
+      <span class="mt-[4px] text-[clamp(1rem,2.5vw,1.25rem)] text-[#6D6D6D]">
+        2024
+      </span>
+    </a>
+  </div>
+</section>
+
+
+  <div class="w-full px-[84px] mt-[70px] mb-[70px]">
+    <hr class="border-b border-[#CDC2C2]" />
+  </div>
+
+  <!-- ----------------------------------------
+     SECTION 5: CONTACT
+---------------------------------------- -->
+<section id="contact"
+         class="max-w-[1440px] mx-auto px-4 md:px-[84px] scroll-mt-[76px] md:scroll-mt-[96px]">
+
+  <!-- Section Title -->
+  <h3 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold text-center mb-[70px]">
+    Контакты
+  </h3>
+
+  <!-- Form Container -->
+  <form
+    action="https://formspree.io/f/xovwzoed"
+    method="POST"
+    class="w-full max-w-full md:max-w-2xl mx-auto
+           border border-[#CDC2C2] px-[24px] py-[32px] md:p-[40px]
+           shadow-md flex flex-col items-center"
+  >
+    <!-- Intro text: larger & semi-bold -->
+    <p
+      class="font-semibold text-black mb-[24px] text-center
+             text-[clamp(1rem,3vw,1.5rem)]"
+    >
+      Буду рад вашему сообщению в любое время!
+    </p>
+
+    <!-- Name -->
+    <input
+      id="contact-name"
+      type="text"
+      name="name"
+      placeholder="Имя"
+      required
+      class="w-full border-b-2 border-[#CDC2C2]
+             text-center text-black
+             text-[clamp(1rem,3vw,1.25rem)]
+             placeholder:text-[#CCCCCC]
+             placeholder:text-[clamp(0.875rem,2vw,1rem)]
+             pb-[8px] mb-[24px]
+             focus:outline-none"
+    />
+
+    <!-- Email -->
+    <input
+      id="contact-email"
+      type="email"
+      name="email"
+      placeholder="Email"
+      required
+      class="w-full border-b-2 border-[#CDC2C2]
+             text-center text-black
+             text-[clamp(1rem,3vw,1.25rem)]
+             placeholder:text-[#CCCCCC]
+             placeholder:text-[clamp(0.875rem,2vw,1rem)]
+             pb-[8px] mb-[8px]
+             focus:outline-none"
+    />
+
+    <!-- Inline error message: hidden by default -->
+    <p
+      id="email-error"
+      class="hidden text-red-500
+             text-[clamp(0.875rem,2vw,1rem)]
+             mt-[4px] mb-[16px]"
+    >
+      Введите email в правильном формате: primer@mail.com
+    </p>
+
+    <!-- Message -->
+    <textarea
+      id="contact-message"
+      name="message"
+      rows="6"
+      maxlength="3500"
+      placeholder="Сообщение"
+      required
+      class="w-full border-b-2 border-[#CDC2C2]
+             text-center text-black
+             text-[clamp(1rem,3vw,1.25rem)]
+             placeholder:text-[#CCCCCC]
+             placeholder:text-[clamp(0.875rem,2vw,1rem)]
+             pb-[8px] mb-[8px]
+             focus:outline-none resize-none"
+    ></textarea>
+
+    <!-- Character counter -->
+    <div
+      id="char-count"
+      class="self-end text-[#6D6D6D] mb-[24px]
+             text-[clamp(0.875rem,2vw,1rem)]"
+    >
+      0 / 3500
+    </div>
+
+    <!-- Send button -->
+    <button
+      id="contact-submit"
+      type="submit"
+      disabled
+      class="bg-[#3F3B3B] text-white font-medium
+             py-[10px] px-[40px] rounded
+             text-[clamp(1rem,3vw,1.25rem)]
+             disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      ОТПРАВИТЬ
+    </button>
+  </form>
+
+<!-- Social Icons -->
+<div class="flex justify-center gap-x-[70px] md:gap-x-[90px] mt-[70px] mb-[70px]">
+
+  <a
+    href="https://www.linkedin.com/in/smellfigty/"
+    target="_blank"
+    rel="noopener"
+    class="inline-block transform transition-all duration-300 ease-out hover:-translate-y-2"
+  >
+  <div class="w-[60px] h-[60px] md:w-[60px] md:h-[60px] rounded-[16px] overflow-hidden shadow-md hover:shadow-lg">
+    <img
+      src="../assets/icons/LinkedIn.svg"
+      alt="LinkedIn"
+      class="w-full h-full object-contain bg-transparent"
+    />
+    </div>
+  </a>
+
+  <a
+    href="https://t.me/smellfigty"
+    target="_blank"
+    rel="noopener"
+    class="inline-block transform transition-all duration-300 ease-out hover:-translate-y-2"
+  ><div class="w-[60px] h-[60px] md:w-[60px] md:h-[60px] rounded-[16px] overflow-hidden shadow-md hover:shadow-lg">
+    <img
+      src="../assets/icons/Telegram.svg"
+      alt="Telegram"
+      class="w-full h-full object-contain bg-transparent"
+    />
+    </div>
+  </a>
+
+
+  <a
+    href="https://wa.me/4915223131484"
+    target="_blank"
+    rel="noopener"
+    class="inline-block transform transition-all duration-300 ease-out hover:-translate-y-2"
+  >
+  <div class="w-[60px] h-[60px] md:w-[60px] md:h-[60px] rounded-[16px] overflow-hidden shadow-md hover:shadow-lg">
+    <img
+      src="../assets/icons/WhatsApp.svg"
+      alt="WhatsApp"
+      class="w-full h-full object-contain bg-transparent"
+    />
+    </div>
+  </a>
+
+    <a
+  href="mailto:smellfigty@gmail.com"
+  class="inline-block transform transition-all duration-300 ease-out hover:-translate-y-2"
+    >
+  <div class="w-[60px] h-[60px] md:w-[60px] md:h-[60px] rounded-[16px] overflow-hidden shadow-md hover:shadow-lg">
+    <img
+      src="../assets/icons/Email.svg"
+      alt="Email"
+      class="w-full h-full object-contain"
+    />
+  </div>
+    </a>
+</div>
+</section>
+
+<!-- ----------------------------------------
+     CONTACT JS
+---------------------------------------- -->
+<script>
+  (function() {
+    const nameInput   = document.getElementById('contact-name');
+    const emailInput  = document.getElementById('contact-email');
+    const emailError  = document.getElementById('email-error');
+    const msgInput    = document.getElementById('contact-message');
+    const counter     = document.getElementById('char-count');
+    const submitBtn   = document.getElementById('contact-submit');
+    const MAX         = 3500;
+
+    const emailRegex  = /^\S+@\S+\.\S+$/;
+
+    function updateCounter() {
+      let len = msgInput.value.length;
+      if (len > MAX) msgInput.value = msgInput.value.slice(0, MAX);
+      counter.textContent = `${msgInput.value.length} / ${MAX}`;
+      counter.classList.toggle('text-red-500', msgInput.value.length >= MAX);
+      validateForm();
+    }
+
+    function validateForm() {
+      const nameOK   = nameInput.value.trim().length > 0;
+      const emailVal = emailInput.value.trim();
+      const emailOK  = emailRegex.test(emailVal);
+      const msgLen   = msgInput.value.length;
+      const msgOK    = msgLen > 0 && msgLen <= MAX;
+
+      // show/hide the inline error if they’ve typed something invalid
+      if (emailVal !== '' && !emailOK) {
+        emailError.classList.remove('hidden');
+      } else {
+        emailError.classList.add('hidden');
+      }
+
+      submitBtn.disabled = !(nameOK && emailOK && msgOK);
+    }
+
+    nameInput.addEventListener('input', validateForm);
+    emailInput.addEventListener('input', validateForm);
+    msgInput.addEventListener('input', updateCounter);
+
+    // initialize
+    updateCounter();
+    validateForm();
+  })();
+</script>
+
+</main>
+<!-- ----------------------------------------
+     FOOTER 
+---------------------------------------- -->
+
+<footer class="mt-auto w-full bg-[#545455] text-white">
+  <!-- Top row: left & right blocks -->
+  <div class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[16px]
+              grid grid-cols-2 items-start
+              md:flex md:justify-between md:items-start gap-y-3">
+
+    <!-- LEFT: site + email -->
+    <div class="text-left">
+      <a href="#home"
+         class="block text-[clamp(1rem,2vw,1.25rem)] font-medium hover:underline">
+        alexmedved.com
+      </a>
+      <a href="mailto:smellfigty@gmail.com"
+         class="block text-[clamp(0.875rem,1.8vw,1rem)] hover:underline">
+        smellfigty@gmail.com
+      </a>
+    </div>
+
+    <!-- RIGHT: links (right-aligned) -->
+    <div class="justify-self-end text-right
+                text-[clamp(0.875rem,1.8vw,1rem)] space-y-1 md:space-y-0 md:flex md:gap-[40px]">
+      <a href="impressum.html" class="block hover:underline">Импрессум</a>
+      <a href="privacy.html"   class="block hover:underline">Политика конфиденциальности</a>
+    </div>
+  </div>
+
+  <!-- Bottom copyright -->
+  <div class="text-center py-[8px] text-[clamp(0.75rem,1.5vw,0.875rem)]">
+    &copy; 2025 Все права защищены.
+  </div>
+</footer>
+
+ </body>
+ </html>

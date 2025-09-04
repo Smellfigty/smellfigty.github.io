@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aleksandr Medved | UX Designer</title>
+  <meta name="description" content="Slott case study – from blank page to launch. I defined brand voice, UX flows, and localization (EN/DE/RU) for a compliant, engaging iGaming platform.">
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  
+
+
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'gray-custom': '#6D6D6D',
+            'line-custom': '#CDC2C2',
+            'card-bg': '#F5F5F5',
+            'btn-blue': '#3D63C2',
+          },
+          
+          
+        }
+      }
+    }
+  </script>
+
+<!-- 3) Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<style>
+  /* Hamburger / X (your working version, thinned) */
+  .bar {
+    position: absolute;
+    top: 50%;
+    margin-top: -1px;
+    right: 0;
+    width: 100%;
+    height: 2px; /* thinner */
+    border-radius: 4px;
+    background-color: black;
+    transition: all 0.3s ease;
+  }
+  .bar--top { transform: translateY(-8px); }
+  .bar--bottom { transform: translateY(8px); }
+  body.nav-open .bar--top { transform: rotate(45deg) translateY(0); }
+  body.nav-open .bar--middle { opacity: 0; }
+  body.nav-open .bar--bottom { transform: rotate(-45deg) translateY(0); }
+</style>
+
+<body class="flex flex-col min-h-screen overflow-x-hidden font-raleway">
+
+<!-- =========================================
+     HEADER
+========================================= -->
+<header class="sticky top-0 w-full bg-white z-50 pt-[14px] md:pt-[20px]">
+  <div class="relative max-w-[1440px] mx-auto flex items-center justify-between px-4 md:px-[84px]">
+
+    <!-- Mobile Hamburger -->
+    <div id="menu-toggle" class="md:hidden relative w-[29px] h-[26px] p-2 z-50">
+      <span class="bar bar--top"></span>
+      <span class="bar bar--middle"></span>
+      <span class="bar bar--bottom"></span>
+    </div>
+
+    <!-- Logo -->
+    <a href="../en/index.html#home" class="absolute left-1/2 transform -translate-x-1/2 md:static md:transform-none z-40">
+      <img src="../assets/images/FullLogo_Transparent_NoBuffer.png"
+           alt="Logo" class="h-[56px] md:h-[96px] object-contain" />
+    </a>
+
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex flex-1 justify-center space-x-[60px] text-[20px]">
+      <a href="../en/index.html#home" class="hover:text-[#6D6D6D]">Home</a>
+      <a href="../en/index.html#about" class="hover:text-[#6D6D6D]">About</a>
+      <a href="../en/index.html#case-studies" class="hover:text-[#6D6D6D] hidden md:inline">Case Studies</a>
+      <a href="../en/index.html#certificates" class="hover:text-[#6D6D6D] hidden lg:inline">Certificates</a>
+      <a href="../en/index.html#contact" class="hover:text-[#6D6D6D] hidden xl:inline">Contact</a>
+      <a href="../en/impressum.html" class="hover:text-[#6D6D6D] hidden xl:inline">Impressum</a>
+    </nav>
+
+    <!-- Language Dropdown -->
+<div class="relative min-w-max">
+  <button id="langBtn"
+          class="flex items-center gap-1 px-2 py-1 text-[18px]">
+    EN <span class="inline-block transform rotate-90">›</span>
+  </button>
+  <ul id="langMenu"
+      class="hidden absolute right-0 mt-2 bg-white border border-line-custom rounded shadow-lg text-[18px] text-center">
+    
+    <li class="px-4 py-2 border-b border-line-custom hover:bg-gray-100 cursor-pointer">
+      <a href="../de/case-study-slott.html" class="block w-full h-full">DE</a>
+    </li>
+    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+      <a href="../ru/case-study-slott.html" class="block w-full h-full">RU</a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <!-- Divider -->
+  <div class="w-full px-4 md:px-[84px] mt-[8px]">
+    <hr class="border-0 h-[2px] bg-[#CDC2C2]" />
+  </div>
+</header>
+
+<!-- Mobile Slide-In Menu -->
+<div id="mobileMenu"
+     class="fixed inset-0 z-40 bg-white transform -translate-x-full transition-transform duration-300 overflow-x-hidden">
+  <nav class="flex flex-col px-4 py-6 space-y-4 text-[18px]">
+    <a href="../en/index.html#home" class="hover:text-[#6D6D6D]">Home</a>
+    <a href="../en/index.html#about" class="hover:text-[#6D6D6D]">About</a>
+    <a href="../en/index.html#case-studies" class="hover:text-[#6D6D6D]">Case Studies</a>
+    <a href="../en/index.html#certificates" class="hover:text-[#6D6D6D]">Certificates</a>
+    <a href="../en/index.html#contact" class="hover:text-[#6D6D6D]">Contact</a>
+    <a href="../en/impressum.html" class="hover:text-[#6D6D6D]">Impressum</a>
+  </nav>
+</div>
+
+<!-- =========================================
+     MAIN: Case Study – Slott
+========================================= -->
+<main class="flex-grow">
+
+  <!-- HERO -->
+ <section id="slott" class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px] scroll-mt-[76px] md:scroll-mt-[96px]">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-[32px] md:gap-[60px] items-center">
+    <!-- Logo -->
+    <figure class="w-full flex justify-center">
+      <img
+        src="../assets/images/SlottLogo2.png"
+        alt="Slott logo"
+        class="w-full max-w-[250px] md:max-w-[320px] object-contain"
+      />
+    </figure>
+
+    <!-- Text -->
+    <div>
+      <h1 class="text-[clamp(1.75rem,4vw,2.5rem)] font-bold mb-4">
+        Slott – A Brand New Effort
+      </h1>
+      <h2 class="font-semibold text-[clamp(1.25rem,3vw,1.5rem)] text-[#6D6D6D] mb-3">
+        A Blank Page Means a Fresh Start
+      </h2>
+      <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-3">
+        Imagine being handed a blank sheet of paper and an abstract challenge. That was the starting point for Slott. All we had was a brand name, a mascot, and a loose concept. The rest – from the Tone of Voice to the actual product – had to be built from scratch.
+      </p>
+      <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-3">
+        I saw it as a unique opportunity: NeoGroup trusted me and the team to bring this idea to life, and it meant designing the platform with UX in mind from the very start. It was a chance to apply lessons from past mistakes and insights right away – to build something truly valuable in the end.
+      </p>
+      <aside class="disclaimer text-black text-[clamp(0.9rem,2vw,1rem)] leading-relaxed mb-3 border border-gray-200 rounded-md bg-[#FAFAFA] p-4" role="note" aria-label="Confidentiality note">
+  <p><em>
+    Obviously, due to NDAs and work ethics, I can't reveal every detail or any in-work visuals here – but you'll still find enough to understand my contributions, the overall process, and how I approach design challenges.
+  </em></p>
+</aside>
+    </div>
+  </div>
+</section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]">
+    <hr class="border-b border-[#CDC2C2]" />
+  </div>
+
+  <!-- PROJECT AT A GLANCE -->
+<section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[40px] md:py-[60px]">
+  <!-- Title -->
+  <h2 class="text-[clamp(1.5rem,3.5vw,2rem)] font-semibold text-center md:text-left mb-6">
+    Project in a Nutshell
+  </h2>
+
+  <!-- Top row: quick facts -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-[20px] md:gap-[32px] mb-8">
+    <div class="p-0">
+      <div class="text-[#6D6D6D] text-[clamp(0.9rem,2.2vw,1rem)] mb-1">My Role</div>
+      <div class="text-[clamp(1rem,2.2vw,1.125rem)] font-medium">
+        UX Writer & Designer · Tone of Voice Owner · Localization Lead (EN → DE/RU)
+      </div>
+    </div>
+    <div class="p-0">
+      <div class="text-[#6D6D6D] text-[clamp(0.9rem,2.2vw,1rem)] mb-1">Timeline</div>
+      <div class="text-[clamp(1rem,2.2vw,1.125rem)] font-medium">
+       MVP1 in ~4 Months → Ongoing Feature Work
+      </div>
+    </div>
+    <div class="p-0">
+      <div class="text-[#6D6D6D] text-[clamp(0.9rem,2.2vw,1rem)] mb-1">Markets</div>
+      <div class="text-[clamp(1rem,2.2vw,1.125rem)] font-medium">
+        EU focus (DE, ES, IT, FR) + CIS with Full Regulatory Compliance
+      </div>
+    </div>
+  </div>
+
+  <!-- Chips: scope / responsibilities -->
+  <div class="flex flex-wrap gap-2 mb-8">
+    <span class="px-3 py-1 rounded-full border border-[#CDC2C2] bg-[#F8F8F8] text-[clamp(0.85rem,2vw,1rem)]">ToV</span>
+    <span class="px-3 py-1 rounded-full border border-[#CDC2C2] bg-[#F8F8F8] text-[clamp(0.85rem,2vw,1rem)]">Registration & Onboarding</span>
+    <span class="px-3 py-1 rounded-full border border-[#CDC2C2] bg-[#F8F8F8] text-[clamp(0.85rem,2vw,1rem)]">Payments</span>
+    <span class="px-3 py-1 rounded-full border border-[#CDC2C2] bg-[#F8F8F8] text-[clamp(0.85rem,2vw,1rem)]">Loyalty & Cashback</span>
+    <span class="px-3 py-1 rounded-full border border-[#CDC2C2] bg-[#F8F8F8] text-[clamp(0.85rem,2vw,1rem)]">Referrals</span>
+    <span class="px-3 py-1 rounded-full border border-[#CDC2C2] bg-[#F8F8F8] text-[clamp(0.85rem,2vw,1rem)]">Achievements</span>
+    <span class="px-3 py-1 rounded-full border border-[#CDC2C2] bg-[#F8F8F8] text-[clamp(0.85rem,2vw,1rem)]">Seasonal Events</span>
+    <span class="px-3 py-1 rounded-full border border-[#CDC2C2] bg-[#F8F8F8] text-[clamp(0.85rem,2vw,1rem)]">Localization Pipeline</span>
+    <span class="px-3 py-1 rounded-full border border-[#CDC2C2] bg-[#F8F8F8] text-[clamp(0.85rem,2vw,1rem)]">Other Features ;)</span>
+  </div>
+
+  <!-- Two-column: team & quick wins -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-[24px] md:gap-[40px]">
+    <div>
+      <div class="text-[#6D6D6D] text-[clamp(0.9rem,2.2vw,1rem)] mb-1">Team & Collaboration</div>
+      <p class="text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+        Worked alongside the Head of UX, 2 UX Researchers, 2 Designers, a Platform Coordinator, and 3 Developers. Served on the 3-person UX review board. Mentored 4 junior UX writers and aligned with Legal/Compliance and Country Managers.
+      </p>
+    </div>
+    <div>
+      <div class="text-[#6D6D6D] text-[clamp(0.9rem,2.2vw,1rem)] mb-1">My Highlights</div>
+      <ul class="text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed list-disc pl-5">
+        <li>Defined ToV that became a company standard across locales.</li>
+        <li>Launched MVP1 on schedule in EN/DE/RU with fully compliant core flows.</li>
+        <li>Shipped features that increased engagement and retention (Achievements, Referrals, etc.).</li>
+        <li>Cut localization turnaround from days to hours with a scalable workflow.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Tools row (optional) -->
+  <div class="mt-8">
+    <div class="text-[#6D6D6D] text-[clamp(0.9rem,2.2vw,1rem)] mb-1">Tools</div>
+    <p class="text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+      Figma, Miro, Jira, Notion, Trello, internal microservices for localization, GPT‑4/3.5 for ideation.
+    </p>
+  </div>
+</section>
+
+<!-- Divider -->
+<div class="w-full px-[84px]">
+  <hr class="border-b border-[#CDC2C2]" />
+</div>
+  
+<!-- STARTING POINT  -->
+<section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+
+    <!-- Intro -->
+    <h2 class="font-semibold text-[clamp(1.5rem,4vw,2.25rem)] mb-4">Starting Point</h2>
+    <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-8">
+      The first phase focused on finding answers: defining what the brand should stand for,
+      what kind of experience to create, and how to communicate with our audience in an authentic way.
+      The real challenge was less about producing design and content assets and more about asking the right questions, testing different approaches,
+      and shaping a clear plan to guide design, content, and product decisions in the months ahead. On paper the task seemed simple;
+      in practice it was huge: build an engaging iGaming website from scratch.
+    </p>
+
+    <!-- Card grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[24px] md:gap-[32px]">
+      <!-- Card 1 -->
+      <div class="bg-white border border-[#E5E5E5] rounded-lg shadow-sm p-6">
+        <h3 class="font-semibold mb-3">Top Priorities</h3>
+        <p class="text-black leading-relaxed">
+          Clarify the brand's role, explore different directions,
+          and build a foundation that balanced authenticity, compliance,
+          and user engagement – setting the stage for design and content decisions to follow.
+        </p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-white border border-[#E5E5E5] rounded-lg shadow-sm p-6">
+        <h3 class="font-semibold mb-3">Core Objectives</h3>
+        <ul class="space-y-2 text-black">
+          <li><span class="text-[#3D63C2]">•</span> Drive new registrations</li>
+          <li><span class="text-[#3D63C2]">•</span> Encourage first deposits</li>
+          <li><span class="text-[#3D63C2]">•</span> Ensure full compliance with EU regulations 
+              (Germany, Spain, Italy, France…)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]">
+    <hr class="border-b border-[#CDC2C2]" />
+  </div>
+
+<!-- CUSTOMER JOURNEY TEST PHASE -->
+<section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-[32px] md:gap-[60px] items-start">
+    
+    <!-- Text -->
+    <div>
+      <h2 class="font-semibold text-[clamp(1.5rem,4vw,2.25rem)] mb-3">
+        Iterative Testing & Improvement
+      </h2>
+      <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+        In the first testing phase, I mapped and analyzed user journeys in detail. This revealed several factors that negatively affected the overall UX: from flow inconsistencies and technical bugs to UI choices that made the experience less intuitive than we aimed for.
+      </p>
+      <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mt-3">
+        We addressed these findings through a <strong>structured design thinking cycle</strong>: empathize, define, ideate, prototype, and test. By repeating the process until issues were resolved, we refined the product step by step while staying aligned with user needs.
+      </p>
+      <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mt-3">
+        Thanks to this pipeline, our team delivered <strong>a high-quality, ready-to-launch product</strong> in record time without compromising on UX or accessibility.
+      </p>
+    </div>
+    
+<!-- Image -->
+<figure class="w-full">
+  <img
+    src="../assets/images/Screenshot-Figma.png"
+    alt="Recreated early project stages"
+    class="w-full max-w-[640px] mx-auto object-contain border border-[#CDC2C2] shadow-md rounded"
+  />
+  <figcaption class="text-[#6D6D6D] text-sm mt-2 text-center leading-relaxed">
+    A recreation of the project’s early stages: storyframes, first Tone of Voice definition, and lo-fi prototypes with draft app texts. Visuals are based on a different project. Since sharing internal files is restricted by contract, I created this illustrative example instead.
+  </figcaption>
+</figure>
+    
+  </div>
+</section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]">
+    <hr class="border-b border-[#CDC2C2]" />
+  </div>
+
+  <!-- TONE OF VOICE (image left, text right) -->
+  <section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[32px] md:gap-[60px] items-center">
+      
+      <!-- Image -->
+      <figure class="w-full md:order-1">
+        <img
+          src="../assets/images/Screenshot-Figma2.png"
+          alt="Recreation of ToV definition phase"
+          class="w-full max-w-[300px] mx-auto object-contain border border-[#CDC2C2] shadow-md rounded"
+        />
+        <figcaption class="text-[#6D6D6D] text-sm mt-2 text-center">
+          This is a recreation of what the first define phase looked like, when we laid the foundation of Slott's Tone of Voice. It became the reference point for all later design and content decisions.
+
+        </figcaption>
+      </figure>
+
+      <!-- Text -->
+      <div class="md:order-2">
+        <h2 class="font-semibold text-[clamp(1.5rem,4vw,2.25rem)] mb-3">Tone of Voice</h2>
+        <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+          I defined the brand’s Tone of Voice early on. The core principle: <strong>clarity above stylistic indulgence</strong>. The language is always inclusive, approachable, and user-first.
+        <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mt-3">
+          The full ToV document was over 20 pages, covering everything from basics, rules, and
+          examples to punctuation and even questions like "Oxford comma: yes or no?". Knowing
+          no one would read such a long file cover to cover, I distilled it into a 17-slide
+          presentation that became a quick reference for the entire company.
+        </p>
+        <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mt-3">
+          Under my supervision, the Tone of Voice was later localized and adapted for each market in collaboration with country managers and translators, ensuring consistency and cultural relevance for every user.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]">
+    <hr class="border-b border-[#CDC2C2]" />
+  </div>
+
+  <!-- MVP1 & BEYOND (image right) -->
+<section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-[32px] md:gap-[60px] items-start">
+    <!-- Text -->
+    <div>
+      <h2 class="font-semibold text-[clamp(1.5rem,4vw,2.25rem)] mb-3">MVP1 and Beyond!</h2>
+      <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+        For MVP1, I worked on the core flows: registration, onboarding, payments, early promos, and localization into English, German, and Russian. The MVP launched on schedule and met all regulatory requirements.
+      </p>
+      <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mt-3">
+        After launch, the work didn't stop. I became one of three decision-makers on the UX review board, where every new feature had to
+        pass our review before development. In parallel, I owned or contributed to major flows such as the <strong>Loyalty Program,
+        Referral Program, Achievements, Advent Calendar,</strong> and some other yet unannounced features. Each project went through our iterative UX design process: research → prototyping → testing → refinement.
+      </p>
+      <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mt-3">
+        My role went beyond words: I made sure the product kept evolving in a way that felt <strong>as natural and user-friendly as possible</strong> to our audience. Slott continues to grow – not only as a <strong>gaming product</strong>, but as a <strong>unique experience</strong> designed to engage, convert, and retain users while remaining intuitive and enjoyable.
+      </p>
+    </div>
+    <!-- Image -->
+    <figure class="w-full">
+      <img
+        src="../assets/images/Slott-Image.png"
+        alt="Slott Android app landing page"
+        class="w-full max-w-[640px] mx-auto object-contain border border-[#CDC2C2] shadow-md rounded"
+      />
+      <figcaption class="text-[#6D6D6D] text-sm mt-2 text-center">
+        Example of our ongoing product improvement: the Android app landing page, one of many landings we created to promote and strengthen Slott throughout its lifecycle.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]">
+    <hr class="border-b border-[#CDC2C2]" />
+  </div>
+
+  <!-- IMPACT (stacked) -->
+<section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+  <div class="max-w-[980px] mx-auto">
+    <h2 class="font-semibold text-[clamp(1.25rem,3vw,1.5rem)] mb-3">Impact</h2>
+    <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-5">
+      Building Slott was a cross-disciplinary effort for me, where I could take on new roles and expand my expertise. I helped shape the platform's design, content, and product decisions, influencing both how players experienced the service and how the brand communicated with them. Here are the key results:
+    </p>
+    <ul class="space-y-3 text-[#6D6D6D] text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+      <li>• <strong>Boosted engagement & retention.</strong> Features such as Achievements drove clear increases in registrations, first deposits, and weekly retention.</li>
+      <li>• <strong>Defined the brand's voice.</strong> The Tone of Voice I developed became a company-wide standard, applied consistently across product, marketing, and customer support. It gave Slott a recognizable, human, and trustworthy personality.</li>
+      <li>• <strong>Accelerated localization.</strong> By building a scalable content pipeline and overseeing local translators, I cut localization time for new features from several days to just a few hours – without compromising quality or compliance.</li>
+      <li>• <strong>Cross-team alignment.</strong> I worked at the intersection of UX, design, and compliance, ensuring that new features met user-experience standards, business requirements, and regulatory checks in the EU markets.</li>
+      <li>• <strong>Team development.</strong> I trained and guided a team of 4 junior UX writers, introduced review practices, ensured style consistency, and mapped out growth paths. This turned content from a support task into a strategic product asset.</li>
+      <li>• <strong>Implemented key product flows.</strong> co-led decisions on loyalty programs, referral systems, and seasonal promotions, ensuring that content and UX were integral to product strategy.</li>
+    </ul>
+  </div>
+</section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]">
+    <hr class="border-b border-[#CDC2C2]" />
+  </div>
+
+  <!-- LEARNINGS -->
+<section class="w-full bg-[#FAFAFA] py-[60px] md:py-[90px]">
+  <div class="max-w-[900px] mx-auto px-[16px] md:px-[84px] text-center">
+    <h2 class="font-semibold text-[clamp(1.5rem,3.5vw,1.75rem)] mb-4">Learnings</h2>
+
+    <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-8">
+      Slott became a crash course in building both a product and a brand from the ground up. The experience pushed me to grow from a simple UX designer into a strategic partner in product design, compliance, and growth. Here are the key lessons I took away:
+    </p>
+
+    <ul class="text-left space-y-6 text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+      <li>
+        <span class="inline-block w-3 h-3 bg-[#3D63C2] rounded-full mr-3 align-middle"></span>
+        <strong>Balancing creativity and requirements.</strong> I learned to create engaging, playful communication while still meeting strict regulations and business needs, finding solutions that worked for everyone.
+      </li>
+      <li>
+        <span class="inline-block w-3 h-3 bg-[#3D63C2] rounded-full mr-3 align-middle"></span>
+        <strong>Scaling a unified voice.</strong> Creating Tone of Voice guidelines was one thing. Making them work across multiple countries and languages was another. I learned how to adapt a brand voice without losing its essence.
+      </li>
+      <li>
+        <span class="inline-block w-3 h-3 bg-[#3D63C2] rounded-full mr-3 align-middle"></span>
+        <strong>Thinking like a product owner.</strong> Serving on the UX review board taught me to decide not only as a UX designer but as a strategist, balancing user needs, business goals, and technical feasibility.
+      </li>
+      <li>
+        <span class="inline-block w-3 h-3 bg-[#3D63C2] rounded-full mr-3 align-middle"></span>
+        <strong>Leading through content.</strong> Mentoring writers and working across teams showed me that content leadership shapes not just words but also processes, features, and even company culture.
+      </li>
+    </ul>
+
+    <div class="mt-8 flex justify-center">
+      <button
+        id="open-contact-modal"
+        class="px-10 py-3 rounded bg-[#3D63C2] text-white font-semibold shadow-md hover:shadow-lg transition"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="contact-modal"
+        aria-expanded="false"
+      >
+        WORK WITH ME
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Modal: Contact form ===== -->
+<div
+  id="contact-modal"
+  class="fixed inset-0 z-[999] hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="contact-modal-title"
+>
+  <!-- Backdrop -->
+  <div id="contact-backdrop" class="absolute inset-0 bg-black/40"></div>
+
+  <!-- Dialog -->
+  <div
+    class="relative w-[min(92vw,720px)] mx-auto mt-[8vh]
+           bg-white border border-[#CDC2C2] rounded shadow-xl"
+  >
+    <!-- Close button -->
+    <button
+      id="close-contact-modal"
+      class="absolute right-3 top-3 text-[#6D6D6D] hover:text-black"
+      aria-label="Close"
+      type="button"
+    >
+      ✕
+    </button>
+
+    <!-- Form Container (IDs are -modal to avoid conflicts) -->
+    <form
+      action="https://formspree.io/f/xovwzoed"
+      method="POST"
+      class="w-full max-w-[631px] mx-auto p-[40px] flex flex-col items-center"
+    >
+      <p
+        id="contact-modal-title"
+        class="font-semibold text-black mb-[24px] text-center
+               text-[clamp(1rem,3vw,1.5rem)]"
+      >
+        Feel free to reach out anytime!
+      </p>
+
+      <!-- Name -->
+      <input
+        id="contact-name-modal"
+        type="text"
+        name="name"
+        placeholder="Name"
+        required
+        class="w-full border-b-2 border-[#CDC2C2]
+               text-center text-black
+               text-[clamp(1rem,3vw,1.25rem)]
+               placeholder:text-[#CCCCCC]
+               placeholder:text-[clamp(0.875rem,2vw,1rem)]
+               pb-[8px] mb-[24px]
+               focus:outline-none"
+      />
+
+      <!-- Email -->
+      <input
+        id="contact-email-modal"
+        type="email"
+        name="email"
+        placeholder="Email"
+        required
+        class="w-full border-b-2 border-[#CDC2C2]
+               text-center text-black
+               text-[clamp(1rem,3vw,1.25rem)]
+               placeholder:text-[#CCCCCC]
+               placeholder:text-[clamp(0.875rem,2vw,1rem)]
+               pb-[8px] mb-[8px]
+               focus:outline-none"
+      />
+
+      <!-- inline error message: hidden by default -->
+      <p
+        id="email-error-modal"
+        class="hidden text-red-500
+               text-[clamp(0.875rem,2vw,1rem)]
+               mt-[4px] mb-[16px]"
+      >
+        Please make sure the email format is correct: example@mail.com
+      </p>
+
+      <!-- Message -->
+      <textarea
+        id="contact-message-modal"
+        name="message"
+        rows="6"
+        maxlength="3500"
+        placeholder="Message"
+        required
+        class="w-full border-b-2 border-[#CDC2C2]
+               text-center text-black
+               text-[clamp(1rem,3vw,1.25rem)]
+               placeholder:text-[#CCCCCC]
+               placeholder:text-[clamp(0.875rem,2vw,1rem)]
+               pb-[8px] mb-[8px]
+               focus:outline-none resize-none"
+      ></textarea>
+
+      <!-- Character counter -->
+      <div
+        id="char-count-modal"
+        class="self-end text-[#6D6D6D] mb-[24px]
+               text-[clamp(0.875rem,2vw,1rem)]"
+      >
+        0 / 3500
+      </div>
+
+      <!-- Send button -->
+      <button
+        id="contact-submit-modal"
+        type="submit"
+        disabled
+        class="bg-[#3F3B3B] text-white font-medium
+               py-[10px] px-[40px] rounded
+               text-[clamp(1rem,3vw,1.25rem)]
+               disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        SEND
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  (function () {
+    // Modal open/close
+    const openBtn   = document.getElementById('open-contact-modal');
+    const modal     = document.getElementById('contact-modal');
+    const backdrop  = document.getElementById('contact-backdrop');
+    const closeBtn  = document.getElementById('close-contact-modal');
+
+    function openModal() {
+      modal.classList.remove('hidden');
+      openBtn.setAttribute('aria-expanded', 'true');
+      // focus first field
+      const first = document.getElementById('contact-name-modal');
+      if (first) first.focus();
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      openBtn.setAttribute('aria-expanded', 'false');
+      openBtn.focus();
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('hidden') && e.key === 'Escape') closeModal();
+    });
+
+    // ===== Form validation for the modal (IDs are -modal) =====
+    const nameInput   = document.getElementById('contact-name-modal');
+    const emailInput  = document.getElementById('contact-email-modal');
+    const emailError  = document.getElementById('email-error-modal');
+    const msgInput    = document.getElementById('contact-message-modal');
+    const counter     = document.getElementById('char-count-modal');
+    const submitBtn   = document.getElementById('contact-submit-modal');
+    const MAX         = 3500;
+    const emailRegex  = /^\S+@\S+\.\S+$/;
+
+    function updateCounter() {
+      let len = msgInput.value.length;
+      if (len > MAX) msgInput.value = msgInput.value.slice(0, MAX);
+      counter.textContent = `${msgInput.value.length} / ${MAX}`;
+      counter.classList.toggle('text-red-500', msgInput.value.length >= MAX);
+      validateForm();
+    }
+
+    function validateForm() {
+      const nameOK   = nameInput.value.trim().length > 0;
+      const emailVal = emailInput.value.trim();
+      const emailOK  = emailRegex.test(emailVal);
+      const msgLen   = msgInput.value.length;
+      const msgOK    = msgLen > 0 && msgLen <= MAX;
+
+      if (emailVal !== '' && !emailOK) {
+        emailError.classList.remove('hidden');
+      } else {
+        emailError.classList.add('hidden');
+      }
+      submitBtn.disabled = !(nameOK && emailOK && msgOK);
+    }
+
+    nameInput.addEventListener('input', validateForm);
+    emailInput.addEventListener('input', validateForm);
+    msgInput.addEventListener('input', updateCounter);
+
+    // initialize
+    updateCounter();
+    validateForm();
+  })();
+</script>
+
+
+<!-- ----------------------------------------
+     FOOTER 
+---------------------------------------- -->
+<!-- ===== Legal disclaimer  ===== -->
+<div class="w-full bg-[#FAFAFA]">
+  <div class="max-w-[1980px] mx-auto px-[16px] md:px-[84px]">
+    <p class="text-center text-[10px] md:text-[11px] leading-snug text-[#9D9D9D] italic mb-[6px]">
+      The Slott logo, brand, mascot, and website are owned and operated by Bluewave Interactive N.V. I do not claim any rights to these assets – they are displayed here solely for the purpose of demonstrating my professional contributions to the project as an employee and later contractor of NeoGroup.
+    </p>
+  </div>
+</div>  
+
+<footer class="mt-auto w-full bg-[#545455] text-white">
+  <!-- Top row: left & right blocks -->
+  <div class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[16px]
+              grid grid-cols-2 items-start
+              md:flex md:justify-between md:items-start gap-y-3">
+
+    <!-- LEFT: site + email -->
+    <div class="text-left">
+      <a href="../en/index.html#home"
+         class="block text-[clamp(1rem,2vw,1.25rem)] font-medium hover:underline">
+        alexmedved.com
+      </a>
+      <a href="mailto:smellfigty@gmail.com"
+         class="block text-[clamp(0.875rem,1.8vw,1rem)] hover:underline">
+        smellfigty@gmail.com
+      </a>
+    </div>
+
+    <!-- RIGHT: links (right-aligned) -->
+    <div class="justify-self-end text-right
+                text-[clamp(0.875rem,1.8vw,1rem)] space-y-1 md:space-y-0 md:flex md:gap-[40px]">
+      <a href="impressum.html" class="block hover:underline">Impressum</a>
+      <a href="privacy.html"   class="block hover:underline">Privacy Policy</a>
+    </div>
+  </div>
+
+  <!-- Bottom copyright -->
+  <div class="text-center py-[8px] text-[clamp(0.75rem,1.5vw,0.875rem)]">
+    &copy; 2025 All rights reserved.
+  </div>
+</footer>
+
+<!-- =========================================
+     JS: language toggles + mobile menu
+========================================= -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    /* ---------- Language Toggles ---------- */
+    const lBtn  = id => document.getElementById(id + 'Btn');
+    const lMenu = id => document.getElementById(id + 'Menu');
+
+    ['lang', 'mobileLang'].forEach(id => {
+      const btn = lBtn(id), menu = lMenu(id);
+      btn?.addEventListener('click', e => {
+        e.stopPropagation();
+        menu?.classList.toggle('hidden');
+      });
+    });
+
+    document.addEventListener('click', () => {
+      lMenu('lang')?.classList.add('hidden');
+      lMenu('mobileLang')?.classList.add('hidden');
+    });
+
+    /* ---------- Mobile Hamburger / Slide Menu ---------- */
+    const toggle     = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    toggle?.addEventListener('click', e => {
+      e.stopPropagation();
+      document.body.classList.toggle('nav-open');
+      mobileMenu?.classList.toggle('-translate-x-full');
+    });
+
+    document.addEventListener('click', e => {
+      if (mobileMenu && !mobileMenu.contains(e.target) && !toggle?.contains(e.target)) {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      }
+    });
+
+    mobileMenu?.querySelectorAll('a').forEach(link =>
+      link.addEventListener('click', () => {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      })
+    );
+
+    // Close if resized to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768 && mobileMenu) {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      }
+    });
+  });
+</script>
+</body>
+</html>

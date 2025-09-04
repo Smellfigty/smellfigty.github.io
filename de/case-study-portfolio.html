@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aleksandr Medved | UX-Designer</title>
+  <meta name="description" content="Portfolio-Fallstudie – von Grund auf gebaut. Eigene Identität, UX/UI, mehrsprachige Seite und volle Kontrolle über Design, Code und Wachstum ohne Vorlagen.">
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  
+
+
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'gray-custom': '#6D6D6D',
+            'line-custom': '#CDC2C2',
+            'card-bg': '#F5F5F5',
+            'btn-blue': '#3D63C2',
+          },
+          
+          
+        }
+      }
+    }
+  </script>
+
+<!-- 3) Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<style>
+  /* Hamburger / X (your working version, thinned) */
+  .bar {
+    position: absolute;
+    top: 50%;
+    margin-top: -1px;
+    right: 0;
+    width: 100%;
+    height: 2px; /* thinner */
+    border-radius: 4px;
+    background-color: black;
+    transition: all 0.3s ease;
+  }
+  .bar--top { transform: translateY(-8px); }
+  .bar--bottom { transform: translateY(8px); }
+  body.nav-open .bar--top { transform: rotate(45deg) translateY(0); }
+  body.nav-open .bar--middle { opacity: 0; }
+  body.nav-open .bar--bottom { transform: rotate(-45deg) translateY(0); }
+</style>
+
+<body class="flex flex-col min-h-screen overflow-x-hidden font-raleway">
+
+<!-- =========================================
+     HEADER 
+========================================= -->
+<header class="sticky top-0 w-full bg-white z-50 pt-[14px] md:pt-[20px]">
+  <div class="relative max-w-[1440px] mx-auto flex items-center justify-between px-4 md:px-[84px]">
+
+    <!-- Mobile Hamburger -->
+    <div id="menu-toggle" class="md:hidden relative w-[29px] h-[26px] p-2 z-50">
+      <span class="bar bar--top"></span>
+      <span class="bar bar--middle"></span>
+      <span class="bar bar--bottom"></span>
+    </div>
+
+    <!-- Logo -->
+    <a href="../de/index.html#home" class="absolute left-1/2 transform -translate-x-1/2 md:static md:transform-none z-40">
+      <img src="../assets/images/FullLogo_Transparent_NoBuffer.png"
+           alt="Logo" class="h-[56px] md:h-[96px] object-contain" />
+    </a>
+
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex flex-1 justify-center space-x-[60px] text-[20px]">
+      <a href="../de/index.html#home" class="hover:text-[#6D6D6D]">Startseite</a>
+      <a href="../de/index.html#about" class="hover:text-[#6D6D6D]">Über mich</a>
+      <a href="../de/index.html#case-studies" class="hover:text-[#6D6D6D] hidden md:inline">Fallstudien</a>
+      <a href="../de/index.html#certificates" class="hover:text-[#6D6D6D] hidden lg:inline">Zertifikate</a>
+      <a href="../de/index.html#contact" class="hover:text-[#6D6D6D] hidden xl:inline">Kontakt</a>
+      <a href="../de/impressum.html" class="hover:text-[#6D6D6D] hidden xl:inline">Impressum</a>
+    </nav>
+
+    <!-- Language Dropdown -->
+<div class="relative min-w-max">
+  <button id="langBtn"
+          class="flex items-center gap-1 px-2 py-1 text-[18px]">
+    DE <span class="inline-block transform rotate-90">›</span>
+  </button>
+  <ul id="langMenu"
+      class="hidden absolute right-0 mt-2 bg-white border border-line-custom rounded shadow-lg text-[18px] text-center">
+    
+    <li class="px-4 py-2 border-b border-line-custom hover:bg-gray-100 cursor-pointer">
+      <a href="../en/case-study-portfolio.html" class="block w-full h-full">EN</a>
+    </li>
+    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+      <a href="../ru/case-study-portfolio.html" class="block w-full h-full">RU</a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <!-- Divider -->
+  <div class="w-full px-4 md:px-[84px] mt-[8px]">
+    <hr class="border-0 h-[2px] bg-[#CDC2C2]" />
+  </div>
+</header>
+
+<!-- Mobile Slide-In Menu -->
+<div id="mobileMenu"
+     class="fixed inset-0 z-40 bg-white transform -translate-x-full transition-transform duration-300 overflow-x-hidden">
+  <nav class="flex flex-col px-4 py-6 space-y-4 text-[18px]">
+    <a href="../de/index.html#home" class="hover:text-[#6D6D6D]">Startseite</a>
+    <a href="../de/index.html#about" class="hover:text-[#6D6D6D]">Über mich</a>
+    <a href="../de/index.html#case-studies" class="hover:text-[#6D6D6D]">Fallstudien</a>
+    <a href="../de/index.html#certificates" class="hover:text-[#6D6D6D]">Zertifikate</a>
+    <a href="../de/index.html#contact" class="hover:text-[#6D6D6D]">Kontakt</a>
+    <a href="../de/impressum.html" class="hover:text-[#6D6D6D]">Impressum</a>
+  </nav>
+</div>
+
+<!-- =========================================
+     MAIN: Case Study – Smellfigty
+========================================= -->
+<main class="flex-grow">
+
+  <!-- HERO -->
+  <section id="portfolio-site" class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px] scroll-mt-[76px] md:scroll-mt-[96px]">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-[32px] md:gap-[60px] items-center">
+    <!-- Text -->
+    <div>
+      <h1 class="text-[clamp(1.75rem,4vw,2.5rem)] font-bold mb-2">
+        Dieses Portfolio – von Grund auf erstellt
+      </h1>
+      <h2 class="text-[#6D6D6D] font-semibold text-[clamp(1.25rem,3vw,1.5rem)] mb-4">
+        Warum ich auf Vorlagen verzichtete und eine eigene, mehrsprachige Seite entwickelte
+      </h2>
+      <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+        UXfolio war mir zu starr, und Behance ist zwar nett, aber nicht mein Format. Ich wollte eine Seite, die mit mir wächst, meine Identität widerspiegelt und echtes Product Thinking zusammen mit meinen Fähigkeiten zeigt – also habe ich sie selbst entworfen, getextet und programmiert.
+      </p>
+    </div>
+
+    <!-- Image with caption -->
+    <figure class="w-full">
+      <!-- GIF (plays once) -->
+      <img
+        id="hero-gif"
+        src="../assets/images/video_full.gif"
+        alt="Portfolio website hero preview"
+        class="w-full max-w-[560px] mx-auto object-contain"
+      />
+      <!-- Static final frame (hidden at start) -->
+      <img
+        id="hero-static"
+        src="../assets/images/logo_screen.png"
+        alt="Portfolio static final frame"
+        class="hidden w-full max-w-[560px] mx-auto object-contain"
+      />
+      <figcaption class="text-[#6D6D6D] text-sm mt-2 text-center max-w-[520px] mx-auto">
+        Mein erstes Design war das Logo, und es war nach ein paar Stunden fertig.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<script>
+  window.addEventListener("load", () => {
+    const gif = document.getElementById("hero-gif");
+    const staticImg = document.getElementById("hero-static");
+
+    // Adjust this to match your GIF’s duration in ms (e.g., 3200 for 3.2s)
+    const gifDuration = 3200;
+
+    setTimeout(() => {
+      gif.classList.add("hidden");
+      staticImg.classList.remove("hidden");
+    }, gifDuration);
+  });
+</script>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+
+  <!-- PROJECT IN A NUTSHELL -->
+  <section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+    <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-6">Projekt auf einen Blick</h2>
+
+    <!-- Meta row -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-[24px] md:gap-[40px] mb-4">
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-1">Meine Rolle</h3>
+        <p class="text-black">
+          UX/UI Design, UX Writing, Brand & Logo, Frontend, Lokalisierung (EN → DE/RU), Veröffentlichung
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-1">Zeitrahmen</h3>
+        <p class="text-black">Etwa 1 Monat unregelmäßige Abende nach der Arbeit</p>
+      </div>
+
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-1">Tools</h3>
+        <p class="text-black">
+          Figma, VS Code, Tailwind, Jekyll, GitHub Pages, HTML/CSS/JS, ChatGPT, Google Docs, CodePen
+        </p>
+      </div>
+    </div>
+
+    <!-- Centered outlined chips -->
+    <div class="w-full mb-8">
+      <div class="flex flex-wrap justify-center gap-2">
+        <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">Identity &amp; Branding</span>
+        <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">UX / UI</span>
+        <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">Content &amp; ToV</span>
+        <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">Frontend</span>
+        <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">Lokalisierung (EN / DE / RU)</span>
+      </div>
+    </div>
+
+    <!-- Challenge / Objectives -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[24px] md:gap-[40px] mb-8">
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] font-semibold mb-2">Herausforderungen</h3>
+        <p class="text-black leading-relaxed">
+          Ein professionelles Profil entwickeln, ein Logo gestalten und ein responsives Portfolio von Grund auf bauen – ohne Vorlagen und ohne selbst hauptberuflich Entwickler zu sein. Die Seite sollte schnell live gehen und leicht zu pflegen sein.
+        </p>
+      </div>
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] font-semibold mb-2">Ziel</h3>
+        <p class="text-black leading-relaxed">
+          Ein responsives, markentaugliches und mehrsprachiges Portfolio aufbauen, das meine Geschichte klar erzählt, Fallstudien einheitlich präsentiert und mir die volle Kontrolle über Inhalte, Code und Weiterentwicklung gibt.
+        </p>
+      </div>
+    </div>
+
+    <!-- Highlights -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[24px] md:gap-[40px]">
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-2">Meine Highlights</h3>
+        <ul class="list-disc ml-5 space-y-2 text-black">
+          <li>Eigene Identität & Logo im Einklang mit Stil und Arbeit</li>
+          <li>Wiederverwendbares Case-Study-Layout für klare Stories</li>
+          <li>Mehrsprachige Struktur (EN → DE/RU) von Anfang an bedacht</li>
+          <li>Schneller Static-Stack (Jekyll + GitHub Pages) mit Tailwind</li>
+          <li>Zugängliche Typografie & Spacing für einfaches Scannen</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-2">Ergebnis</h3>
+        <ul class="list-disc ml-5 space-y-2 text-black">
+        <li>Eine Website, die persönlich wirkt, Vertrauen schafft und wachsen kann</li>
+        <li>Eine klarere Story über Fähigkeiten, Prozess und echten Impact</li>
+        <li>Volle Kontrolle über Hosting, Geschwindigkeit und SEO-Basics</li>
+        <li>Kein Vendor-Lock-in – alles läuft aus meinem Repo</li>
+        <li>Eine responsive Seite, die ich bis ins letzte Pixel besitze</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+
+<!-- PROCESS -->
+<section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-[32px] md:gap-[60px] items-start">
+    <!-- Story-like text -->
+    <div>
+      <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-3">Prozess</h3>
+      <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-4">
+        Ich habe diese Seite wie ein kleines Produkt angegangen: in auslieferbaren Teilen, mit echten Rahmenbedingungen und schnellem Lernen.
+        Das Ziel war nicht einfach „eine Website“, sondern ein klares, wachsendes System, das mit meiner Arbeit wächst.
+      </p>
+      <ul class="space-y-3 text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+        <li><strong>Die Stimme finden.</strong> Richtungen skizziert, visuelle Referenzen gesammelt und einen Ton definiert, der schlicht, selbstbewusst und einladend wirkt.</li>
+        <li><strong>Die Identität formen.</strong> In wenigen Stunden wurde das Logo entworfen und geprüft, wie gut es mich widerspiegelt und in Mockups wirkt.</li>
+        <li><strong>Die Arbeit strukturieren.</strong> In Figma die ersten Seiten entworfen&nbsp;– Startseite, Über mich, Fallstudien, Kontakt&nbsp;– mit Desktop-First-Ansatz.</li>
+        <li><strong>Rhythmus prüfen.</strong> Interaktive Mocks erstellt, um Flow, Abstände und Lesetempo zu testen, bevor überhaupt Code geschrieben wurde.</li>
+        <li><strong>Das Wesentliche verfeinern.</strong> Mehrere Iterationen des finalen Designs entwickelt und die beste gewählt.</li>
+        <li><strong>Bauen wie Bausteine.</strong> Mit HTML/Tailwind/JS gearbeitet, Abschnitte komponentenbasiert gebaut und mit ChatGPT die Routine beschleunigt.</li>
+        <li><strong>Mehrsprachig gehen.</strong> Zuerst auf Englisch geschrieben, dann ins DE/RU lokalisiert – mit beibehaltener Tonalität und Klarheit.</li>
+        <li><strong>Ausliefern, prüfen, iterieren.</strong> Auf GitHub Pages veröffentlicht, auf Geräten getestet und dokumentiert, damit künftige Anpassungen leichter fallen.</li>
+      </ul>
+    </div>
+
+    <!-- Image + caption -->
+    <figure class="w-full">
+      <img
+        src="../assets/images/Iteration1.png"
+        alt="Early Figma concept board showing page map for desktop and mobile"
+        class="w-full object-contain border border-[#CDC2C2] shadow-md rounded"
+      />
+      <figcaption class="text-[#6D6D6D] text-center text-sm mt-2">
+        Frühes Konzeptboard in Figma: erste Seiten für den Launch im Desktop-First-Plan. Später das Case-Study-System überarbeitet – Abstände, Proportionen und Ränder – für flüssigeres Lesen.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+
+<!-- KEY DECISIONS + DESIGN PRINCIPLES -->
+<section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+  <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-3">
+    Wichtige Entscheidungen & Designprinzipien
+  </h3>
+  <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-6">
+    Anstatt ein künstliches „Vorher–Nachher“ zu erzwingen, zeige ich die Entscheidungen, die diese Seite geprägt haben, und die Prinzipien, die sie zusammenhalten – damit das Design klar, flexibel und authentisch zu meiner Arbeit bleibt.
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Column: Key Decisions -->
+    <div class="bg-white border border-[#EAEAEA] rounded p-5">
+      <h4 class="font-semibold mb-3">Meine Entscheidungen</h4>
+      <ul class="space-y-3 text-black">
+        <li>
+          <span class="font-semibold">Von Grund auf, ohne Kompromisse.</span>
+          Volle kreative Kontrolle, bessere Performance und ein Auftritt, der wirklich zu mir passt. Dazu eine bewusste Lerninvestition.
+        </li>
+        <li>
+          <span class="font-semibold">Eigenes Logo statt nur Wortmarke.</span>
+          Ein Zeichen mit Charakter, das in Favicon, Social Media und Print funktioniert – modern und nahbar statt austauschbar.
+        </li>
+        <li>
+          <span class="font-semibold">Desktop first, dann Mobile.</span>
+          Da Fallstudien meist am Desktop gelesen werden, habe ich dort zuerst gestaltet – mobile Anpassungen wurden einfacher.
+        </li>
+        <li>
+          <span class="font-semibold">Manuelle Lokalisierung.</span>
+          Tonalität, Begriffe und Kontext sind entscheidend. Manuelle Übersetzungen schaffen mehr Vertrauen, bessere UX und SEO.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Column: Design Principles in Action -->
+    <div class="bg-[#F7F7F7] border border-[#EAEAEA] rounded p-5">
+      <h4 class="font-semibold mb-3">Was das Design zusammenhält</h4>
+      <ul class="space-y-3 text-black">
+        <li>
+          <span class="font-semibold">Klarheit.</span>
+          Eine klare Hierarchie in den Fallstudien, damit Rolle, Ergebnis und Wirkung sofort erkennbar sind.
+        </li>
+        <li>
+          <span class="font-semibold">Konsistenz.</span>
+          Abstands- und Typografie-Raster halten die Seiten zusammen; wiederverwendbare Blöcke sorgen für einheitlichen Text- und Designfluss.
+        </li>
+        <li>
+          <span class="font-semibold">Identität.</span>
+          Logo, Tonalität und Farbwahl vermitteln eine ruhige, zugängliche Marke – durchgängig vom Hero bis zum Footer.
+        </li>
+        <li>
+          <span class="font-semibold">Flexibilität.</span>
+          Als System gebaut (Jekyll + Tailwind + modulare Inhalte), sodass sich neue Fallstudien schnell hinzufügen lassen.
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+  
+ <!-- IMPACT -->
+<section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+  <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-3">Ergebnisse</h3>
+
+  <p class="text-black leading-relaxed mb-6">
+    Dieses Projekt hat meinen Umgang mit Design und Projekten insgesamt stark verändert. Ich habe neue Fähigkeiten gewonnen, bestehende geschärft und die volle Kraft kreativer Freiheit erlebt – ohne Paywalls oder die Einschränkungen einer Plattform:
+  <!-- Two-column benefits -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-black mb-8">
+    <ul class="space-y-2">
+      <li><strong>Lesbarkeit.</strong> Klare Struktur macht auch lange Seiten leicht.</li>
+      <li><strong>Handwerk.</strong> Logo und Tonalität geben dem Portfolio eine eigene, menschliche Stimme.</li>
+      <li><strong>Eigentum.</strong> Inhalte und Code im Repo – keine Abhängigkeiten.</li>
+    </ul>
+    <ul class="space-y-2">
+      <li><strong>Lokalisierung.</strong> Manuelle Übersetzungen bewahren Nuancen und Glaubwürdigkeit.</li>
+      <li><strong>Performance.</strong> Ein schlanker Static-Build hält die Seiten schnell und stabil.</li>
+      <li><strong>Dev-Empathie.</strong> Der Bau der Seite ließ mich Entwickler besser verstehen.</li>
+    </ul>
+  </div>
+
+<!-- Visuals row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-[20px] md:gap-[24px]">
+  <figure class="w-full flex flex-col items-center">
+    <img
+      src="../assets/images/Iteration2.png"
+      alt="Iteration 2 – reworked Case Studies layout with improved rhythm and spacing"
+      class="w-full max-w-[600px] h-[340px] object-contain border border-[#CDC2C2] shadow-md rounded bg-white"
+    />
+    <figcaption class="text-[#6D6D6D] text-sm mt-2 text-center max-w-[520px]">
+      Iteration 2, das vorletzte Layout – Fallstudien neu geordnet, Abstände verfeinert und alles noch einmal sorgfältig ausgearbeitet, bevor es in den Code ging.
+    </figcaption>
+  </figure>
+
+  <figure class="w-full flex flex-col items-center">
+    <img
+      src="../assets/images/Localization.png"
+      alt="Early component frame showing aligned blocks and tidy structure"
+      class="w-full max-w-[600px] h-[340px] object-contain border border-[#CDC2C2] shadow-md rounded bg-white"
+    />
+    <figcaption class="text-[#6D6D6D] text-sm mt-2 text-center max-w-[520px]">
+      Alle Blöcke wurden als Komponenten entwickelt; die Texte wurden parallel in drei Sprachen in einer übersichtlichen Tabelle gepflegt und übersetzt.
+    </figcaption>
+  </figure>
+</div>
+</section> 
+   
+  <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div> 
+  
+ <!-- LEARNINGS (stacked, centered) -->
+<section class="max-w-[900px] mx-auto px-[16px] md:px-[40px] py-[50px] md:py-[70px] text-center">
+  <h3 class="font-semibold text-[clamp(1.5rem,3.5vw,1.75rem)] mb-4">Erkenntnisse</h3>
+  <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-8">
+Dieses Projekt ging weit über Design hinaus – eine komplette Produktaufgabe. Ich lernte, Identität, Struktur und Code zu verbinden und den Fokus auf Klarheit und Nutzbarkeit zu halten.
+  </p>
+
+  <ul class="text-left space-y-6 text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+    <li class="flex items-start">
+      <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+      <p><strong>Systemdenken.</strong> Ein klares Abstands- und Rasterraster sparte Stunden, sobald es ans Coden ging.</p>
+    </li>
+    <li class="flex items-start">
+      <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+      <p><strong>Design → Code-Flow.</strong> Saubere Figma-Komponenten flossen direkt in klares HTML/CSS.</p>
+    </li>
+    <li class="flex items-start">
+      <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+      <p><strong>Lokalisierungsbewusstsein.</strong> Die frühe Planung für EN, DE und RU bewahrte Layouts vor Brüchen.</p>
+    </li>
+    <li class="flex items-start">
+      <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+      <p><strong>Schritt statt Perfektion.</strong> Der wirksamste Grundsatz: erst bauen, später verfeinern.</p>
+    </li>
+  </ul>
+  
+    <div class="mt-8 flex justify-center">
+      <button
+        id="open-contact-modal"
+        class="px-10 py-3 rounded bg-[#3D63C2] text-white font-semibold shadow-md hover:shadow-lg transition"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="contact-modal"
+        aria-expanded="false"
+      >
+        KONTAKT AUFNEHMEN
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Modal: Contact form ===== -->
+<div
+  id="contact-modal"
+  class="fixed inset-0 z-[999] hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="contact-modal-title"
+>
+  <!-- Backdrop -->
+  <div id="contact-backdrop" class="absolute inset-0 bg-black/40"></div>
+
+  <!-- Dialog -->
+  <div
+    class="relative w-[min(92vw,720px)] mx-auto mt-[8vh]
+           bg-white border border-[#CDC2C2] rounded shadow-xl"
+  >
+    <!-- Close button -->
+    <button
+      id="close-contact-modal"
+      class="absolute right-3 top-3 text-[#6D6D6D] hover:text-black"
+      aria-label="Close"
+      type="button"
+    >
+      ✕
+    </button>
+
+    <!-- Form Container (IDs are -modal to avoid conflicts) -->
+    <form
+      action="https://formspree.io/f/xovwzoed"
+      method="POST"
+      class="w-full max-w-[631px] mx-auto p-[40px] flex flex-col items-center"
+    >
+      <p
+        id="contact-modal-title"
+        class="font-semibold text-black mb-[24px] text-center
+               text-[clamp(1rem,3vw,1.5rem)]"
+      >
+        Melde dich jederzeit gerne!
+      </p>
+
+      <!-- Name -->
+      <input
+        id="contact-name-modal"
+        type="text"
+        name="name"
+        placeholder="Name"
+        required
+        class="w-full border-b-2 border-[#CDC2C2]
+               text-center text-black
+               text-[clamp(1rem,3vw,1.25rem)]
+               placeholder:text-[#CCCCCC]
+               placeholder:text-[clamp(0.875rem,2vw,1rem)]
+               pb-[8px] mb-[24px]
+               focus:outline-none"
+      />
+
+      <!-- Email -->
+      <input
+        id="contact-email-modal"
+        type="email"
+        name="email"
+        placeholder="E-Mail"
+        required
+        class="w-full border-b-2 border-[#CDC2C2]
+               text-center text-black
+               text-[clamp(1rem,3vw,1.25rem)]
+               placeholder:text-[#CCCCCC]
+               placeholder:text-[clamp(0.875rem,2vw,1rem)]
+               pb-[8px] mb-[8px]
+               focus:outline-none"
+      />
+
+      <!-- inline error message: hidden by default -->
+      <p
+        id="email-error-modal"
+        class="hidden text-red-500
+               text-[clamp(0.875rem,2vw,1rem)]
+               mt-[4px] mb-[16px]"
+      >
+        Bitte überprüfe das Format der E-Mail: muster@mail.com
+      </p>
+
+      <!-- Message -->
+      <textarea
+        id="contact-message-modal"
+        name="message"
+        rows="6"
+        maxlength="3500"
+        placeholder="Nachricht"
+        required
+        class="w-full border-b-2 border-[#CDC2C2]
+               text-center text-black
+               text-[clamp(1rem,3vw,1.25rem)]
+               placeholder:text-[#CCCCCC]
+               placeholder:text-[clamp(0.875rem,2vw,1rem)]
+               pb-[8px] mb-[8px]
+               focus:outline-none resize-none"
+      ></textarea>
+
+      <!-- Character counter -->
+      <div
+        id="char-count-modal"
+        class="self-end text-[#6D6D6D] mb-[24px]
+               text-[clamp(0.875rem,2vw,1rem)]"
+      >
+        0 / 3500
+      </div>
+
+      <!-- Send button -->
+      <button
+        id="contact-submit-modal"
+        type="submit"
+        disabled
+        class="bg-[#3F3B3B] text-white font-medium
+               py-[10px] px-[40px] rounded
+               text-[clamp(1rem,3vw,1.25rem)]
+               disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        ABSENDEN
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  (function () {
+    // Modal open/close
+    const openBtn   = document.getElementById('open-contact-modal');
+    const modal     = document.getElementById('contact-modal');
+    const backdrop  = document.getElementById('contact-backdrop');
+    const closeBtn  = document.getElementById('close-contact-modal');
+
+    function openModal() {
+      modal.classList.remove('hidden');
+      openBtn.setAttribute('aria-expanded', 'true');
+      // focus first field
+      const first = document.getElementById('contact-name-modal');
+      if (first) first.focus();
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      openBtn.setAttribute('aria-expanded', 'false');
+      openBtn.focus();
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('hidden') && e.key === 'Escape') closeModal();
+    });
+
+    // ===== Form validation for the modal (IDs are -modal) =====
+    const nameInput   = document.getElementById('contact-name-modal');
+    const emailInput  = document.getElementById('contact-email-modal');
+    const emailError  = document.getElementById('email-error-modal');
+    const msgInput    = document.getElementById('contact-message-modal');
+    const counter     = document.getElementById('char-count-modal');
+    const submitBtn   = document.getElementById('contact-submit-modal');
+    const MAX         = 3500;
+    const emailRegex  = /^\S+@\S+\.\S+$/;
+
+    function updateCounter() {
+      let len = msgInput.value.length;
+      if (len > MAX) msgInput.value = msgInput.value.slice(0, MAX);
+      counter.textContent = `${msgInput.value.length} / ${MAX}`;
+      counter.classList.toggle('text-red-500', msgInput.value.length >= MAX);
+      validateForm();
+    }
+
+    function validateForm() {
+      const nameOK   = nameInput.value.trim().length > 0;
+      const emailVal = emailInput.value.trim();
+      const emailOK  = emailRegex.test(emailVal);
+      const msgLen   = msgInput.value.length;
+      const msgOK    = msgLen > 0 && msgLen <= MAX;
+
+      if (emailVal !== '' && !emailOK) {
+        emailError.classList.remove('hidden');
+      } else {
+        emailError.classList.add('hidden');
+      }
+      submitBtn.disabled = !(nameOK && emailOK && msgOK);
+    }
+
+    nameInput.addEventListener('input', validateForm);
+    emailInput.addEventListener('input', validateForm);
+    msgInput.addEventListener('input', updateCounter);
+
+    // initialize
+    updateCounter();
+    validateForm();
+  })();
+</script>
+
+</main>
+
+<!-- ----------------------------------------
+     FOOTER 
+---------------------------------------- -->
+
+<footer class="mt-auto w-full bg-[#545455] text-white">
+  <!-- Top row: left & right blocks -->
+  <div class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[16px]
+              grid grid-cols-2 items-start
+              md:flex md:justify-between md:items-start gap-y-3">
+
+    <!-- LEFT: site + email -->
+    <div class="text-left">
+      <a href="../de/index.html#home"
+         class="block text-[clamp(1rem,2vw,1.25rem)] font-medium hover:underline">
+        alexmedved.com
+      </a>
+      <a href="mailto:smellfigty@gmail.com"
+         class="block text-[clamp(0.875rem,1.8vw,1rem)] hover:underline">
+        smellfigty@gmail.com
+      </a>
+    </div>
+
+    <!-- RIGHT: links (right-aligned) -->
+    <div class="justify-self-end text-right
+                text-[clamp(0.875rem,1.8vw,1rem)] space-y-1 md:space-y-0 md:flex md:gap-[40px]">
+      <a href="impressum.html" class="block hover:underline">Impressum</a>
+      <a href="privacy.html"   class="block hover:underline">Datenschutzerklärung</a>
+    </div>
+  </div>
+
+  <!-- Bottom copyright -->
+  <div class="text-center py-[8px] text-[clamp(0.75rem,1.5vw,0.875rem)]">
+    &copy; 2025 Alle Rechte vorbehalten.
+  </div>
+</footer>
+
+<!-- =========================================
+     JS: language toggles + mobile menu
+========================================= -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    /* ---------- Language Toggles ---------- */
+    const lBtn  = id => document.getElementById(id + 'Btn');
+    const lMenu = id => document.getElementById(id + 'Menu');
+
+    ['lang', 'mobileLang'].forEach(id => {
+      const btn = lBtn(id), menu = lMenu(id);
+      btn?.addEventListener('click', e => {
+        e.stopPropagation();
+        menu?.classList.toggle('hidden');
+      });
+    });
+
+    document.addEventListener('click', () => {
+      lMenu('lang')?.classList.add('hidden');
+      lMenu('mobileLang')?.classList.add('hidden');
+    });
+
+    /* ---------- Mobile Hamburger / Slide Menu ---------- */
+    const toggle     = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    toggle?.addEventListener('click', e => {
+      e.stopPropagation();
+      document.body.classList.toggle('nav-open');
+      mobileMenu?.classList.toggle('-translate-x-full');
+    });
+
+    document.addEventListener('click', e => {
+      if (mobileMenu && !mobileMenu.contains(e.target) && !toggle?.contains(e.target)) {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      }
+    });
+
+    mobileMenu?.querySelectorAll('a').forEach(link =>
+      link.addEventListener('click', () => {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      })
+    );
+
+    // Close if resized to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768 && mobileMenu) {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      }
+    });
+  });
+</script>
+</body>
+</html>

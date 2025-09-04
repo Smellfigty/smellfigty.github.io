@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aleksandr Medved | UX Designer</title>
+  <meta name="description" content="Bachata School case study – one-evening UX sprint. Clearer copy, improved design & CTAs, and a friendlier site that boosted student inquiries and sign-ups.">
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  
+
+
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'gray-custom': '#6D6D6D',
+            'line-custom': '#CDC2C2',
+            'card-bg': '#F5F5F5',
+            'btn-blue': '#3D63C2',
+          },
+          
+          
+        }
+      }
+    }
+  </script>
+
+<!-- 3) Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<style>
+  /* Hamburger / X (your working version, thinned) */
+  .bar {
+    position: absolute;
+    top: 50%;
+    margin-top: -1px;
+    right: 0;
+    width: 100%;
+    height: 2px; /* thinner */
+    border-radius: 4px;
+    background-color: black;
+    transition: all 0.3s ease;
+  }
+  .bar--top { transform: translateY(-8px); }
+  .bar--bottom { transform: translateY(8px); }
+  body.nav-open .bar--top { transform: rotate(45deg) translateY(0); }
+  body.nav-open .bar--middle { opacity: 0; }
+  body.nav-open .bar--bottom { transform: rotate(-45deg) translateY(0); }
+</style>
+
+<body class="flex flex-col min-h-screen overflow-x-hidden font-raleway">
+
+<!-- =========================================
+     HEADER 
+========================================= -->
+<header class="sticky top-0 w-full bg-white z-50 pt-[14px] md:pt-[20px]">
+  <div class="relative max-w-[1440px] mx-auto flex items-center justify-between px-4 md:px-[84px]">
+
+    <!-- Mobile Hamburger -->
+    <div id="menu-toggle" class="md:hidden relative w-[29px] h-[26px] p-2 z-50">
+      <span class="bar bar--top"></span>
+      <span class="bar bar--middle"></span>
+      <span class="bar bar--bottom"></span>
+    </div>
+
+    <!-- Logo -->
+    <a href="../en/index.html#home" class="absolute left-1/2 transform -translate-x-1/2 md:static md:transform-none z-40">
+      <img src="../assets/images/FullLogo_Transparent_NoBuffer.png"
+           alt="Logo" class="h-[56px] md:h-[96px] object-contain" />
+    </a>
+
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex flex-1 justify-center space-x-[60px] text-[20px]">
+      <a href="../en/index.html#home" class="hover:text-[#6D6D6D]">Home</a>
+      <a href="../en/index.html#about" class="hover:text-[#6D6D6D]">About</a>
+      <a href="../en/index.html#case-studies" class="hover:text-[#6D6D6D] hidden md:inline">Case Studies</a>
+      <a href="../en/index.html#certificates" class="hover:text-[#6D6D6D] hidden lg:inline">Certificates</a>
+      <a href="../en/index.html#contact" class="hover:text-[#6D6D6D] hidden xl:inline">Contact</a>
+      <a href="../en/impressum.html" class="hover:text-[#6D6D6D] hidden xl:inline">Impressum</a>
+    </nav>
+
+    <!-- Language Dropdown -->
+<div class="relative min-w-max">
+  <button id="langBtn"
+          class="flex items-center gap-1 px-2 py-1 text-[18px]">
+    EN <span class="inline-block transform rotate-90">›</span>
+  </button>
+  <ul id="langMenu"
+      class="hidden absolute right-0 mt-2 bg-white border border-line-custom rounded shadow-lg text-[18px] text-center">
+    
+    <li class="px-4 py-2 border-b border-line-custom hover:bg-gray-100 cursor-pointer">
+      <a href="../de/case-study-bachata.html" class="block w-full h-full">DE</a>
+    </li>
+    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+      <a href="../ru/case-study-bachata.html" class="block w-full h-full">RU</a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <!-- Divider -->
+  <div class="w-full px-4 md:px-[84px] mt-[8px]">
+    <hr class="border-0 h-[2px] bg-[#CDC2C2]" />
+  </div>
+</header>
+
+<!-- Mobile Slide-In Menu -->
+<div id="mobileMenu"
+     class="fixed inset-0 z-40 bg-white transform -translate-x-full transition-transform duration-300 overflow-x-hidden">
+  <nav class="flex flex-col px-4 py-6 space-y-4 text-[18px]">
+    <a href="../en/index.html#home" class="hover:text-[#6D6D6D]">Home</a>
+    <a href="../en/index.html#about" class="hover:text-[#6D6D6D]">About</a>
+    <a href="../en/index.html#case-studies" class="hover:text-[#6D6D6D]">Case Studies</a>
+    <a href="../en/index.html#certificates" class="hover:text-[#6D6D6D]">Certificates</a>
+    <a href="../en/index.html#contact" class="hover:text-[#6D6D6D]">Contact</a>
+    <a href="../en/impressum.html" class="hover:text-[#6D6D6D]">Impressum</a>
+  </nav>
+</div>
+
+<!-- =========================================
+     MAIN: Case Study – Bachata
+========================================= -->
+<main class="flex-grow">
+
+  <!-- HERO -->
+<section id="bachata" class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px] scroll-mt-[76px] md:scroll-mt-[96px]">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-[32px] md:gap-[60px] items-center">
+    
+    <!-- Text -->
+    <div>
+      <h1 class="text-[clamp(1.75rem,4vw,2.5rem)] font-bold mb-2">
+        Bachata School – Clearer Words, Better UX
+      </h1>
+      <h2 class="text-[#6D6D6D] font-semibold text-[clamp(1.25rem,3vw,1.5rem)] mb-4">
+        From cluttered copy to a clear, conversion-driven site in just one evening
+      </h2>
+      <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+        This was a full UX writing and content-structure sprint. I reviewed the site end to end, mapped pain points, and rewrote the key sections so newcomers could quickly grasp the offer, check pricing, and contact the coaches. The result was a friendlier site that's easier to scan and act on.
+      </p>
+    </div>
+
+    <!-- Image with caption -->
+    <figure class="w-full">
+      <img
+        src="../assets/images/Screenshot-Bachta.png"
+        alt="Bachata case study hero"
+        class="w-full max-w-[560px] mx-auto object-contain border border-[#CDC2C2] shadow-md rounded"
+      />
+      <figcaption class="text-[#6D6D6D] text-sm mt-2 text-center max-w-[480px] mx-auto">
+        Hero section of the Bachata website. While the client chose to keep some UI elements to their own liking, the implemented changes significantly improved both UX and overall appeal.
+      </figcaption>
+    </figure>
+    
+  </div>
+</section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+
+  <!-- PROJECT IN A NUTSHELL -->
+<section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+  <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-6">Project in a Nutshell</h2>
+
+  <!-- Meta row -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-[24px] md:gap-[40px] mb-4">
+    <div>
+      <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-1">My role</h3>
+      <p class="text-black">
+        UX Writing and Review, IA cleanup, microcopy & CTA design, and refinement of EN localization
+      </p>
+    </div>
+
+    <div>
+      <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-1">Timeline</h3>
+      <p class="text-black">One evening: review → proposal → second-pass QA</p>
+    </div>
+
+    <div>
+      <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-1">Tools</h3>
+      <p class="text-black">Google Docs (spec + rationale), Tilda (site platform), Figma (quick comps)</p>
+    </div>
+  </div>
+
+  <!-- Centered OUTLINED meta chips (independent row) -->
+  <div class="w-full mb-8">
+    <div class="flex flex-wrap justify-center gap-2">
+      <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">Audit</span>
+      <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">UX Writing</span>
+      <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">IA / Structure</span>
+      <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">CTA &amp; Forms</span>
+      <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">Localization (EN)</span>
+    </div>
+  </div>
+
+  <!-- Challenge / Objectives -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-[24px] md:gap-[40px] mb-8">
+    <div>
+      <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] font-semibold mb-2">Challenge</h3>
+      <p class="text-black leading-relaxed">
+        No access to the client's Tilda account, so all changes had to be documented in a clear, reproducible spec with reasoning and examples. After the client shipped updates, I ran a second-pass QA to catch gaps and ensure nothing critical was missed.
+      </p>
+    </div>
+    <div>
+      <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] font-semibold mb-2">Objective</h3>
+      <p class="text-black leading-relaxed">
+        Make the site quick to scan and act on in one sitting: refine the information architecture, clarify offers, simplify pricing and schedules, streamline booking flows, and craft approachable English copy that feels professional to newcomers.
+      </p>
+    </div>
+  </div>
+
+  <!-- Highlights -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-[24px] md:gap-[40px]">
+    <div>
+      <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-2">Highlights</h3>
+      <ul class="list-disc ml-5 space-y-2 text-black">
+        <li>Mapped pain points and rewrote hero, value prop, pricing, FAQs, and CTAs.</li>
+        <li>Consolidated scattered info, reducing cognitive load on key pages.</li>
+        <li>Refined CTA hierarchy and clarified contact/booking paths.</li>
+        <li>Delivered a Google Doc playbook with before/after copy, rationale, and notes.</li>
+        <li>Ran a QA check after implementation to verify fixes.</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-2">Outcome</h3>
+      <ul class="list-disc ml-5 space-y-2 text-black">
+        <li>Onboarding feels smoother: visitors find info & pricing faster with fewer clicks.</li>
+        <li>Stronger first impression: polished English microcopy boosts perceived professionalism.</li>
+        <li>Clearer paths to action led to more inquiries and new student enrollments.</li>
+        <li>The site now feels like a friendly invitation rather than a puzzle.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+
+ <!-- SPEC-FIRST WORKFLOW: SIDE-BY-SIDE DOC SHOTS -->
+<section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[40px] md:py-[60px]">
+  <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-3">Changes made transparent</h3>
+  <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-6">
+    All recommendations were kept in one structured Google Doc: a screenshot with quick mark-ups, the original text, and the proposed version right underneath. If a change required a strategic choice, I provided 2-3 focused variants. Otherwise, one clear option kept momentum and avoided “too much choice” paralysis. The client could review, decide, and implement quickly.
+  </p>
+
+  <!-- 3-up responsive grid -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-[20px] md:gap-[24px]">
+    <!-- Shot 1 -->
+    <figure class="w-full">
+      <img
+        src="../assets/images/Screenshot-Bachata-Doc.png"
+        alt="Spec doc: annotated screenshot with arrows → current copy → proposed revision"
+        class="w-full object-contain border border-[#CDC2C2] shadow-md rounded"
+      />
+      <figcaption class="text-[#6D6D6D] text-center text-sm mt-2">
+        Flow example: marked issues, suggested fixes, added notes – structured feedback that kept us on time.
+      </figcaption>
+    </figure>
+
+    <!-- Shot 2 -->
+    <figure class="w-full">
+      <img
+        src="../assets/images/Screenshot-Bachata-Doc2.png"
+        alt="Spec doc: headline and CTA alternatives with rationale"
+        class="w-full object-contain border border-[#CDC2C2] shadow-md rounded"
+      />
+      <figcaption class="text-[#6D6D6D] text-center text-sm mt-2">
+        I worked section by section and prioritized core flows such as trial classes and venue info.
+      </figcaption>
+    </figure>
+
+    <!-- Shot 3 -->
+    <figure class="w-full">
+      <img
+        src="../assets/images/Screenshot-Bachata-Doc3.png"
+        alt="Spec doc: final proposed copy with notes for implementation"
+        class="w-full object-contain border border-[#CDC2C2] shadow-md rounded"
+      />
+      <figcaption class="text-[#6D6D6D] text-center text-sm mt-2">
+        The impact was visible right after the first edits. The landing instantly felt clearer and more inviting.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+
+  <!-- BEFORE / AFTER -->
+<section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+  <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold text-center mb-3">
+    Before → After Highlights
+  </h3>
+  <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-6">
+    To demonstrate the impact of my UX writing and design, I've selected three key areas of the site. Each example shows how vague, inconsistent, or hard-to-scan sections were turned into clear, user-friendly experiences that help visitors act with confidence.
+  </p>
+
+  <!-- Pair 1 -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- BEFORE -->
+    <div class="bg-[#F7F7F7] border border-[#EAEAEA] rounded p-5">
+      <h4 class="font-semibold mb-3">Before: Primary Flow</h4>
+      <figure>
+        <img
+          src="../assets/images/Screenshot-Bachata-Doc33.jpg"
+          alt="Before — hero and primary flow"
+          class="w-full object-contain rounded border border-[#EAEAEA] shadow-sm"
+        />
+      </figure>
+      <ul class="mt-3 text-[#6D6D6D]">
+        <li>• No clear <strong>“Book Now”</strong> button</li>
+        <li>• Heavy, less approachable wording</li>
+        <li>• Inconsistent card sizes and layout</li>
+        <li>• Hard to scan for quick decisions</li>
+      </ul>
+    </div>
+
+    <!-- AFTER -->
+    <div class="bg-white border border-[#EAEAEA] rounded p-5">
+      <h4 class="font-semibold mb-3">After: Primary Flow</h4>
+      <figure>
+        <img
+          src="../assets/images/Screenshot-Bachata-Doc44.png"
+          alt="After — hero with Book Now and improved microcopy"
+          class="w-full object-contain rounded border border-[#EAEAEA] shadow-sm"
+        />
+      </figure>
+      <ul class="mt-3 text-[#6D6D6D]">
+        <li>• Added <strong>“Book Now”</strong> button</li>
+        <li>• Changed “Package” to “Pass” (playful and familiar)</li>
+        <li>• Unified card sizes for consistency</li>
+        <li>• Refined wording, structure and introduced bullet points</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Pair 2 -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+    <!-- BEFORE -->
+    <div class="bg-[#F7F7F7] border border-[#EAEAEA] rounded p-5">
+      <h4 class="font-semibold mb-3">Before: Info Block</h4>
+      <figure>
+        <img
+          src="../assets/images/Screenshot-Bachata-Doc55.jpg"
+          alt="Before — dense information block"
+          class="w-full object-contain rounded border border-[#EAEAEA] shadow-sm"
+        />
+      </figure>
+      <ul class="mt-3 text-[#6D6D6D]">
+        <li>• Large, uniform text blocks</li>
+        <li>• No visual emphasis, hard to skim</li>
+        <li>• Key details hidden in long paragraphs</li>
+      </ul>
+    </div>
+
+    <!-- AFTER -->
+    <div class="bg-white border border-[#EAEAEA] rounded p-5">
+      <h4 class="font-semibold mb-3">After: Info Block</h4>
+      <figure>
+        <img
+          src="../assets/images/Screenshot-Bachata-Doc66.png"
+          alt="After — scannable info with emojis and bolding"
+          class="w-full object-contain rounded border border-[#EAEAEA] shadow-sm"
+        />
+      </figure>
+      <ul class="mt-3 text-[#6D6D6D]">
+        <li>• Added relevant <strong>emojis</strong> for easier parsing</li>
+        <li>• Shortened text for better readability</li>
+        <li>• Highlighted key details in <strong>bold</strong> for quick scanning</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Pair 3 -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+    <!-- BEFORE -->
+    <div class="bg-[#F7F7F7] border border-[#EAEAEA] rounded p-5">
+      <h4 class="font-semibold mb-3">Before: Key Points / Benefits</h4>
+      <figure>
+        <img
+          src="../assets/images/Screenshot-Bachata-Doc11.jpg"
+          alt="Before — key points/benefits section"
+          class="w-full object-contain rounded border border-[#EAEAEA] shadow-sm"
+        />
+      </figure>
+      <ul class="mt-3 text-[#6D6D6D]">
+        <li>• Weak or missing headings</li>
+        <li>• Long lines with little rhythm</li>
+        <li>• Text felt non-native and harder to grasp</li>
+      </ul>
+    </div>
+
+    <!-- AFTER -->
+    <div class="bg-white border border-[#EAEAEA] rounded p-5">
+      <h4 class="font-semibold mb-3">After: Key Points / Benefits</h4>
+      <figure>
+        <img
+          src="../assets/images/Screenshot-Bachata-Doc22.png"
+          alt="After — clearer benefits with strong headings"
+          class="w-full object-contain rounded border border-[#EAEAEA] shadow-sm"
+        />
+      </figure>
+      <ul class="mt-3 text-[#6D6D6D]">
+        <li>• Added strong, visible headings</li>
+        <li>• Rewritten for <strong>clarity & tone</strong></li>
+        <li>• Simple, natural phrasing made it much easier to understand</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+  
+  <!-- RESULTS / IMPACT (with subtle background) -->
+<section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+  <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-3">Impact</h3>
+  <p class="text-black leading-relaxed mb-4">
+    In one evening, the site became clearer, friendlier, and more action-oriented. The rework removed friction points, made key information easier to find, and gave the school a stronger, more professional online presence. Most importantly, the changes led to more student inquiries and sign-ups, as contacting the coaches and booking a class became simple and obvious.
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-black">
+    <ul class="space-y-2">
+      <li><strong>Usability:</strong> Clearer CTAs, consistent layouts, improved scanability across sections.</li>
+      <li><strong>Clarity:</strong> Simplified language, less ambiguity, structured content flow.</li>
+      <li><strong>Consistency:</strong> Unified card sizes, headline patterns, and CTA styles for a professional look.</li>
+    </ul>
+    <ul class="space-y-2">
+      <li><strong>Actionability:</strong> “Book Now” paths made visible and emphasized throughout.</li>
+      <li><strong>Accessibility:</strong> Beginner-friendly phrasing with reduced jargon.</li>
+      <li><strong>Business Impact:</strong> Easier booking process led to more class enrollments (client-reported).</li>
+    </ul>
+  </div>
+</section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+  
+ <!-- LEARNINGS (stacked, centered) -->
+<section class="w-full bg-[#FAFAFA] py-[60px] md:py-[90px]">
+  <div class="max-w-[900px] mx-auto px-[16px] md:px-[84px] text-center">
+    <h2 class="font-semibold text-[clamp(1.5rem,3.5vw,1.75rem)] mb-4">Learnings</h2>
+
+    <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-8">
+      This project was another reminder that sharp UX writing can change a product in a matter of hours, not weeks. By tightening the structure, making sections easy to scan, and designing CTAs with intent, the site shifted from overloaded to clear and action-focused.
+    </p>
+
+    <ul class="text-left space-y-6 text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+      <li class="flex items-start">
+        <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+        <p><strong>Structure & scanability:</strong> sections should be easy to grasp at a glance.</p>
+      </li>
+      <li class="flex items-start">
+        <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+        <p><strong>Specific CTAs:</strong> buttons like “Book now” reduce hesitation and guide users through the main path.</p>
+      </li>
+      <li class="flex items-start">
+        <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+        <p><strong>Small, surgical edits:</strong> tweaks to headings, card sizes, and microcopy can have a big impact.</p>
+      </li>
+      <li class="flex items-start">
+        <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+        <p><strong>Spec-first workflow:</strong> clear “before → after” docs speed up implementation even without CMS access.</p>
+      </li>
+    </ul>
+
+    <div class="mt-8 flex justify-center">
+      <button
+        id="open-contact-modal"
+        class="px-10 py-3 rounded bg-[#3D63C2] text-white font-semibold shadow-md hover:shadow-lg transition"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="contact-modal"
+        aria-expanded="false"
+      >
+        WORK WITH ME
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Modal: Contact form ===== -->
+<div
+  id="contact-modal"
+  class="fixed inset-0 z-[999] hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="contact-modal-title"
+>
+  <!-- Backdrop -->
+  <div id="contact-backdrop" class="absolute inset-0 bg-black/40"></div>
+
+  <!-- Dialog -->
+  <div
+    class="relative w-[min(92vw,720px)] mx-auto mt-[8vh]
+           bg-white border border-[#CDC2C2] rounded shadow-xl"
+  >
+    <!-- Close button -->
+    <button
+      id="close-contact-modal"
+      class="absolute right-3 top-3 text-[#6D6D6D] hover:text-black"
+      aria-label="Close"
+      type="button"
+    >
+      ✕
+    </button>
+
+    <!-- Form Container (IDs are -modal to avoid conflicts) -->
+    <form
+      action="https://formspree.io/f/xovwzoed"
+      method="POST"
+      class="w-full max-w-[631px] mx-auto p-[40px] flex flex-col items-center"
+    >
+      <p
+        id="contact-modal-title"
+        class="font-semibold text-black mb-[24px] text-center
+               text-[clamp(1rem,3vw,1.5rem)]"
+      >
+        Feel free to reach out anytime!
+      </p>
+
+      <!-- Name -->
+      <input
+        id="contact-name-modal"
+        type="text"
+        name="name"
+        placeholder="Name"
+        required
+        class="w-full border-b-2 border-[#CDC2C2]
+               text-center text-black
+               text-[clamp(1rem,3vw,1.25rem)]
+               placeholder:text-[#CCCCCC]
+               placeholder:text-[clamp(0.875rem,2vw,1rem)]
+               pb-[8px] mb-[24px]
+               focus:outline-none"
+      />
+
+      <!-- Email -->
+      <input
+        id="contact-email-modal"
+        type="email"
+        name="email"
+        placeholder="Email"
+        required
+        class="w-full border-b-2 border-[#CDC2C2]
+               text-center text-black
+               text-[clamp(1rem,3vw,1.25rem)]
+               placeholder:text-[#CCCCCC]
+               placeholder:text-[clamp(0.875rem,2vw,1rem)]
+               pb-[8px] mb-[8px]
+               focus:outline-none"
+      />
+
+      <!-- inline error message: hidden by default -->
+      <p
+        id="email-error-modal"
+        class="hidden text-red-500
+               text-[clamp(0.875rem,2vw,1rem)]
+               mt-[4px] mb-[16px]"
+      >
+        Please make sure the email format is correct: example@mail.com
+      </p>
+
+      <!-- Message -->
+      <textarea
+        id="contact-message-modal"
+        name="message"
+        rows="6"
+        maxlength="3500"
+        placeholder="Message"
+        required
+        class="w-full border-b-2 border-[#CDC2C2]
+               text-center text-black
+               text-[clamp(1rem,3vw,1.25rem)]
+               placeholder:text-[#CCCCCC]
+               placeholder:text-[clamp(0.875rem,2vw,1rem)]
+               pb-[8px] mb-[8px]
+               focus:outline-none resize-none"
+      ></textarea>
+
+      <!-- Character counter -->
+      <div
+        id="char-count-modal"
+        class="self-end text-[#6D6D6D] mb-[24px]
+               text-[clamp(0.875rem,2vw,1rem)]"
+      >
+        0 / 3500
+      </div>
+
+      <!-- Send button -->
+      <button
+        id="contact-submit-modal"
+        type="submit"
+        disabled
+        class="bg-[#3F3B3B] text-white font-medium
+               py-[10px] px-[40px] rounded
+               text-[clamp(1rem,3vw,1.25rem)]
+               disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        SEND
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  (function () {
+    // Modal open/close
+    const openBtn   = document.getElementById('open-contact-modal');
+    const modal     = document.getElementById('contact-modal');
+    const backdrop  = document.getElementById('contact-backdrop');
+    const closeBtn  = document.getElementById('close-contact-modal');
+
+    function openModal() {
+      modal.classList.remove('hidden');
+      openBtn.setAttribute('aria-expanded', 'true');
+      // focus first field
+      const first = document.getElementById('contact-name-modal');
+      if (first) first.focus();
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      openBtn.setAttribute('aria-expanded', 'false');
+      openBtn.focus();
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('hidden') && e.key === 'Escape') closeModal();
+    });
+
+    // ===== Form validation for the modal (IDs are -modal) =====
+    const nameInput   = document.getElementById('contact-name-modal');
+    const emailInput  = document.getElementById('contact-email-modal');
+    const emailError  = document.getElementById('email-error-modal');
+    const msgInput    = document.getElementById('contact-message-modal');
+    const counter     = document.getElementById('char-count-modal');
+    const submitBtn   = document.getElementById('contact-submit-modal');
+    const MAX         = 3500;
+    const emailRegex  = /^\S+@\S+\.\S+$/;
+
+    function updateCounter() {
+      let len = msgInput.value.length;
+      if (len > MAX) msgInput.value = msgInput.value.slice(0, MAX);
+      counter.textContent = `${msgInput.value.length} / ${MAX}`;
+      counter.classList.toggle('text-red-500', msgInput.value.length >= MAX);
+      validateForm();
+    }
+
+    function validateForm() {
+      const nameOK   = nameInput.value.trim().length > 0;
+      const emailVal = emailInput.value.trim();
+      const emailOK  = emailRegex.test(emailVal);
+      const msgLen   = msgInput.value.length;
+      const msgOK    = msgLen > 0 && msgLen <= MAX;
+
+      if (emailVal !== '' && !emailOK) {
+        emailError.classList.remove('hidden');
+      } else {
+        emailError.classList.add('hidden');
+      }
+      submitBtn.disabled = !(nameOK && emailOK && msgOK);
+    }
+
+    nameInput.addEventListener('input', validateForm);
+    emailInput.addEventListener('input', validateForm);
+    msgInput.addEventListener('input', updateCounter);
+
+    // initialize
+    updateCounter();
+    validateForm();
+  })();
+</script>
+
+</main>
+<!-- =========================================
+     FOOTER
+========================================= -->
+<footer class="mt-auto w-full bg-[#545455] text-white">
+  <!-- Top row: left & right blocks -->
+  <div class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[16px]
+              grid grid-cols-2 items-start
+              md:flex md:justify-between md:items-start gap-y-3">
+
+    <!-- LEFT: site + email -->
+    <div class="text-left">
+      <a href="../en/index.html#home"
+         class="block text-[clamp(1rem,2vw,1.25rem)] font-medium hover:underline">
+        alexmedved.com
+      </a>
+      <a href="mailto:smellfigty@gmail.com"
+         class="block text-[clamp(0.875rem,1.8vw,1rem)] hover:underline">
+        smellfigty@gmail.com
+      </a>
+    </div>
+
+    <!-- RIGHT: links (right-aligned) -->
+    <div class="justify-self-end text-right
+                text-[clamp(0.875rem,1.8vw,1rem)] space-y-1 md:space-y-0 md:flex md:gap-[40px]">
+      <a href="/#impressum" class="block hover:underline">Impressum</a>
+      <a href="/#privacy"   class="block hover:underline">Privacy Policy</a>
+    </div>
+  </div>
+
+  <!-- Bottom copyright -->
+  <div class="text-center py-[8px] text-[clamp(0.75rem,1.5vw,0.875rem)]">
+    &copy; 2025 All rights reserved.
+  </div>
+</footer>
+
+<!-- =========================================
+     JS: language toggles + mobile menu
+========================================= -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    /* ---------- Language Toggles ---------- */
+    const lBtn  = id => document.getElementById(id + 'Btn');
+    const lMenu = id => document.getElementById(id + 'Menu');
+
+    ['lang', 'mobileLang'].forEach(id => {
+      const btn = lBtn(id), menu = lMenu(id);
+      btn?.addEventListener('click', e => {
+        e.stopPropagation();
+        menu?.classList.toggle('hidden');
+      });
+    });
+
+    document.addEventListener('click', () => {
+      lMenu('lang')?.classList.add('hidden');
+      lMenu('mobileLang')?.classList.add('hidden');
+    });
+
+    /* ---------- Mobile Hamburger / Slide Menu ---------- */
+    const toggle     = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    toggle?.addEventListener('click', e => {
+      e.stopPropagation();
+      document.body.classList.toggle('nav-open');
+      mobileMenu?.classList.toggle('-translate-x-full');
+    });
+
+    document.addEventListener('click', e => {
+      if (mobileMenu && !mobileMenu.contains(e.target) && !toggle?.contains(e.target)) {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      }
+    });
+
+    mobileMenu?.querySelectorAll('a').forEach(link =>
+      link.addEventListener('click', () => {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      })
+    );
+
+    // Close if resized to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768 && mobileMenu) {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      }
+    });
+  });
+</script>
+</body>
+</html>

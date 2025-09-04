@@ -1,0 +1,27 @@
+# _config.yml  — minimal, no plugins, no theme
+title: Aleksandr Medved | UX Designer
+email: your-email@example.com
+description: >
+  Portfolio and UX case studies by Aleksandr Medved. Multilingual site in EN, DE, RU.
+url: "https://alexmedved.com"   # your custom domain (GitHub Pages > Custom domain set to this)
+baseurl: ""                      # keep empty with a custom domain
+permalink: pretty
+
+# purely informational; NOT used by Jekyll without plugins
+languages: [en, de, ru]
+
+# Don’t let Jekyll copy dev/build folders
+exclude:
+  - node_modules
+  - _site
+  - package.json
+  - package-lock.json
+  - postcss.config.js
+  - tailwind.config.js
+  - README.md
+  - src           # keep excluded IF you don’t directly link to files inside it
+  - dist          # same note as above
+
+# Build settings
+theme: null
+plugins: []

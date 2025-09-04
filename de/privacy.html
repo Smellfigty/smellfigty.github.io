@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aleksandr Medved | UX-Designer</title>
+  <meta name="description" content="Datenschutzerklärung – Infos zu Datenerhebung, Hosting, Kontaktformular und DSGVO-Konformität.">
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  
+
+
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'gray-custom': '#6D6D6D',
+            'line-custom': '#CDC2C2',
+            'card-bg': '#F5F5F5',
+            'btn-blue': '#3D63C2',
+          },
+          
+          
+        }
+      }
+    }
+  </script>
+
+<!-- 3) Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<style>
+  /* Hamburger / X (your working version, thinned) */
+  .bar {
+    position: absolute;
+    top: 50%;
+    margin-top: -1px;
+    right: 0;
+    width: 100%;
+    height: 2px; /* thinner */
+    border-radius: 4px;
+    background-color: black;
+    transition: all 0.3s ease;
+  }
+  .bar--top { transform: translateY(-8px); }
+  .bar--bottom { transform: translateY(8px); }
+  body.nav-open .bar--top { transform: rotate(45deg) translateY(0); }
+  body.nav-open .bar--middle { opacity: 0; }
+  body.nav-open .bar--bottom { transform: rotate(-45deg) translateY(0); }
+</style>
+
+<body class="flex flex-col min-h-screen overflow-x-hidden">
+
+<!-- =========================================
+     HEADER 
+========================================= -->
+<header class="sticky top-0 w-full bg-white z-50 pt-[14px] md:pt-[20px]">
+  <div class="relative max-w-[1440px] mx-auto flex items-center justify-between px-4 md:px-[84px]">
+
+    <!-- Mobile Hamburger -->
+    <div id="menu-toggle" class="md:hidden relative w-[29px] h-[26px] p-2 z-50">
+      <span class="bar bar--top"></span>
+      <span class="bar bar--middle"></span>
+      <span class="bar bar--bottom"></span>
+    </div>
+
+    <!-- Logo -->
+    <a href="../de/index.html#home" class="absolute left-1/2 transform -translate-x-1/2 md:static md:transform-none z-40">
+      <img src="../assets/images/FullLogo_Transparent_NoBuffer.png"
+           alt="Logo" class="h-[56px] md:h-[96px] object-contain" />
+    </a>
+
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex flex-1 justify-center space-x-[60px] text-[20px]">
+      <a href="../de/index.html#home" class="hover:text-[#6D6D6D]">Startseite</a>
+      <a href="../de/index.html#about" class="hover:text-[#6D6D6D]">Über mich</a>
+      <a href="../de/index.html#case-studies" class="hover:text-[#6D6D6D] hidden md:inline">Fallstudien</a>
+      <a href="../de/index.html#certificates" class="hover:text-[#6D6D6D] hidden lg:inline">Zertifikate</a>
+      <a href="../de/index.html#contact" class="hover:text-[#6D6D6D] hidden xl:inline">Kontakt</a>
+      <a href="../de/impressum.html" class="hover:text-[#6D6D6D] hidden xl:inline">Impressum</a>
+    </nav>
+
+    <!-- Language Dropdown -->
+<div class="relative min-w-max">
+  <button id="langBtn"
+          class="flex items-center gap-1 px-2 py-1 text-[18px]">
+    DE <span class="inline-block transform rotate-90">›</span>
+  </button>
+  <ul id="langMenu"
+      class="hidden absolute right-0 mt-2 bg-white border border-line-custom rounded shadow-lg text-[18px] text-center">
+    
+    <li class="px-4 py-2 border-b border-line-custom hover:bg-gray-100 cursor-pointer">
+      <a href="../en/privacy.html" class="block w-full h-full">EN</a>
+    </li>
+    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+      <a href="../ru/privacy.html" class="block w-full h-full">RU</a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <!-- Divider -->
+  <div class="w-full px-4 md:px-[84px] mt-[8px]">
+    <hr class="border-0 h-[2px] bg-[#CDC2C2]" />
+  </div>
+</header>
+
+<!-- Mobile Slide-In Menu -->
+<div id="mobileMenu"
+     class="fixed inset-0 z-40 bg-white transform -translate-x-full transition-transform duration-300 overflow-x-hidden">
+  <nav class="flex flex-col px-4 py-6 space-y-4 text-[18px]">
+    <a href="../de/index.html#home" class="hover:text-[#6D6D6D]">Startseite</a>
+    <a href="../de/index.html#about" class="hover:text-[#6D6D6D]">Über mich</a>
+    <a href="../de/index.html#case-studies" class="hover:text-[#6D6D6D]">Fallstudien</a>
+    <a href="../de/index.html#certificates" class="hover:text-[#6D6D6D]">Zertifikate</a>
+    <a href="../de/index.html#contact" class="hover:text-[#6D6D6D]">Kontakt</a>
+    <a href="../de/impressum.html" class="hover:text-[#6D6D6D]">Impressum</a>
+  </nav>
+</div>
+
+<!-- =========================================
+     MAIN: Privacy Policy
+========================================= -->
+  
+<main class="flex-grow">
+  <section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[60px] md:py-[80px]">
+    <div class="bg-white border border-[#CDC2C2] shadow-md rounded-lg p-8 md:p-12 text-center">
+
+      <!-- Title -->
+      <h1 class="text-[clamp(1.75rem,4vw,2.5rem)] font-bold mb-8">Datenschutzerklärung</h1>
+
+      <!-- Content -->
+      <div class="space-y-6 text-[clamp(1rem,2.5vw,1.25rem)] leading-relaxed">
+
+        <p>
+          <strong class="text-black">1. Allgemeine Informationen</strong><br/>
+          <span class="text-[#6D6D6D]">
+            Diese Website respektiert Ihre Privatsphäre und verarbeitet personenbezogene Daten in Übereinstimmung mit der Datenschutz-Grundverordnung (DSGVO/GDPR).
+          </span>
+        </p>
+
+        <p>
+          <strong class="text-black">2. Verantwortlicher für die Datenverarbeitung</strong><br/>
+          <span class="text-[#6D6D6D]">
+            Aleksandr Medved<br/>
+            Volkartstraße 59<br/>
+            80636 München<br/>
+            smellfigty@gmail.com
+          </span>
+        </p>
+
+        <p>
+          <strong class="text-black">3. Datenerhebung auf dieser Website</strong><br/>
+          <span class="text-[#6D6D6D]">
+            Personenbezogene Daten werden nur erhoben, wenn Sie diese freiwillig angeben, zum Beispiel bei der Nutzung des Kontaktformulars.
+          </span>
+        </p>
+
+        <p>
+          <strong class="text-black">4. Kontaktformular (Formspree)</strong><br/>
+          <span class="text-[#6D6D6D]">
+            Wenn Sie über das Kontaktformular eine Nachricht senden, wird Ihre Anfrage durch Formspree (USA/EU) verarbeitet.
+            Die von Ihnen eingegebenen Daten (Name, E-Mail, Nachricht) werden sicher übertragen und ausschließlich zur Bearbeitung
+            Ihrer Anfrage genutzt. Einzelheiten finden Sie in der
+            <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener"
+               class="text-[#3D63C2] hover:underline">Datenschutzerklärung von Formspree</a> (auf Englisch).
+          </span>
+        </p>
+
+        <p>
+          <strong class="text-black">5. Hosting</strong><br/>
+          <span class="text-[#6D6D6D]">
+            Diese Website wird von GitHub Pages (USA) gehostet. GitHub verarbeitet automatisch technische Log-Daten (z. B. IP-Adresse, Browsertyp, Zeitpunkt des Zugriffs),
+            um die Sicherheit und den Betrieb des Dienstes gemäß Art. 6 Abs. 1 lit. f DSGVO/GDPR zu gewährleisten. Einzelheiten finden Sie in der
+            <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement"
+               target="_blank" rel="noopener" class="text-[#3D63C2] hover:underline">
+               Datenschutzerklärung von GitHub</a>.
+          </span>
+        </p>
+
+        <p>
+          <strong class="text-black">6. Speicherdauer der Daten</strong><br/>
+          <span class="text-[#6D6D6D]">
+            Personenbezogene Daten werden nur so lange aufbewahrt, wie es zur Bearbeitung Ihrer Anfrage erforderlich ist.
+            Server-Logdateien werden von GitHub nach einer kurzen Aufbewahrungsfrist automatisch gelöscht.
+          </span>
+        </p>
+
+        <p>
+          <strong class="text-black">7. Ihre Rechte</strong><br/>
+          <span class="text-[#6D6D6D]">
+            Sie haben das Recht auf Auskunft, Berichtigung und Löschung Ihrer personenbezogenen Daten sowie das Recht auf Einschränkung
+            der Verarbeitung und auf Datenübertragbarkeit gemäß der DSGVO/GDPR.
+          </span>
+        </p>
+
+        <p>
+          <strong class="text-black">8. Beschwerderecht</strong><br/>
+          <span class="text-[#6D6D6D]">
+            Sie haben außerdem das Recht, gemäß der DSGVO/GDPR eine Beschwerde bei einer Aufsichtsbehörde einzureichen.
+          </span>
+        </p>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ----------------------------------------
+     FOOTER 
+---------------------------------------- -->
+
+<footer class="mt-auto w-full bg-[#545455] text-white">
+  <!-- Top row: left & right blocks -->
+  <div class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[16px]
+              grid grid-cols-2 items-start
+              md:flex md:justify-between md:items-start gap-y-3">
+
+    <!-- LEFT: site + email -->
+    <div class="text-left">
+      <a href="../de/index.html#home"
+         class="block text-[clamp(1rem,2vw,1.25rem)] font-medium hover:underline">
+        alexmedved.com
+      </a>
+      <a href="mailto:smellfigty@gmail.com"
+         class="block text-[clamp(0.875rem,1.8vw,1rem)] hover:underline">
+        smellfigty@gmail.com
+      </a>
+    </div>
+
+    <!-- RIGHT: links (right-aligned) -->
+    <div class="justify-self-end text-right
+                text-[clamp(0.875rem,1.8vw,1rem)] space-y-1 md:space-y-0 md:flex md:gap-[40px]">
+      <a href="impressum.html" class="block hover:underline">Impressum</a>
+      <a href="privacy.html"   class="block hover:underline">Datenschutzerklärung</a>
+    </div>
+  </div>
+
+  <!-- Bottom copyright -->
+  <div class="text-center py-[8px] text-[clamp(0.75rem,1.5vw,0.875rem)]">
+    &copy; 2025 Alle Rechte vorbehalten.
+  </div>
+</footer>
+
+<!-- =========================================
+     JS: language toggles + mobile menu
+========================================= -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    /* ---------- Language Toggles ---------- */
+    const lBtn  = id => document.getElementById(id + 'Btn');
+    const lMenu = id => document.getElementById(id + 'Menu');
+
+    ['lang', 'mobileLang'].forEach(id => {
+      const btn = lBtn(id), menu = lMenu(id);
+      btn?.addEventListener('click', e => {
+        e.stopPropagation();
+        menu?.classList.toggle('hidden');
+      });
+    });
+
+    document.addEventListener('click', () => {
+      lMenu('lang')?.classList.add('hidden');
+      lMenu('mobileLang')?.classList.add('hidden');
+    });
+
+    /* ---------- Mobile Hamburger / Slide Menu ---------- */
+    const toggle     = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    toggle?.addEventListener('click', e => {
+      e.stopPropagation();
+      document.body.classList.toggle('nav-open');
+      mobileMenu?.classList.toggle('-translate-x-full');
+    });
+
+    document.addEventListener('click', e => {
+      if (mobileMenu && !mobileMenu.contains(e.target) && !toggle?.contains(e.target)) {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      }
+    });
+
+    mobileMenu?.querySelectorAll('a').forEach(link =>
+      link.addEventListener('click', () => {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      })
+    );
+
+    // Close if resized to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768 && mobileMenu) {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      }
+    });
+  });
+</script>
+</body>
+</html>

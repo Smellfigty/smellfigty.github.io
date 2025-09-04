@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aleksandr Medved | UX Designer</title>
+  <meta name="description" content="Aleksandr Medved | Certificates: UX Writer & Editor (Netology) – professional training in UX writing, microcopy, and content design for interfaces.">
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  
+
+
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'gray-custom': '#6D6D6D',
+            'line-custom': '#CDC2C2',
+            'card-bg': '#F5F5F5',
+            'btn-blue': '#3D63C2',
+          },
+          
+          
+        }
+      }
+    }
+  </script>
+
+<!-- 3) Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<style>
+  /* Hamburger / X (your working version, thinned) */
+  .bar {
+    position: absolute;
+    top: 50%;
+    margin-top: -1px;
+    right: 0;
+    width: 100%;
+    height: 2px; /* thinner */
+    border-radius: 4px;
+    background-color: black;
+    transition: all 0.3s ease;
+  }
+  .bar--top { transform: translateY(-8px); }
+  .bar--bottom { transform: translateY(8px); }
+  body.nav-open .bar--top { transform: rotate(45deg) translateY(0); }
+  body.nav-open .bar--middle { opacity: 0; }
+  body.nav-open .bar--bottom { transform: rotate(-45deg) translateY(0); }
+</style>
+
+<body class="flex flex-col min-h-screen overflow-x-hidden font-raleway">
+
+<!-- =========================================
+     HEADER 
+========================================= -->
+<header class="sticky top-0 w-full bg-white z-50 pt-[14px] md:pt-[20px]">
+  <div class="relative max-w-[1440px] mx-auto flex items-center justify-between px-4 md:px-[84px]">
+
+    <!-- Mobile Hamburger -->
+    <div id="menu-toggle" class="md:hidden relative w-[29px] h-[26px] p-2 z-50">
+      <span class="bar bar--top"></span>
+      <span class="bar bar--middle"></span>
+      <span class="bar bar--bottom"></span>
+    </div>
+
+    <!-- Logo -->
+    <a href="../en/index.html#home" class="absolute left-1/2 transform -translate-x-1/2 md:static md:transform-none z-40">
+      <img src="../assets/images/FullLogo_Transparent_NoBuffer.png"
+           alt="Logo" class="h-[56px] md:h-[96px] object-contain" />
+    </a>
+
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex flex-1 justify-center space-x-[60px] text-[20px]">
+      <a href="../en/index.html#home" class="hover:text-[#6D6D6D]">Home</a>
+      <a href="../en/index.html#about" class="hover:text-[#6D6D6D]">About</a>
+      <a href="../en/index.html#case-studies" class="hover:text-[#6D6D6D] hidden md:inline">Case Studies</a>
+      <a href="../en/index.html#certificates" class="hover:text-[#6D6D6D] hidden lg:inline">Certificates</a>
+      <a href="../en/index.html#contact" class="hover:text-[#6D6D6D] hidden xl:inline">Contact</a>
+      <a href="../en/impressum.html" class="hover:text-[#6D6D6D] hidden xl:inline">Impressum</a>
+    </nav>
+
+    <!-- Language Dropdown -->
+<div class="relative min-w-max">
+  <button id="langBtn"
+          class="flex items-center gap-1 px-2 py-1 text-[18px]">
+    EN <span class="inline-block transform rotate-90">›</span>
+  </button>
+  <ul id="langMenu"
+      class="hidden absolute right-0 mt-2 bg-white border border-line-custom rounded shadow-lg text-[18px] text-center">
+    
+    <li class="px-4 py-2 border-b border-line-custom hover:bg-gray-100 cursor-pointer">
+      <a href="../de/certificate-netology.html" class="block w-full h-full">DE</a>
+    </li>
+    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+      <a href="../ru/certificate-netology.html" class="block w-full h-full">RU</a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <!-- Divider -->
+  <div class="w-full px-4 md:px-[84px] mt-[8px]">
+    <hr class="border-0 h-[2px] bg-[#CDC2C2]" />
+  </div>
+</header>
+
+<!-- Mobile Slide-In Menu -->
+<div id="mobileMenu"
+     class="fixed inset-0 z-40 bg-white transform -translate-x-full transition-transform duration-300 overflow-x-hidden">
+  <nav class="flex flex-col px-4 py-6 space-y-4 text-[18px]">
+    <a href="../en/index.html#home" class="hover:text-[#6D6D6D]">Home</a>
+    <a href="../en/index.html#about" class="hover:text-[#6D6D6D]">About</a>
+    <a href="../en/index.html#case-studies" class="hover:text-[#6D6D6D]">Case Studies</a>
+    <a href="../en/index.html#certificates" class="hover:text-[#6D6D6D]">Certificates</a>
+    <a href="../en/index.html#contact" class="hover:text-[#6D6D6D]">Contact</a>
+    <a href="../en/impressum.html" class="hover:text-[#6D6D6D]">Impressum</a>
+  </nav>
+</div>
+
+
+<!-- =========================================
+     MAIN: Netology UX Writing Certificate Detail
+========================================= -->
+<main class="flex-grow">
+  <section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[40px] md:py-[60px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[32px] md:gap-[60px] items-start">
+
+      <!-- Certificate image -->
+      <figure class="w-full">
+        <img
+          src="../assets/images/UX_certificate-1.png"
+          alt="Netology UX Writer & Editor Certificate - Aleksandr Medved"
+          class="w-full max-w-[500px] border border-line-custom shadow-md object-contain mx-auto"
+        />
+      </figure>
+
+      <!-- Details -->
+      <div class="max-w-[720px]">
+        <h1 class="text-[clamp(1.75rem,3.5vw,2.25rem)] font-bold leading-tight">UX Writer & Editor</h1>
+        <h2 class="text-[#6D6D6D] text-[clamp(1rem,2vw,1.25rem)] font-semibold mb-6">Netology</h2>
+
+        <!-- Neatly aligned definition list -->
+        <dl class="grid grid-cols-[max-content,1fr] gap-x-4 gap-y-4 text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+          <dt class="font-bold">Date:</dt>
+          <dd>June 1, 2024</dd>
+
+          <dt class="font-bold">Prerequisites:</dt>
+          <dd>
+            Completed a professional training program in UX Writing, including theory,
+            practical assignments, and final assessment.
+          </dd>
+
+          <dt class="font-bold">Length:</dt>
+          <dd>~4 months of structured coursework.</dd>
+
+          <dt class="font-bold">Skills Validated:</dt>
+          <dd>
+            UX Writing, microcopy creation, content design for interfaces, structuring
+            user communication flows, working with tone of voice, and collaboration with
+            product & design teams.
+          </dd>
+
+          <dt class="font-bold">Application:</dt>
+          <dd>
+            Provides formal training in UX Writing that
+            complements practical design and product experience.
+            Enhances the ability to create clear, user-centred communication
+            in digital interfaces and reinforces expertise in both product design and UX communication.
+          </dd>
+        </dl>
+
+        <!-- Actions -->
+        <div class="mt-10 flex flex-col-reverse md:flex-row md:justify-start md:gap-12 gap-4">
+          <!-- Back button -->
+          <a
+    href="../en/index.html#certificates"
+    class="w-full md:w-auto min-w-[200px] px-10 py-3 rounded bg-[#F1F1F1] text-black font-semibold shadow-md hover:shadow-lg transition text-center"
+  >
+    ← Back
+  </a>
+
+          <!-- Verify button -->
+          <a
+            href="https://netology.ru/sharing/6dfeb4bf51d682333b0b4ee0101fa12e?utm_source=social&utm_campaign=certificate_lms"
+            target="_blank" rel="noopener"
+            class="w-full md:w-auto min-w-[200px] px-10 py-3 rounded bg-[#3D63C2] text-white font-semibold shadow-md hover:shadow-lg transition text-center"
+          >
+            Verify
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!-- ----------------------------------------
+     FOOTER 
+---------------------------------------- -->
+
+<footer class="mt-auto w-full bg-[#545455] text-white">
+  <!-- Top row: left & right blocks -->
+  <div class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[16px]
+              grid grid-cols-2 items-start
+              md:flex md:justify-between md:items-start gap-y-3">
+
+    <!-- LEFT: site + email -->
+    <div class="text-left">
+      <a href="../en/index.html#home"
+         class="block text-[clamp(1rem,2vw,1.25rem)] font-medium hover:underline">
+        alexmedved.com
+      </a>
+      <a href="mailto:smellfigty@gmail.com"
+         class="block text-[clamp(0.875rem,1.8vw,1rem)] hover:underline">
+        smellfigty@gmail.com
+      </a>
+    </div>
+
+    <!-- RIGHT: links (right-aligned) -->
+    <div class="justify-self-end text-right
+                text-[clamp(0.875rem,1.8vw,1rem)] space-y-1 md:space-y-0 md:flex md:gap-[40px]">
+      <a href="impressum.html" class="block hover:underline">Impressum</a>
+      <a href="privacy.html"   class="block hover:underline">Privacy Policy</a>
+    </div>
+  </div>
+
+  <!-- Bottom copyright -->
+  <div class="text-center py-[8px] text-[clamp(0.75rem,1.5vw,0.875rem)]">
+    &copy; 2025 All rights reserved.
+  </div>
+</footer>
+
+<!-- =========================================
+     JS: language toggles + mobile menu
+========================================= -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    /* ---------- Language Toggles ---------- */
+    const lBtn  = id => document.getElementById(id + 'Btn');
+    const lMenu = id => document.getElementById(id + 'Menu');
+
+    ['lang', 'mobileLang'].forEach(id => {
+      const btn = lBtn(id), menu = lMenu(id);
+      btn?.addEventListener('click', e => {
+        e.stopPropagation();
+        menu?.classList.toggle('hidden');
+      });
+    });
+
+    document.addEventListener('click', () => {
+      lMenu('lang')?.classList.add('hidden');
+      lMenu('mobileLang')?.classList.add('hidden');
+    });
+
+    /* ---------- Mobile Hamburger / Slide Menu ---------- */
+    const toggle     = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    toggle?.addEventListener('click', e => {
+      e.stopPropagation();
+      document.body.classList.toggle('nav-open');
+      mobileMenu?.classList.toggle('-translate-x-full');
+    });
+
+    document.addEventListener('click', e => {
+      if (mobileMenu && !mobileMenu.contains(e.target) && !toggle?.contains(e.target)) {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      }
+    });
+
+    mobileMenu?.querySelectorAll('a').forEach(link =>
+      link.addEventListener('click', () => {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      })
+    );
+
+    // Close if resized to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768 && mobileMenu) {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      }
+    });
+  });
+</script>
+</body>
+</html>
