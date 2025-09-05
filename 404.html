@@ -1,14 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aleksandr Medved | UX Designer</title>
-  <meta name="description" content="This page does't exist 101.">
-  <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  <meta name="description" content="This page doesn't exist 101." />
+  <meta name="robots" content="noindex" />
   
+<base href="/" />
 
+  <script>
+    (function () {
+      var p = location.pathname;
+      var langs = ["en", "de", "ru"];
 
+      // avoid loop if we're already at a localized 404
+      if (langs.some(function (l) { return p === "/" + l + "/404.html"; })) return;
+
+      // detect by first path segment: /en/... /de/... /ru/...
+      var seg = p.split("/").filter(Boolean)[0];
+      var lang = langs.includes(seg) ? seg : null;
+
+      // fallbacks: stored preference -> browser language -> en
+      if (!lang) {
+        var stored = (localStorage.getItem("preferred_lang") || "").slice(0,2).toLowerCase();
+        var nav = (navigator.language || "en").slice(0,2).toLowerCase();
+        lang = langs.includes(stored) ? stored : (langs.includes(nav) ? nav : "en");
+      }
+
+      // send original path as ?from=
+      var from = encodeURIComponent(location.pathname + location.search);
+      location.replace("/" + lang + "/404.html?from=" + from);
+    })();
+  </script>
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
   <script>
     tailwind.config = {
@@ -67,20 +93,20 @@
     </div>
 
     <!-- Logo -->
-    <a href="./en/index.html#home" class="absolute left-1/2 transform -translate-x-1/2 md:static md:transform-none z-40">
-      <img src="./assets/images/FullLogo_Transparent_NoBuffer.png"
+    <a href="/en/index.html#home" class="absolute left-1/2 transform -translate-x-1/2 md:static md:transform-none z-40">
+      <img src="/assets/images/FullLogo_Transparent_NoBuffer.png"
            alt="Logo" class="h-[56px] md:h-[96px] object-contain" />
     </a>
 
 
     <!-- Desktop Nav -->
     <nav class="hidden md:flex flex-1 justify-center space-x-[60px] text-[20px]">
-      <a href="./en/index.html#home" class="hover:text-[#6D6D6D]">Home</a>
-      <a href="./en/index.html#about" class="hover:text-[#6D6D6D]">About</a>
-      <a href="./en/index.html#case-studies" class="hover:text-[#6D6D6D] hidden md:inline">Case Studies</a>
-      <a href="./en/index.html#certificates" class="hover:text-[#6D6D6D] hidden lg:inline">Certificates</a>
-      <a href="./en/index.html#contact" class="hover:text-[#6D6D6D] hidden xl:inline">Contact</a>
-      <a href="./en/impressum.html" class="hover:text-[#6D6D6D] hidden xl:inline">Impressum</a>
+      <a href="/en/index.html#home" class="hover:text-[#6D6D6D]">Home</a>
+      <a href="/en/index.html#about" class="hover:text-[#6D6D6D]">About</a>
+      <a href="/en/index.html#case-studies" class="hover:text-[#6D6D6D] hidden md:inline">Case Studies</a>
+      <a href="/en/index.html#certificates" class="hover:text-[#6D6D6D] hidden lg:inline">Certificates</a>
+      <a href="/en/index.html#contact" class="hover:text-[#6D6D6D] hidden xl:inline">Contact</a>
+      <a href="/en/impressum.html" class="hover:text-[#6D6D6D] hidden xl:inline">Impressum</a>
     </nav>
 
     <!-- Language Dropdown -->
@@ -93,10 +119,10 @@
       class="hidden absolute right-0 mt-2 bg-white border border-line-custom rounded shadow-lg text-[18px] text-center">
     
     <li class="px-4 py-2 border-b border-line-custom hover:bg-gray-100 cursor-pointer">
-      <a href="./de/index.html" class="block w-full h-full">DE</a>
+      <a href="/de/index.html" class="block w-full h-full">DE</a>
     </li>
     <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-      <a href="./ru/index.html" class="block w-full h-full">RU</a>
+      <a href="/ru/index.html" class="block w-full h-full">RU</a>
     </li>
   </ul>
 </div>
@@ -112,12 +138,12 @@
 <div id="mobileMenu"
      class="fixed inset-0 z-40 bg-white transform -translate-x-full transition-transform duration-300 overflow-x-hidden">
   <nav class="flex flex-col px-4 py-6 space-y-4 text-[18px]">
-    <a href="./en/index.html#home" class="hover:text-[#6D6D6D]">Home</a>
-    <a href="./en/index.html#about" class="hover:text-[#6D6D6D]">About</a>
-    <a href="./en/index.html#case-studies" class="hover:text-[#6D6D6D]">Case Studies</a>
-    <a href="./en/index.html#certificates" class="hover:text-[#6D6D6D]">Certificates</a>
-    <a href="./en/index.html#contact" class="hover:text-[#6D6D6D]">Contact</a>
-    <a href="./en/impressum.html" class="hover:text-[#6D6D6D]">Impressum</a>
+    <a href="/en/index.html#home" class="hover:text-[#6D6D6D]">Home</a>
+    <a href="/en/index.html#about" class="hover:text-[#6D6D6D]">About</a>
+    <a href="/en/index.html#case-studies" class="hover:text-[#6D6D6D]">Case Studies</a>
+    <a href="/en/index.html#certificates" class="hover:text-[#6D6D6D]">Certificates</a>
+    <a href="/en/index.html#contact" class="hover:text-[#6D6D6D]">Contact</a>
+    <a href="/en/impressum.html" class="hover:text-[#6D6D6D]">Impressum</a>
   </nav>
 </div>
 
@@ -130,7 +156,7 @@
 
     <!-- Image: Sea Dragon -->
     <div class="w-full md:w-[35%] flex justify-center md:justify-end">
-      <img src="./assets/images/hic-sunt-dracones.png"
+      <img src="/assets/images/hic-sunt-dracones.png"
            alt="Sea Dragon Heraldry"
            class="max-w-[250px] h-auto object-contain" />
     </div>
@@ -149,11 +175,10 @@
 
       <!-- Message -->
       <p class="text-[clamp(1rem,2.1vw,1.25rem)] mt-6 leading-relaxed text-[#6D6D6D]">
-        Oh no, this area is out of bounds! I love your explorer's spirit, but I think it'd be more interesting to learn about my
-        <a href="./en/index.html#case-studies"
+        Oh no, this area is out of bounds! I love your adventurous spirit, but you might be more interested in my
+        <a href="/en/index.html#case-studies"
            class="underline text-[#6D6D6D] hover:text-[#999999] transition-colors duration-200">
-          case studies
-        </a>.
+          case studies</a>.
       </p>
     </div>
 
@@ -172,7 +197,7 @@
 
     <!-- LEFT: site + email -->
     <div class="text-left">
-      <a href="./en/index.html#home"
+      <a href="/en/index.html#home"
          class="block text-[clamp(1rem,2vw,1.25rem)] font-medium hover:underline">
         alexmedved.com
       </a>
@@ -185,8 +210,8 @@
     <!-- RIGHT: links (right-aligned) -->
     <div class="justify-self-end text-right
                 text-[clamp(0.875rem,1.8vw,1rem)] space-y-1 md:space-y-0 md:flex md:gap-[40px]">
-      <a href="./en/impressum.html" class="block hover:underline">Impressum</a>
-      <a href="./en/privacy.html"   class="block hover:underline">Privacy Policy</a>
+      <a href="/en/impressum.html" class="block hover:underline">Impressum</a>
+      <a href="/en/privacy.html"   class="block hover:underline">Privacy Policy</a>
     </div>
   </div>
 
@@ -195,6 +220,29 @@
     &copy; 2025 All rights reserved.
   </div>
 </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const lBtn  = id => document.getElementById(id + 'Btn');
+    const lMenu = id => document.getElementById(id + 'Menu');
+
+    ['lang', 'mobileLang'].forEach(id => {
+      const btn = lBtn(id), menu = lMenu(id);
+      btn?.addEventListener('click', e => { e.stopPropagation(); menu?.classList.toggle('hidden'); });
+    });
+    document.addEventListener('click', () => { lMenu('lang')?.classList.add('hidden'); lMenu('mobileLang')?.classList.add('hidden'); });
+
+    const toggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    toggle?.addEventListener('click', e => { e.stopPropagation(); document.body.classList.toggle('nav-open'); mobileMenu?.classList.toggle('-translate-x-full'); });
+    document.addEventListener('click', e => { if (mobileMenu && !mobileMenu.contains(e.target) && !toggle?.contains(e.target)) { document.body.classList.remove('nav-open'); mobileMenu.classList.add('-translate-x-full'); }});
+    mobileMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { document.body.classList.remove('nav-open'); mobileMenu.classList.add('-translate-x-full'); }));
+    window.addEventListener('resize', () => { if (window.innerWidth >= 768 && mobileMenu) { document.body.classList.remove('nav-open'); mobileMenu.classList.add('-translate-x-full'); }});
+
+    /* store preferred language when user switches it */
+    document.querySelectorAll('a[data-lang]').forEach(a => a.addEventListener('click', () => localStorage.setItem('preferred_lang', a.dataset.lang)));
+  });
+</script>
 
 <!-- =========================================
      JS: language toggles + mobile menu

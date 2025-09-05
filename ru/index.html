@@ -220,32 +220,35 @@ html{
   </div>
 
   <!-- Text Block -->
-  <div class="flex-1 flex flex-col
+  <div class="flex-1 min-w-0 flex flex-col
               items-center md:items-start
               text-center md:text-left">
     <!-- Name + Title -->
-<h1 class="text-[clamp(1.5rem,5vw,2.5rem)] font-bold leading-snug mb-2">
+<h1 class="text-[clamp(1.5rem,5vw,2.5rem)] font-bold leading-snug mb-2
+               max-w-full [text-wrap:balance] [hyphens:auto] [-webkit-hyphens:auto]">
   Александр Медведь
 </h1>
-<h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-semibold leading-snug mb-[16px]">
+<h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-semibold leading-snug mb-[16px]
+               max-w-full [text-wrap:balance] [hyphens:auto] [-webkit-hyphens:auto]">
   UI/UX-дизайнер, редактор, локализатор
 </h2>
 
 <!-- Subtitle -->
 <div class="max-w-[600px] md:max-w-[850px] mb-[24px]">
-  <p class="text-[clamp(1.5rem,3vw,2rem)] text-black leading-snug">
+      <p class="text-[clamp(1.5rem,3vw,2rem)] text-black leading-snug
+           [hyphens:none] [overflow-wrap:normal] [word-break:normal]">
     Преобразую идеи в понятный дизайн с точной локализацией для любой аудитории.
   </p>
 </div>
 
 
-    <!-- Stats (-->
+    <!-- Stats -->
 <div class="hidden md:block">
   <div
-    class="flex items-center justify-start
-           gap-x-[clamp(1rem,2vw,2rem)]
-           text-[clamp(1.25rem,2.5vw,1.75rem)]
-           text-[#6D6D6D] whitespace-nowrap"
+    class="flex flex-wrap items-center justify-start       
+               gap-x-[clamp(1rem,2vw,2rem)] gap-y-2
+               text-[clamp(1.25rem,2.5vw,1.75rem)]
+               text-[#6D6D6D]"
   >
     <span>Мюнхен, Бавария</span>
     <span class="inline-block border-l border-line-custom h-[1em]"></span>
@@ -255,8 +258,10 @@ html{
   </div>
 </div>
 
-<div class="md:hidden text-center text-[clamp(0.9rem,2.5vw,1.25rem)] text-[#6D6D6D]">
-  Мюнхен, Бавария • Немецкий, Английский, Русский • 7+ Лет Опыта
+
+<div class="md:hidden mt-2 text-center text-[clamp(0.9rem,2.5vw,1.25rem)] text-[#6D6D6D]">
+  <div>Мюнхен, Бавария • 7+ Лет Опыта</div> 
+  <div class="mt-1">Немецкий, Английский, Русский</div>                
 </div>
 
 </section>
@@ -271,7 +276,7 @@ html{
   </div>
 
    <!-- content wrapper -->
-  <div class="max-w-[1440px] mx-auto px-4 md:px-[84px] text-center mt-[70px]">
+  <div class="max-w-[1440px] mx-auto px-[16px] text-center md:px-[84px] scroll-mt-[76px] md:scroll-mt-[96px]">
     <!-- Title -->
     <h3 class="font-bold mb-[8px]"
         style="font-size: clamp(1.75rem, 4vw, 2.25rem);">
@@ -305,7 +310,7 @@ html{
      SECTION 3: CASE STUDIES
 ---------------------------------------- -->
 <section id="case-studies"
-         class="max-w-[1440px] mx-auto px-[84px] scroll-mt-[76px] md:scroll-mt-[96px]">
+          class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] scroll-mt-[76px] md:scroll-mt-[96px]">
   
   <!-- Section Title -->
   <h3 class="text-[36px] font-bold text-center mb-[70px]">
@@ -486,12 +491,22 @@ html{
      SECTION 4: CERTIFICATES
 ---------------------------------------- -->
 <section id="certificates"
-         class="max-w-[1440px] mx-auto px-[84px] scroll-mt-[76px] md:scroll-mt-[96px]">
+         class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] scroll-mt-[76px] md:scroll-mt-[96px]">
   
   <!-- Title + 70px bottom margin -->
-  <h3 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold text-center mb-[70px]">
+  <h3 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold text-center mb-[16px]">
     Сертификаты
   </h3>
+
+<style>
+@media (pointer: coarse){ .tap {display:inline} .click{display:none} }
+@media (pointer: fine){ .tap {display:none} .click{display:inline} }
+</style>
+
+<p class="text-[#6D6D6D] text-center mb-[70px]"
+   style="font-size: clamp(1.5rem, 3vw, 2rem);">
+  <span class="tap">Коснитесь сертификата, чтобы узнать подробности и проверить подлинность.</span><span class="click">Нажмите на сертификат, чтобы узнать подробности и проверить подлинность.</span>
+  </p>
 
   <!-- 3 cards, 84px gutters, 40px row-gap, 70px bottom-gap -->
   <div class="flex flex-col md:flex-row justify-center gap-x-[84px] gap-y-[40px] mb-[70px]">
@@ -535,25 +550,39 @@ html{
       </span>
     </a>
 
-    <!-- Certificate #3 -->
-    <a href="certificate-goethe.html"
-       class="flex-1 flex flex-col items-center
-              transform transition-transform
-              duration-300 ease-out hover:-translate-y-2"
-    >
-      <img
-        src="../assets/images/GoetheC1Medved-1.png"
-        alt="Goethe-Zertifikat C1 by Goethe-Institut"
-        class="max-h-[327px] object-contain
-               border border-[#CDC2C2] shadow-md"
-      />
-      <h4 class="mt-[16px] text-[clamp(1.125rem,3vw,1.5rem)] font-medium text-center">
-        Goethe-Zertifikat C1<br/>от Goethe-Institut
-      </h4>
-      <span class="mt-[4px] text-[clamp(1rem,2.5vw,1.25rem)] text-[#6D6D6D]">
-        2024
-      </span>
-    </a>
+<!-- Certificate #3 -->
+<a href="certificate-goethe.html"
+   class="flex-1 flex flex-col items-center
+          transform transition-transform
+          duration-300 ease-out hover:-translate-y-2"
+>
+  <!-- Desktop/tablet: framed box with responsive aspect -->
+  <div class="hidden md:block w-full max-w-[360px] bg-white
+              border border-[#CDC2C2] shadow-md aspect-[4/3]">
+    <img
+      src="../assets/images/GoetheC1Medved-1.png"
+      alt="Goethe-Zertifikat C1 by Goethe-Institut"
+      class="h-full w-auto mx-auto
+             max-w-[88%] lg:max-w-[86%] xl:max-w-[84%]
+             object-contain"
+    />
+  </div>
+
+  <!-- Normal image for mobile -->
+  <img
+    src="../assets/images/GoetheC1Medved-1.png"
+    alt="Goethe-Zertifikat C1 by Goethe-Institut"
+    class="md:hidden max-h-[327px] object-contain
+           border border-[#CDC2C2] shadow-md"
+  />
+
+  <h4 class="mt-[16px] text-[clamp(1.125rem,3vw,1.5rem)] font-medium text-center">
+    Goethe-Zertifikat C1<br/>от Goethe-Institut
+  </h4>
+  <span class="mt-[4px] text-[clamp(1rem,2.5vw,1.25rem)] text-[#6D6D6D]">
+    2024
+  </span>
+  </a>
   </div>
 </section>
 
@@ -672,7 +701,10 @@ html{
   </form>
 
 <!-- Social Icons -->
-<div class="flex justify-center gap-x-[70px] md:gap-x-[90px] mt-[70px] mb-[70px]">
+<div class="flex flex-wrap justify-center               
+            gap-x-[24px] md:gap-x-[90px] gap-y-[20px]   
+             mt-[40px] md:mt-[70px] mb-[70px]             
+             max-w-full overflow-x-hidden">
 
   <a
     href="https://www.linkedin.com/in/smellfigty/"

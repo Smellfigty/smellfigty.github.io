@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Home -->
+  <url>
+    <loc>https://alexmedved.com/en/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alexmedved.com/en/index.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alexmedved.com/de/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alexmedved.com/ru/index.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alexmedved.com/en/index.html"/>
+  </url>
+
+  <!-- Case Studies -->
+  <url>
+    <loc>https://alexmedved.com/en/case-study-bachata.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alexmedved.com/en/case-study-bachata.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alexmedved.com/de/case-study-bachata.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alexmedved.com/ru/case-study-bachata.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alexmedved.com/en/case-study-bachata.html"/>
+  </url>
+
+  <url>
+    <loc>https://alexmedved.com/en/case-study-portfolio.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alexmedved.com/en/case-study-portfolio.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alexmedved.com/de/case-study-portfolio.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alexmedved.com/ru/case-study-portfolio.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alexmedved.com/en/case-study-portfolio.html"/>
+  </url>
+
+  <url>
+    <loc>https://alexmedved.com/en/case-study-slott.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alexmedved.com/en/case-study-slott.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alexmedved.com/de/case-study-slott.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alexmedved.com/ru/case-study-slott.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alexmedved.com/en/case-study-slott.html"/>
+  </url>
+
+  <!-- Certificates -->
+  <url>
+    <loc>https://alexmedved.com/en/certificate-google.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alexmedved.com/en/certificate-google.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alexmedved.com/de/certificate-google.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alexmedved.com/ru/certificate-google.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alexmedved.com/en/certificate-google.html"/>
+  </url>
+
+  <url>
+    <loc>https://alexmedved.com/en/certificate-netology.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alexmedved.com/en/certificate-netology.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alexmedved.com/de/certificate-netology.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alexmedved.com/ru/certificate-netology.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alexmedved.com/en/certificate-netology.html"/>
+  </url>
+
+  <url>
+    <loc>https://alexmedved.com/en/certificate-goethe.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alexmedved.com/en/certificate-goethe.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alexmedved.com/de/certificate-goethe.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alexmedved.com/ru/certificate-goethe.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alexmedved.com/en/certificate-goethe.html"/>
+  </url>
+
+  <!-- Legal pages -->
+  <url>
+    <loc>https://alexmedved.com/en/impressum.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alexmedved.com/en/impressum.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alexmedved.com/de/impressum.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alexmedved.com/ru/impressum.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alexmedved.com/en/impressum.html"/>
+  </url>
+
+  <url>
+    <loc>https://alexmedved.com/en/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alexmedved.com/en/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alexmedved.com/de/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alexmedved.com/ru/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alexmedved.com/en/privacy.html"/>
+  </url>
+
+</urlset>
