@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aleksandr Medved | UX Designer</title>
+  <meta name="description" content="AxiomLens – konzeptuelles Cashflow-Dashboard für Freelancer und kleine Unternehmen: datenstarkes UI, KI-Insights und ein ruhiges Dark Theme für klare Finanzentscheidungen im Alltag.">
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  
+
+
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'gray-custom': '#6D6D6D',
+            'line-custom': '#CDC2C2',
+            'card-bg': '#F5F5F5',
+            'btn-blue': '#3D63C2',
+          },
+          
+          
+        }
+      }
+    }
+  </script>
+
+<!-- 3) Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<style>html{scroll-behavior:smooth}</style>
+<style>
+  /* Hamburger / X (your working version, thinned) */
+  .bar {
+    position: absolute;
+    top: 50%;
+    margin-top: -1px;
+    right: 0;
+    width: 100%;
+    height: 2px; /* thinner */
+    border-radius: 4px;
+    background-color: black;
+    transition: all 0.3s ease;
+  }
+  .bar--top { transform: translateY(-8px); }
+  .bar--bottom { transform: translateY(8px); }
+  body.nav-open .bar--top { transform: rotate(45deg) translateY(0); }
+  body.nav-open .bar--middle { opacity: 0; }
+  body.nav-open .bar--bottom { transform: rotate(-45deg) translateY(0); }
+</style>
+
+<style>
+  /* --- Key Screens: chess/zig-zag pattern on md+ --- */
+  @media (min-width: 768px) {
+    #key-screens .zig article:nth-child(even) figure { order: 2; }
+  }
+
+  /* --- Ensure only the actual trigger shows a click cursor --- */
+  #key-screens figure { cursor: default; }         /* grey card: neutral */
+  #key-screens figure button { cursor: pointer; }  /* image trigger only */
+</style>
+
+
+<body class="flex flex-col min-h-screen overflow-x-hidden font-raleway">
+
+<!-- =========================================
+     HEADER 
+========================================= -->
+<header class="sticky top-0 w-full bg-white z-50 pt-[14px] md:pt-[20px]">
+  <div class="relative max-w-[1440px] mx-auto flex items-center justify-between px-4 md:px-[84px]">
+
+    <!-- Mobile Hamburger -->
+    <div id="menu-toggle" class="md:hidden relative w-[29px] h-[26px] p-2 z-50">
+      <span class="bar bar--top"></span>
+      <span class="bar bar--middle"></span>
+      <span class="bar bar--bottom"></span>
+    </div>
+
+    <!-- Logo -->
+    <a href="../de/index.html#home" class="absolute left-1/2 transform -translate-x-1/2 md:static md:transform-none z-40">
+      <img src="../assets/images/FullLogo_Transparent_NoBuffer.png"
+           alt="Logo" class="h-[56px] md:h-[96px] object-contain" />
+    </a>
+
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex flex-1 justify-center space-x-[60px] text-[20px]">
+      <a href="../de/index.html#home" class="hover:text-[#6D6D6D]">Startseite</a>
+      <a href="../de/index.html#about" class="hover:text-[#6D6D6D]">Über mich</a>
+      <a href="../de/index.html#case-studies" class="hover:text-[#6D6D6D] hidden md:inline">Fallstudien</a>
+      <a href="../de/index.html#certificates" class="hover:text-[#6D6D6D] hidden lg:inline">Zertifikate</a>
+      <a href="../de/index.html#contact" class="hover:text-[#6D6D6D] hidden xl:inline">Kontakt</a>
+      <a href="../de/impressum.html" class="hover:text-[#6D6D6D] hidden xl:inline">Impressum</a>
+    </nav>
+
+    <!-- Language Dropdown -->
+<div class="relative min-w-max">
+  <button id="langBtn"
+          class="flex items-center gap-1 px-2 py-1 text-[18px]">
+    DE <span class="inline-block transform rotate-90">›</span>
+  </button>
+
+  <ul id="langMenu"
+      class="hidden absolute right-0 mt-2 bg-white border border-line-custom rounded shadow-lg
+             text-[18px] text-center divide-y divide-line-custom"> 
+    <li>
+      <a href="../en/case-study-axiomlens.html"
+         class="block px-4 py-2 hover:bg-gray-100 cursor-pointer"> 
+        EN
+      </a>
+    </li>
+    <li>
+      <a href="../ru/case-study-axiomlens.html"
+         class="block px-4 py-2 hover:bg-gray-100 cursor-pointer"> 
+        RU
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <!-- Divider -->
+  <div class="w-full px-4 md:px-[84px] mt-[8px]">
+    <hr class="border-0 h-[2px] bg-[#CDC2C2]" />
+  </div>
+</header>
+
+<!-- Mobile Slide-In Menu -->
+<div id="mobileMenu"
+     class="fixed inset-0 z-40 bg-white transform -translate-x-full transition-transform duration-300 overflow-x-hidden">
+  <nav class="flex flex-col px-4 py-6 space-y-4 text-[18px]">
+    <a href="../de/index.html#home" class="hover:text-[#6D6D6D]">Startseite</a>
+    <a href="../de/index.html#about" class="hover:text-[#6D6D6D]">Über mich</a>
+    <a href="../de/index.html#case-studies" class="hover:text-[#6D6D6D]">Fallstudien</a>
+    <a href="../de/index.html#certificates" class="hover:text-[#6D6D6D]">Zertifikate</a>
+    <a href="../de/index.html#contact" class="hover:text-[#6D6D6D]">Kontakt</a>
+    <a href="../de/impressum.html" class="hover:text-[#6D6D6D]">Impressum</a>
+  </nav>
+</div>
+
+<!-- =========================================
+     MAIN: Case Study – AxiomLens
+========================================= -->
+<main class="flex-grow">
+
+<!-- HERO – AxiomLens -->
+<section id="axiomlens"
+  class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px] scroll-mt-[76px] md:scroll-mt-[96px]">
+
+  <!-- one column on mobile, two on lg+ -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-[32px] lg:gap-[60px] items-start">
+
+    <!-- RIGHT ON DESKTOP, TOP ON MOBILE -->
+    <figure class="order-1 lg:order-2 w-full lg:justify-self-end">
+      <div class="w-full max-w-[640px] mx-auto lg:mx-0">
+        <button
+          type="button"
+          class="block w-full text-left cursor-pointer"
+          data-full-src="../assets/images/Axiom_Main.png"
+          data-caption="Haupt-Dashboard – zentrale Cashflow-Kennzahlen, Trends und Erkenntnisse in einer fokussierten Einzelansicht."
+          aria-label="Open full-size main dashboard"
+        >
+          <img
+            src="../assets/images/Axiom_Main.png"
+            alt="AxiomLens cashflow dashboard – main overview screen"
+            class="w-full object-contain border border-[#CDC2C2] shadow-md rounded"
+          />
+        </button>
+        <figcaption class="text-[#6D6D6D] text-sm mt-2 text-center">
+          Haupt-Dashboard: zentrale Cashflow-Kennzahlen, Trends und Erkenntnisse.
+        </figcaption>
+      </div>
+    </figure>
+
+    <!-- LEFT ON DESKTOP, BOTTOM ON MOBILE -->
+    <div class="order-2 lg:order-1 lg:self-start">
+      <h1 class="text-[clamp(1.75rem,4vw,2.5rem)] font-bold mb-2">
+        AxiomLens – Cashflow-Analyse für kleine Unternehmen
+      </h1>
+
+      <h2 class="text-[#6D6D6D] font-semibold text-[clamp(1.25rem,3vw,1.5rem)] mb-4">
+        Zerstreute Daten zum umsetzbaren Überblick formen
+      </h2>
+
+      <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+        Dieses selbst initiierte Konzept zeigt, wie ein SaaS-Dashboard kleinen und mittleren Unternehmen sowie Freiberuflern einen klaren Cashflow-Überblick verschafft 
+        und dank KI-gestützter Prognosen ermöglicht, rechtzeitig zu handeln – bevor Probleme überhaupt entstehen.
+        Ich habe die datenintensive UI klar strukturiert, Kennzahlen auf einen Blick gemacht und User Flows so gestaltet, dass sie jederzeit ruhig und verlässlich wirken.
+      </p>
+
+      <!-- Skip button -->
+      <div class="mt-6 w-full max-w-[560px]">
+        <a href="#visuals-start"
+           class="group block w-full rounded-lg bg-[#3D63C2] px-6 py-4 text-center
+                  text-white font-semibold text-[clamp(1rem,2.2vw,1.125rem)]
+                  shadow-md hover:shadow-lg hover:bg-[#3153a6]
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3D63C2]/60
+                  transition">
+          <span class="inline-flex items-center justify-center gap-3">
+            Direkt zu den Visuals
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                 class="h-5 w-5 flex-none transition-transform duration-200 ease-out
+                        motion-safe:group-hover:translate-y-1"
+                 fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="12" y1="6" x2="12" y2="14" />
+              <path d="M8.5 13.5 L12 17 L15.5 13.5" />
+            </svg>
+          </span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+
+ <!-- PROJECT IN A NUTSHELL -->
+  <section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+    <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-6">
+      Projekt auf einen Blick
+    </h2>
+
+    <!-- Meta row -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-[24px] md:gap-[40px] mb-4">
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-1">
+          Meine Rolle
+        </h3>
+        <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)]">
+          Produktkonzept, UI/UX-Design, UX-Research, Interaktionsmuster, Dashboard-Informationsarchitektur, Microcopy, Grundlagen des Visual-Design-Systems
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-1">
+          Zeitrahmen
+        </h3>
+        <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)]">
+          ~2 Wochen Abendarbeit – von den ersten Skizzen bis zu ausgereiften Hi-Fi-Screens
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-1">
+          Tools
+        </h3>
+        <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)]">
+          Figma, Google Sheets & Docs, Notion, ChatGPT, UX Pilot
+        </p>
+      </div>
+    </div>
+
+    <!-- Centered outlined chips -->
+    <div class="w-full mb-8">
+      <div class="flex flex-wrap justify-center gap-2">
+        <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">
+          UX des Dashboards
+        </span>
+        <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">
+          Datenintensive UI
+        </span>
+                <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">
+          Research
+        </span>
+                <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">
+          Branding
+        </span>
+        <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">
+          Finanz-SaaS
+        </span>
+        <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">
+          Designsystem-Grundlagen
+        </span>
+        <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">
+          Microcopy (EN)
+        </span>
+      </div>
+    </div>
+
+    <!-- Challenge / Objectives -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[24px] md:gap-[40px] mb-8">
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] font-semibold mb-2">
+          Herausforderungen
+        </h3>
+        <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+          Freelancer:innen und kleine Unternehmen stützen sich auf einen Flickenteppich aus Banking-Apps, Rechnungstools und Tabellen. 
+          Zahlen gibt es viele, aber nur selten einen klaren Blick darauf, wie sich Geld über die Zeit bewegt, wann eine Liquiditätslücke droht 
+          oder welche Kund:innen Zahlungen ausbremsen. Viele Dashboards überfordern mit visueller Lautstärke oder bleiben zu oberflächlich – und KI-Hilfen werden 
+          selten so umgesetzt, dass sie wirklich transparent und vertrauenswürdig sind.
+        </p>
+      </div>
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] font-semibold mb-2">
+          Ziel
+        </h3>
+        <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+          Grafisches Konzept für <strong>AxiomLens</strong>, ein Cashflow-Analytics-Tool: Eine zentrale Plattform, 
+          die Einnahmen, Ausgaben und Rechnungen zusammenführt und um gut verständliche KI-Insights erweitert wird. 
+          Der Fokus liegt auf einer datenreichen, aber in Sekundenschnelle erfassbaren Oberfläche mit klaren Übergängen zwischen Gesamtüberblick, 
+          Rechnungsverwaltung und detaillierter Historie – damit Nutzer:innen ihre finanzielle Situation in einem einzigen, verlässlichen Interface im Blick behalten.
+        </p>
+      </div>
+    </div>
+
+    <!-- Highlights / Outcome -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[24px] md:gap-[40px]">
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-2">
+          Meine Highlights
+        </h3>
+        <ul class="list-disc ml-5 space-y-2 text-black text-[clamp(1rem,2.2vw,1.125rem)]">
+          <li>Dunkles Dashboard mit klarer Hierarchie der wichtigsten Kennzahlen und Trends</li>
+          <li>Ein Set wiederverwendbarer Karten für Einnahmen, Ausgaben, Steuern und KI-Insights</li>
+          <li>Rechnungstabelle und Detailansicht (Status, Fälligkeiten, schnelle Aktionen)</li>
+          <li>Konsistentes Komponenten-System für Zahlungsstatus und andere Zustände</li>
+          <li>Texte und Labels von Anfang an lokalisierungsfreundlich geschrieben</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-2">
+          Ergebnis
+        </h3>
+        <ul class="list-disc ml-5 space-y-2 text-black text-[clamp(1rem,2.2vw,1.125rem)]">
+          <li>Vier konsistente Hi-Fi-Screens, bereit für das Handover ins Dev-Team oder für interaktive Prototypen</li>
+          <li>Eine Informationsarchitektur, die Cashflow, Rechnungen und KI-Insights nachvollziehbar miteinander verknüpft</li>
+          <li>Eine stabile Basis für das Designsystem (Typografie, Layout, Karten, Badges, Styles)</li>
+          <li>Eine Case Study zu Problemdefinition, Designentscheidungen und geschäftlichem Mehrwert</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+<!-- Divider -->
+<div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+
+<!-- PROBLEM & CONTEXT -->
+<section id="problem-context"
+         class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+  <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-6">
+    Problem &amp; Kontext
+  </h2>
+
+  <div class="grid grid-cols-1 lg:grid-cols-[3fr,2fr] gap-[32px] md:gap-[48px] items-start">
+    <!-- LEFT: narrative + bullets -->
+    <div class="space-y-6">
+      <!-- Starting point -->
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] font-semibold mb-2">
+          Ausgangspunkt
+        </h3>
+        <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+          Statt noch eine generische Finanz-App zu entwerfen, habe ich mich auf ein sehr konkretes Szenario konzentriert: Gründer:innen oder Freelancer:innen 
+          öffnen das Dashboard für einen kurzen Check-in, bevor sie mit der Arbeit starten. In diesem Moment bleibt keine Zeit für tiefgehende Analysen – sie wollen nur sehen, 
+          ob heute irgendwo Handlungsbedarf besteht.
+        </p>
+        <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mt-3">
+          In der Realität liegen diese Daten an verschiedenen Orten und auf unterschiedlichen Zeitachsen: tägliche Kontobewegungen, monatliche Abos, unregelmäßige Rechnungen 
+          und Steuern, die monatlich, quartalsweise oder jährlich fällig werden. AxiomLens ist als Experiment gestartet, all diese Zeitachsen in einer einzigen Arbeitsansicht zu bündeln: 
+          Was bereits passiert ist, was eingeplant ist und was zum Problem werden könnte, wenn alles so weiterläuft wie bisher.
+        </p>
+      </div>
+
+      <!-- Challenges + success criteria -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
+        <div>
+          <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] font-semibold mb-2">
+            Zentrale Herausforderungen
+          </h3>
+          <ul class="list-disc ml-5 space-y-2 text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+            <li>Daten zusammenzubringen, die auf verschiedenen Zeitebenen laufen: einzelne Rechnungen, Monatswerte, Quartalszahlen.</li>
+            <li>Visuelle Signale für überfällige Posten entwickeln, die Dringlichkeit erzeugen, ohne Panik zu machen.</strong>.</li>
+            <li>KI-Erkenntnisse in kurze, gut lesbare Hinweise zu übersetzen, statt sie als undurchsichtige „Prognosen“ stehenzulassen.</li>
+            <li>Die Oberfläche so gestalten, dass sie auch für Menschen ohne Buchhaltungs-Background verständlich bleibt, ohne bei der nötigen Detailtiefe Abstriche zu machen.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] font-semibold mb-2">
+            Erfolgskriterien für das Interface
+          </h3>
+          <ul class="list-disc ml-5 space-y-2 text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+            <li>Die Hauptansicht soll drei einfache Fragen beantworten:<br> <em>- „Wie stehen wir im Moment da?“</em>; <br><em>- „Worum müssen wir uns heute oder diese Woche kümmern?“</em>;<br> <em>- „Kommt demnächst etwas Risikoreiches auf uns zu?“</em></li>
+            <li>Risiken – Liquiditätslücken, überfällige Rechnungen, bevorstehende größere Ausgaben – sind in klar abgegrenzten Bereichen gebündelt und nicht hinter Filtern versteckt.</li>
+            <li>Dichte Tabellen und Charts bleiben dank konsistentem Layout, zurückhaltender Farbgebung und wiederkehrender Muster schnell erfassbar.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Constraints -->
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] font-semibold mb-2">
+          Konzeptgrenzen
+        </h3>
+        <ul class="list-disc ml-5 space-y-2 text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+          <li>Im MVP gibt es nur eine Ein-Benutzer-Ansicht: keine Rollenmodelle für mehrere Nutzer und keine Kollaborationstools in dieser Iteration.</li>
+          <li>Der Funktionsumfang ist auf Cashflow und Rechnungen begrenzt; es ist keine vollständige Buchhaltungs- oder Steuersoftware.</li>
+          <li>Der Datenimport aus Banking- und Rechnungstools wird als vorhanden angenommen; das Projekt konzentriert sich auf Darstellung und Entscheidungsunterstützung, nicht auf die Integrationen selbst (hier bleibt für das Entwicklungsteam noch genug Arbeit).</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- RIGHT: early wireframe logic (opens in the same zoom modal as Key Screens) -->
+<aside class="bg-[#F7F7F7] border border-[#EAEAEA] rounded-lg p-4 md:p-5 shadow-sm">
+  <p class="text-[#6D6D6D] text-[0.8rem] font-semibold tracking-wide uppercase mb-2">
+    Frühe Wireframe-Logik
+  </p>
+
+  <p class="text-black text-[clamp(0.95rem,2vw,1.05rem)] leading-relaxed mb-4">
+    Bevor ich überhaupt mit Lo-Fi-Skizzen oder Visual Design begonnen habe, habe ich zuerst den kompletten Screen-Flow von AxiomLens durchgeplant. Das erste Wireframe diente dabei als Landkarte: Welche Module es gibt, wie die Navigation funktioniert und wo der Funktionsumfang beginnt und endet – auch in Bereichen, die später nicht in den vier finalen Hi-Fi-Screens landen.
+  </p>
+
+  <figure class="w-full">
+    <!-- Button triggers the same modal handler used in Key screens -->
+    <button
+      type="button"
+      class="group block w-full text-left"
+      data-full-src="../assets/images/Wireframe.png"
+      data-caption="Wireframe-Map der ersten Iteration, die Onboarding, Dashboard, Cashflow, Rechnungen, Insights, Steuern, Kunden, Ausgaben, Einstellungen und die mobile Navigation absteckt – und später als Basis für den ersten Lo-Fi-Prototypen diente."
+      aria-label="Open full-size wireframe"
+    >
+      <img
+        src="../assets/images/Wireframe.png"
+        alt="Wireframe der ersten Iteration mit den geplanten Modulen und Flows in AxiomLens."
+        class="w-full object-contain border border-[#CDC2C2] rounded bg-white transition-shadow duration-200"
+      />
+    </button>
+
+    <figcaption class="text-[#6D6D6D] text-xs md:text-sm mt-2 text-center max-w-[360px] mx-auto">
+      Wireframe-Map der ersten Iteration, die später als Basis für den ersten Lo-Fi-Prototyp diente.
+    </figcaption>
+</figure>
+</aside>
+
+</div>
+</section>
+
+<!-- Divider -->
+<div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+
+<!-- USERS & GOALS -->
+<section id="users-goals" class="max-w-[1200px] mx-auto px-[16px] md:px-[40px] py-[50px] md:py-[70px]">
+  <!-- Heading + intro -->
+<div class="mb-8 md:mb-10">
+  <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-3">Nutzende &amp; Ziele</h2>
+  <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+    Ich habe AxiomLens nicht nur als zentrales Cockpit für alle Zahlen konzipiert, 
+    sondern auch als Möglichkeit, die eigene finanzielle Lage aktiv zu verbessern. 
+    Mit Hilfe von KI-Analysen und verständlichen Insights macht das Tool Muster und Ereignisse sichtbar,
+     die man leicht übersieht, und hilft dabei, den eigenen Cashflow mit einem aufmerksameren, 
+     mitdenkenden System zu steuern.
+  </p>
+</div>
+
+  <!-- 2-column editorial layout -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+
+    <!-- LEFT COLUMN: Personas stacked -->
+    <div class="space-y-6">
+      <!-- Persona 1  -->
+      <article class="bg-white border border-gray-200 rounded-lg p-5 md:p-6">
+        <h3 class="text-[clamp(1.1rem,2.6vw,1.35rem)] font-semibold mb-3">Vielbeschäftigter Kleinunternehmer</h3>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-[52px] h-[52px] rounded-full overflow-hidden border border-gray-200 bg-white">
+            <img src="../assets/images/guy_1.jfif" alt="Guy avatar" class="w-full h-full object-cover" />
+          </div>
+          <div>
+            <p class="font-semibold text-[clamp(1rem,2.2vw,1.1rem)]">Frank, 33</p>
+            <p class="text-gray-500 text-sm">Inhaber eines kleinen Kreativstudios</p>
+          </div>
+        </div>
+        <p class="text-[clamp(0.95rem,2.1vw,1.05rem)] leading-relaxed mb-4">
+          Führt ein kleines Unternehmen mit ein paar Mitarbeitenden und Freelancern. Zwischen Kundenkontakt und Produktion hat er nur kurz Zeit für schnelle Finanzchecks und Entscheidungen.
+        </p>
+        <h4 class="font-semibold mb-2">Was er auf einen Blick braucht</h4>
+        <ul class="list-disc ml-5 space-y-1">
+          <li>Ob die nächsten 2-4 Wochen abgedeckt sind (Miete, Löhne, Fixkosten).</li>
+          <li>Welche Rechnungen überfällig sind, in welcher Höhe und wie sich das auf den aktuellen Monat auswirkt.</li>
+          <li>Eine einzige „Jetzt + Nächstes“-Ansicht, ohne jede Woche Tabellen neu aufzusetzen.</li>
+        </ul>
+        <h4 class="font-semibold mt-4 mb-2">Frustpunkte</h4>
+        <ul class="list-disc ml-5 space-y-1">
+          <li>Daten liegen verstreut in Banking-Apps, Excel und Rechnungstools.</li>
+          <li>Abende gehen fürs Zahlenabgleichen drauf, statt das Geschäft voranzubringen.</li>
+        </ul>
+      </article>
+
+      <!-- Persona 2 -->
+      <article class="bg-white border border-gray-200 rounded-lg p-5 md:p-6">
+        <h3 class="text-[clamp(1.1rem,2.6vw,1.35rem)] font-semibold mb-3">Freiberufliche Beraterin</h3>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-[52px] h-[52px] rounded-full overflow-hidden border border-gray-200 bg-white">
+            <img src="../assets/images/girl_1.jfif" alt="Max avatar" class="w-full h-full object-cover" />
+          </div>
+          <div>
+            <p class="font-semibold text-[clamp(1rem,2.2vw,1.1rem)]">Jing, 29</p>
+            <p class="text-gray-500 text-sm">Beraterin mit mehreren laufenden Mandaten</p>
+          </div>
+        </div>
+        <p class="text-[clamp(0.95rem,2.1vw,1.05rem)] leading-relaxed mb-4">
+          Arbeitet mit mehreren Kunden auf Retainer- und Projektbasis. Zahlungsziele variieren stark, und ihr Einkommen ist unregelmäßig und schwer einzuschätzen.
+        </p>
+        <h4 class="font-semibold mb-2">Was sie auf einen Blick braucht</h4>
+        <ul class="list-disc ml-5 space-y-1">
+          <li>Wiederkehrende Rechnungen und künftige Lücken sehen.</li>
+          <li>Umsatz nach Kunden/Projekten – sichtbar, wer ihn wirklich treibt.</li>
+          <li>Sanfte Reminder, Rechnungen zu schicken oder nachzuhaken, bevor Verzögerungen peinlich werden.</li>
+        </ul>
+        <h4 class="font-semibold mt-4 mb-2">Frustpunkte</h4>
+        <ul class="list-disc ml-5 space-y-1">
+          <li>Kein zentraler Ort, um alle anstehenden Zahlungen zu sehen und den Cashflow zu steuern.</li>
+          <li>Langsame Monate kommen überraschend, weil Probleme erst auffallen, wenn das Konto schon niedrig ist.</li>
+          <li>Regelmäßige „Hab ich diese Rechnung überhaupt geschickt?“-Momente spät nachts, die dauernd leichtes Unbehagen auslösen.</li>
+        </ul>
+      </article>
+    </div>
+
+    <!-- RIGHT COLUMN: Outcomes, goals, constraints -->
+  
+    <div class="flex flex-col h-full justify-between">
+      <!-- Success (GREY) -->
+      <aside class="bg-[#F7F7F7] border border-gray-200 rounded-lg p-5 md:p-6">
+        <h3 class="font-semibold text-[clamp(1.1rem,2.5vw,1.25rem)] mb-2">So sieht Erfolg aus</h3>
+        <ul class="space-y-2">
+          <li><strong>Schneller Check.</strong> Frank oder Jing sehen mit einem Blick aufs Dashboard, ob die nächsten Wochen stabil oder heikel sind.</li>
+          <li><strong>Planbare Runway.</strong> Kommende Dellen und dünne Monate werden früh sichtbar – mit Zeit zu reagieren.</li>
+          <li><strong>Handfeste Hinweise.</strong> Konkrete Hinweise. Jede Warnung – etwa zu Cashflow-Lücken, überfälligen Rechnungen oder deutlich unter Plan liegenden Einnahmen – enthält 1–2 naheliegende nächste Schritte.</li>
+          <li><strong>Geringe mentale Last.</strong> Genug Details für Entscheidungen, aber so gruppiert, dass der Bildschirm ruhig und unter Kontrolle wirkt.</li>
+        </ul>
+      </aside>
+
+      <!-- Combined goals (GREY, 2-column inside) -->
+      <article class="bg-[#F7F7F7] border border-gray-200 rounded-lg p-5 md:p-6 my-6">
+        <h3 class="text-[clamp(1.1rem,2.6vw,1.35rem)] font-semibold mb-4">Dashboard- und Designziele</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- User goals -->
+          <div>
+            <h4 class="font-semibold mb-2 text-sm uppercase tracking-wide text-gray-500">
+              User-Ziele
+            </h4>
+            <ul class="list-disc ml-5 space-y-2 text-[0.95rem]">
+              <li>Heutige Liquidität und die nächsten 30-45 Tage an einem Ort sehen.</li>
+              <li>Überfällige oder riskante Rechnungen sehen, ohne Mails und Tabellen zu durchsuchen.</li>
+              <li>Verstehen, was den Trend rauf oder runter treibt – bestimmte Kunden, Monate oder Rechnungen.</li>
+              <li>Schnell entscheiden, ob investiert, gespart, verschoben oder nachgefasst wird.</li>
+              <li>Eine einfache, exportierbare Übersicht mit Steuerberater, Co-Founder oder Partner teilen.</li>
+            </ul>
+          </div>
+
+          <!-- Product & design goals -->
+          <div>
+            <h4 class="font-semibold mb-2 text-sm uppercase tracking-wide text-gray-500">
+              Produkt- &amp; UX-Prinzipien
+            </h4>
+            <ul class="list-disc ml-5 space-y-2 text-[0.95rem]">
+              <li>Verstreute Finanzdaten in eine verlässliche Arbeitsansicht verwandeln – keine Chart-Wand.</li>
+              <li>Risiken mit klaren, gut lesbaren Visuals hervorheben.</li>
+              <li>Navigation bewusst flach halten: vom Dashboard zu Details in 1-2 Klicks.</li>
+              <li>Muster entwerfen, die später auf Steuern, Abos und tiefere KI-Insights erweiterbar sind, ohne den Kern neu zu bauen.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Constraints (GREY) -->
+      <aside class="bg-[#F7F7F7] border border-gray-200 rounded-lg p-5 md:p-6">
+        <h3 class="font-semibold text-[clamp(1.1rem,2.5vw,1.25rem)] mb-2">Einschränkungen & Nicht-Ziele</h3>
+        <ul class="space-y-2 text-[0.95rem]">
+          <li><strong>Nicht abgedeckt:</strong> vollständige Buchhaltung und Mehrrollen-Rechte.</li>
+          <li><strong>Integrationen:</strong> Bank- und Rechnungssync wird angenommen; Fokus liegt nur auf UI/UX.</li>
+          <li><strong>Datenaktualität:</strong> Sync-Status und Zeitstempel anzeigen, Scheinpräzision vermeiden.</li>
+          <li><strong>Schutz vor Überladung:</strong> lieber kurze Text-Highlights statt Diagrammflut.</li>
+          <li><strong>Iterationsfokus:</strong> Single-User-Dashboard fürs MVP.</li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+
+<!-- Divider -->
+<div id="visuals-start" class="w-full px-[84px] scroll-mt-[96px]">
+  <hr class="border-b border-[#CDC2C2]" />
+</div>
+
+<!-- KEY SCREENS -->
+<section id="key-screens" class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+  <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-3">
+    Zentrale Screens
+  </h2>
+  <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed max-w-none">
+    Ein näherer Blick auf den Kernflow von AxiomLens: 
+    vom Haupt-Dashboard über eine detailliertere Cashflow-Ansicht hin zur
+     Rechnungsübersicht. Zusammengenommen zeigen diese Screens, wie dichte 
+     Finanzdaten in einen einfachen Loop gebracht werden: Lage verstehen, Problem erkennen,
+      Details öffnen und handeln.
+  </p>
+
+  <div class="mt-10 space-y-[56px] zig">
+    <!-- 01 · Main dashboard -->
+    <article class="grid grid-cols-1 md:grid-cols-2 gap-[28px] md:gap-[40px] items-start">
+      <figure class="bg-[#F7F7F7] border border-[#EAEAEA] rounded-lg p-4">
+        <button
+          type="button"
+          class="block text-left"
+          data-full-src="../assets/images/Axiom_Main.png"
+          data-caption="Überblick über den Cashflow auf hoher Ebene: Kennzahlen, Trends und KI-Insights in einer fokussierten Ansicht."
+        >
+          <img
+            src="../assets/images/Axiom_Main.png"
+            alt="AxiomLens main dashboard with key cashflow metrics"
+            class="w-full max-w-[720px] rounded border border-[#CDC2C2] object-contain"
+          />
+        </button>
+        <figcaption class="text-[#6D6D6D] text-[clamp(0.9rem,2vw,1rem)] mt-3 max-w-[720px]">
+          <strong>Haupt-Dashboard.</strong> Überblick über den Cashflow auf hoher Ebene: Kennzahlen, Trends und KI-Insights in einer fokussierten Ansicht.
+        </figcaption>
+      </figure>
+
+      <div class="text-black">
+        <div class="text-[clamp(1rem,2.4vw,1.125rem)] font-semibold text-[#6D6D6D] mb-1">
+          01 · Haupt-Dashboard
+        </div>
+        <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-3">
+          Täglicher Check-in-Screen – der Einstieg ins Produkt
+        </h3>
+        <p class="text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-3">
+Das <strong>Haupt-Dashboard</strong> ist der Screen, den Frank, Jing und andere User am häufigsten sehen.
+Es bündelt Kennzahlen, Trends, KI-Insights und die neuesten Rechnungen in einer Arbeitsansicht, sodass ein kurzer Blick reicht, um zu erkennen, ob heute etwas Aufmerksamkeit braucht.</p>
+        <p class="text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-3">
+          Because Als erster Screen, den alle sehen, musste er einen sorgfältigen Ausgleich zwischen Informationsdichte, visueller Ruhe und klaren nächsten Schritten schaffen. Er 
+          definiert außerdem die visuelle Sprache des gesamten Produkts und war deshalb der am stärksten iterierte Screen – von frühen Wireframes bis hin zu mehreren High-Fidelity-Versionen,
+           die im Abschnitt <strong>„Designprozess & Iterationen“</strong> dokumentiert sind.
+        </p>
+        <h3 class="font-semibold text-[clamp(1.1rem,2.5vw,1.25rem)] mb-2">Zentrale Designentscheidungen:</h3>
+        <ul class="list-disc ml-5 space-y-2 text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+          <li><strong>Kennzahlen-Karten</strong> für Einnahmen, Ausgaben, Gewinn und fällige Steuern geben einen schnellen Überblick über den Status plus kurze Trendhinweise zum Vormonat.</li>
+          <li><strong>Die Cashflow-Übersicht</strong> zeigt, wie es über den gewählten Zeitraum zu der aktuellen Lage kam – mit einem einfachen Sprung in die Vollansicht.</li>
+          <li><strong>Das KI-Insights-Panel</strong> hebt Risiken und Chancen in Klartext hervor und verlinkt direkt zu den passenden Ansichten.</li>
+          <li><strong>Die Tabelle mit aktuellen Rechnungen</strong> erdet den Überblick in konkreten Kunden und Beträgen – mit klaren Status-Badges und Aktionen mit einem Klick.</li>
+          <li><strong>Ein dunkles, ruhiges UI</strong> mit enger Grid-Struktur und zurückhaltenden Farben hält dichte Daten gut lesbar, ohne wie ein Trading-Terminal zu wirken (und sieht einfach toll aus).</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 02 · Cashflow overview -->
+    <article class="grid grid-cols-1 md:grid-cols-2 gap-[28px] md:gap-[40px] items-start">
+      <figure class="bg-[#F7F7F7] border border-[#EAEAEA] rounded-lg p-4">
+        <button
+          type="button"
+          class="block text-left"
+          data-full-src="../assets/images/cashflow_overview.png"
+          data-caption="Diagramm zu Ein- und Ausgängen mit Filtern und kurzen Insight-Karten, die zeigen, was sich geändert hat und wodurch."
+        >
+          <img
+            src="../assets/images/cashflow_overview.png"
+            alt="Detailed cashflow overview graph and breakdown"
+            class="w-full max-w-[720px] rounded border border-[#CDC2C2] object-contain"
+          />
+        </button>
+        <figcaption class="text-[#6D6D6D] text-[clamp(0.9rem,2vw,1rem)] mt-3 max-w-[720px]">
+          <strong>Cashflow-Übersicht.</strong> Diagramm zu Ein- und Ausgängen mit Filtern und kurzen Insight-Karten, die zeigen, was sich geändert hat und wodurch.
+        </figcaption>
+      </figure>
+
+      <div class="text-black">
+        <div class="text-[clamp(1rem,2.4vw,1.125rem)] font-semibold text-[#6D6D6D] mb-1">
+          02 · Cashflow-Übersicht
+        </div>
+        <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-3">
+          Trends sehen, ohne die Geschichte dahinter zu verlieren
+        </h3>
+        <p class="text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-3">
+            Hier geht es eine Ebene höher: Wie sich Geld über den gewählten Zeitraum bewegt – nach Konto, Jahr und Quartal.
+            Statt nur eines Kontostands zeigt der Screen, wie Ein- und Ausgänge Woche für Woche zusammenlaufen (in diesem Szenario).
+        </p>
+        <h3 class="font-semibold text-[clamp(1.1rem,2.5vw,1.25rem)] mb-2">Zentrale Designentscheidungen:</h3>
+        <ul class="list-disc ml-5 space-y-2 text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+          <li><strong>Das Diagramm</strong> legt Ein- und Auszahlungen auf dieselbe Skala mit feinem Raster, sodass Trends und Lücken sofort ins Auge fallen..</li>
+          <li><strong>Filter für Konto, Jahr und Quartal/Monat</strong> beantworten Fragen wie „Wie lief Q4 auf dem Hauptkonto?“ – ohne den Screen zu wechseln.</li>
+          <li><strong>Die Karten unter dem Diagramm</strong> übersetzen Muster in Klartext: saisonale Spitzen, Sparpotenzial oder Rechnungen, die das Quartal aus dem Gleichgewicht bringen.</li>
+          <li><strong>Die UI rund ums Diagramm</strong> bleibt bewusst zurückhaltend; Aktionen wie „Bericht exportieren“ sind da, aber nicht im Weg.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 03 · Invoices list -->
+    <article class="grid grid-cols-1 md:grid-cols-2 gap-[28px] md:gap-[40px] items-start">
+      <figure class="bg-[#F7F7F7] border border-[#EAEAEA] rounded-lg p-4">
+        <button
+          type="button"
+          class="block text-left"
+          data-full-src="../assets/images/Invoices_Overivew.png"
+          data-caption="Dichte, aber gut erfassbare Tabelle mit Status-Badges, Schnellaktionen und Insight-Karten, um lange Abrechnungsverläufe zügig durchzugehen."
+        >
+          <img
+            src="../assets/images/Invoices_Overivew.png"
+            alt="Invoices table with statuses and quick actions"
+            class="w-full max-w-[720px] rounded border border-[#CDC2C2] object-contain"
+          />
+        </button>
+        <figcaption class="text-[#6D6D6D] text-[clamp(0.9rem,2vw,1rem)] mt-3 max-w-[720px]">
+          <strong>Rechnungsliste.</strong> Dichte, aber klare Tabelle mit Status-Badges, Schnellaktionen und Insight-Karten, um lange Abrechnungsverläufe zügig durchzugehen.
+        </figcaption>
+      </figure>
+
+      <div class="text-black">
+        <div class="text-[clamp(1rem,2.4vw,1.125rem)] font-semibold text-[#6D6D6D] mb-1">
+          03 · Rechnungen
+        </div>
+        <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-3">
+          Das Arbeitstier für den Rechnungsalltag
+        </h3>
+        <p class="text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-3">
+          Hier steuern Frank und Jing ihr reinkommendes Geld.
+          Der Screen verbindet zentrale Kennzahlen zu Rechnungen mit einer dichten, aber gut lesbaren Tabelle – so wird aus „Wie viel steckt noch in Rechnungen?“ 
+          in wenigen Sekunden „Welche gehe ich zuerst an?“.
+        </p>
+        <h3 class="font-semibold text-[clamp(1.1rem,2.5vw,1.25rem)] mb-2">Zentrale Designentscheidungen:</h3>
+        <ul class="list-disc ml-5 space-y-2 text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+          <li><strong>Die Karten oben</strong> geben einen schnellen Überblick: insgesamt gestellt, bezahlt, überfällig und die durchschnittliche Zahlungszeit.</li>
+          <li><strong>Filter für Status, Konto und Jahr</strong> grenzen die Liste schnell ein, ohne die Seite zu verlassen.</li>
+          <li><strong>Eine aufgeräumte Rechnungstabelle</strong> lässt sich auch über lange Zeiträume gut überfliegen und sortieren.</li>
+          <li><strong>Aktionen direkt in der Tabelle</strong> halten Standardaufgaben mit einem Klick erreichbar, statt sie in Menüs zu verstecken.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 04 · Invoice details -->
+    <article class="grid grid-cols-1 md:grid-cols-2 gap-[28px] md:gap-[40px] items-start">
+      <figure class="bg-[#F7F7F7] border border-[#EAEAEA] rounded-lg p-4">
+        <button
+          type="button"
+          class="block text-left"
+          data-full-src="../assets/images/invoice_details.png"
+          data-caption="Fokussiertes Overlay mit Kundendaten, Postenübersicht, Summen und einem visuellen Zahlungsverlauf."
+        >
+          <img
+            src="../assets/images/invoice_details.png"
+            alt="Invoice details overlay with breakdown and payment timeline"
+            class="w-full max-w-[720px] rounded border border-[#CDC2C2] object-contain"
+          />
+        </button>
+        <figcaption class="text-[#6D6D6D] text-[clamp(0.9rem,2vw,1rem)] mt-3 max-w-[720px]">
+          <strong>Rechnungsdetails.</strong> Fokussiertes Overlay mit Kundendaten, Postenübersicht, Summen und einem visuellen Zahlungsverlauf.
+        </figcaption>
+      </figure>
+
+      <div class="text-black">
+        <div class="text-[clamp(1rem,2.4vw,1.125rem)] font-semibold text-[#6D6D6D] mb-1">
+          04 · Rechnungsdetails
+        </div>
+        <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-3">
+          Alle Infos zur Rechnung, ohne den Flow zu unterbrechen
+        </h3>
+        <p class="text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-3">
+          Das Öffnen einer Rechnung soll sich leicht und selbstverständlich anfühlen. Die Detailansicht liegt 
+          als Overlay über der Liste: Man kann Daten prüfen, eine Erinnerung schicken, die Historie ansehen oder das 
+          PDF herunterladen – dann schließen und genau an der gleichen Stelle in der Liste weitermachen.
+        </p>
+        <h3 class="font-semibold text-[clamp(1.1rem,2.5vw,1.25rem)] mb-2">Zentrale Designentscheidungen:</h3>
+        <ul class="list-disc ml-5 space-y-2 text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+          <li><strong>Das Overlay</strong> hält Nutzer in der Rechnungsansicht, statt sie auf eine neue Seite zu schicken.</li>
+          <li><strong>Der Kundenblock</strong> mit Kontaktdaten und Rechnungsadresse sitzt oben und lässt sich so schnell prüfen oder für Follow-ups nutzen.</li>
+          <li><strong>Der Betragsbereich</strong> trennt Zwischensumme, MwSt. und Gesamt klar, damit Beträge nicht falsch gelesen werden.</li>
+          <li><strong>Die Verlaufslinie</strong> zeigt: erstellt, gesendet, gesehen, bezahlt – Gespräche à la „Die Rechnung ist nie angekommen“ werden deutlich schwerer, sofern beide Seiten AxiomLens nutzen.</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Divider -->
+<div class="w-full px-[84px]">
+  <hr class="border-b border-[#CDC2C2]" />
+</div>
+
+<!-- LOGO & BRANDING -->
+<section id="logo-branding"
+  class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+
+  <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-3">
+    Logo und Markenauftritt
+  </h2>
+
+  <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-8 max-w-none">
+    Bei einem Finanzprodukt beginnt Vertrauen oft beim Logo. Eine stimmige Markenidentität kann viele Ecken und Kanten früher Versionen abfedern, 
+    eine holprige lässt selbst ein gutes Konzept schnell nach Hobbyprojekt aussehen – lange bevor jemand es wirklich ausprobiert.
+  Für AxiomLens brauchte ich ein Zeichen, das analytisch und modern wirkt, dezent auf „smarte“ 
+  KI-Unterstützung anspielt und trotzdem zuerst als Finanztool gelesen wird. Der Name gibt die Richtung schon vor: „Axiom“ als verlässliche Grundlage, „Lens“ als Linse auf die Daten.
+    Die Entwürfe unten zeigen den Weg von einer eher generischen „AI + Blende“-Marke hin zu einem bodenständigeren, 
+    diagrammbasierten Symbol, das besser zum Produkt passt – auch wenn es noch weit weg von perfekt ist.
+  </p>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-[28px] md:gap-[48px] items-start">
+
+    <!-- LEFT: Brand intentions -->
+    <div>
+      <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-4">
+        Wofür die Marke steht
+      </h3>
+
+      <ul class="space-y-3 text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-8">
+        <li>
+          <strong>Reine finanzielle Klarheit.</strong> Seriös genug für echtes Geld, ohne wie eine Trading-App oder Krypto-Plattform zu wirken.
+        </li>
+        <li>
+          <strong>Smart, aber nicht Sci-Fi.</strong> Ein dezenter Hinweis auf KI und Automatisierung, ohne das Logo wie ein Tech-Gadget-Icon aussehen zu lassen.
+        </li>
+        <li>
+          <strong>Stabil und geerdet.</strong> Klare Geometrie und ein zugrunde liegendes Grid, das Struktur, Verlässlichkeit und langfristige Nutzung vermittelt.
+        </li>
+      </ul>
+
+      <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-3">
+        Namenslogik
+      </h3>
+
+      <ul class="space-y-3 text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+        <li>
+          <strong>Axiom</strong> – eine verlässliche Grundlage, auf der Entscheidungen sicher stehen.
+        </li>
+        <li>
+          <strong>Lens</strong> – Fokus und Klarheit, eine direkte Metapher für den Blick nach vorn.
+        </li>
+        <li>
+          Zusammen steht <strong>AxiomLens</strong> für „verlässliche Zahlen, klar im Blick“.
+      </ul>
+    </div>
+
+<!-- RIGHT: Logo evolution visuals -->
+<div>
+  <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-4">
+    Logo-Entwicklung
+  </h3>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-[16px]">
+    <!-- Early mark -->
+    <figure class="bg-white border border-[#EAEAEA] rounded-lg p-3 flex flex-col items-center text-center h-full overflow-hidden">
+      <!-- fixed-height media box -->
+      <div class="w-full h-[180px] md:h-[220px]">
+        <button
+          type="button"
+          class="block w-full h-full flex items-center justify-center cursor-pointer"
+          data-full-src="../assets/images/Axiom_White_Square.png"
+          data-caption="Erste brauchbare Idee: eine Kamera-Blende mit Schaltlinien, die Linsenmotiv und smartes System-Feeling zusammenbringen sollte. Das Zeichen wirkte technisch und dynamisch, aber kaum wie ein Finanzprodukt und wurde in kleinen Größen schnell unruhig."
+          aria-label="Open early AxiomLens square logo"
+        >
+          <img
+            src="../assets/images/Axiom_White_Square.png"
+            alt="Early AxiomLens logo concept – heavy gradient square mark"
+            class="max-h-full max-w-[90%] object-contain"
+          />
+        </button>
+      </div>
+      <figcaption class="text-[#6D6D6D] text-[clamp(0.85rem,2vw,0.95rem)] mt-2">
+        Kamera-Blende mit Schaltlinien – verbindet Linsenmotiv mit einem smarten System-Feeling
+      </figcaption>
+    </figure>
+
+    <!-- Exploration -->
+    <figure class="bg-white border border-[#EAEAEA] rounded-lg p-3 flex flex-col items-center text-center h-full overflow-hidden">
+      <div class="w-full h-[180px] md:h-[220px]">
+        <button
+          type="button"
+          class="block w-full h-full flex items-center justify-center cursor-pointer"
+          data-full-src="../assets/images/Axiom_White_Horizontal.png"
+          data-caption="Gleiches Symbol, diesmal mit horizontaler Wortmarke. In Headline-Zeilen und auf weißem Hintergrund funktionierte es deutlich besser, wirkte aber weiterhin eher wie ein generisches „AI-Tool“ als ein Cashflow-Produkt für kleine Unternehmen."
+          aria-label="Open exploration horizontal logo"
+        >
+          <img
+            src="../assets/images/Axiom_White_Horizontal.png"
+            alt="Exploration logo with updated graph symbol and old typography"
+            class="max-h-full max-w-[90%] object-contain"
+          />
+        </button>
+      </div>
+      <figcaption class="text-[#6D6D6D] text-[clamp(0.85rem,2vw,0.95rem)] mt-2">
+        Iteration 2: gleiches Symbol mit horizontalem Schriftzug – besser lesbar in Titeln und auf weißem Grund
+      </figcaption>
+    </figure>
+
+    <!-- Final square -->
+    <figure class="bg-white border border-[#EAEAEA] rounded-lg p-3 flex flex-col items-center text-center h-full overflow-hidden">
+      <div class="w-full h-[180px] md:h-[220px]">
+        <button
+          type="button"
+          class="block w-full h-full flex items-center justify-center cursor-pointer"
+          data-full-src="../assets/images/Axiom_Square_Old_Font.png"
+          data-caption="Finales Symbol: Am Ende habe ich mich für ein Diagramm-Icon auf dunklem Grund entschieden – mit Raster, Datenpunkten und einer steigenden Linie. Die Finanzmetapher ist damit sofort klar, aber die kräftigen Verläufe und scharfen Winkel wirken etwas zu hart für den ruhigen, beratenden Ton, den ich AxiomLens geben wollte."
+          aria-label="Open final square logo"
+        >
+          <img
+            src="../assets/images/Axiom_Square_Old_Font.png"
+            alt="Final AxiomLens square logo"
+            class="max-h-full max-w-[90%] object-contain"
+          />
+        </button>
+      </div>
+      <figcaption class="text-[#6D6D6D] text-[clamp(0.85rem,2vw,0.95rem)] mt-2">
+        Diagramm-Icon auf dunklem Grund: Finanzbezug klar, wirkt aber etwas aggressiv
+      </figcaption>
+    </figure>
+
+    <!-- Final horizontal -->
+    <figure class="bg-white border border-[#EAEAEA] rounded-lg p-3 flex flex-col items-center text-center h-full overflow-hidden">
+      <div class="w-full h-[180px] md:h-[220px]">
+        <button
+          type="button"
+          class="block w-full h-full flex items-center justify-center cursor-pointer"
+          data-full-src="../assets/images/Axiom_Logo_Horizontal.png"
+          data-caption="Für die Konzept-Case-Study habe ich mich auf ein Diagramm-Symbol mit ruhigerer Blaupalette entschieden, kombiniert mit der Wortmarke in Electrolize, um den leicht technischen Charakter zu behalten.
+Im Interface und auf der Website kommt Bricolage Grotesque zum Einsatz: Die Schrift hält Texte menschlicher und gut lesbar, während das Logo die analytische Seite transportiert."
+          aria-label="Open final horizontal logo"
+        >
+          <img
+            src="../assets/images/Axiom_Logo_Horizontal.png"
+            alt="Final AxiomLens horizontal logo"
+            class="max-h-full max-w-[90%] object-contain"
+          />
+        </button>
+      </div>
+      <figcaption class="text-[#6D6D6D] text-[clamp(0.85rem,2vw,0.95rem)] mt-2">
+        Wortmarke in Electrolize wirkt leicht technisch, die Farbpalette ist jetzt ruhiger
+      </figcaption>
+    </figure>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- Divider -->
+<div class="w-full px-[84px]">
+  <hr class="border-b border-[#CDC2C2]" />
+</div>
+
+<!-- DESIGN PROCESS & ITERATIONS -->
+<section id="design-process"
+  class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+
+  <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-3">
+    Designprozess & Iterationen
+  </h2>
+
+  <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed max-w-[900px] mb-8">
+    Bei AxiomLens bin ich so vorgegangen, wie ich es auch bei einem echten Produkt machen würde: erst Flows und Informationsstruktur, dann eine Phase
+     mit groben Lo-Fi-Skizzen, danach gezieltere Hi-Fi-Iterationen, die ich mit Usability-Tests abgeklopft habe. Das finale visuelle System kam erst ganz zum Schluss.
+    Wichtig war mir, zuerst zu prüfen, ob die Logik trägt: Welche Screens gibt es, was soll darauf zu sehen sein und wie leicht kommen Leute von A nach B – und erst danach
+    das Feintuning bei Datenmenge, Hierarchie und Farben zu machen.
+  </p>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-[32px] md:gap-[48px] items-start">
+    <!-- LEFT: process narrative -->
+    <div>
+      <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-4">
+        Von Flows zum fertigen Dashboard
+      </h3>
+
+      <ol class="list-decimal ml-5 space-y-4 text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+        <li>
+          <strong>Flow-Map und Wireframe-Logik.</strong> Zuerst habe ich die zentralen Bereiche – Cashflow, Rechnungen, Kunden, Ausgaben, Steuern, Insights, 
+          Einstellungen und Mobile – in einem zusammenhängenden Wireframe-Flow angeordnet. So wurde klar, welche Screens es geben soll, wie sie zusammenhängen 
+          und welche Fragen jeder einzelne beantwortet.
+        </li>
+        <li>
+          <strong>Lo-Fi-Layout mit KI-Unterstützung.</strong> Aus dem Flow als Briefing habe ich eine grobe Lo-Fi-Version des Haupt-Dashboards gebaut, 
+                  um die Informationsdichte zu testen: Welche Kennzahlen oben im sichtbaren Bereich landen, 
+                  was nach unten rutschen kann und wie viel Inhalt noch gut auf einen Screen passt, ohne gequetscht zu wirken.
+        </li>
+        <li>
+          <strong>Hi-Fi-Iterationen zur Hierarchie.</strong> In der Hi-Fi-Phase habe ich verschiedene Varianten ausprobiert und die Gewichtung zwischen 
+                Schnellüberblick, Rechnungsbereich und Diagrammen verschoben. 
+                Manche Entwürfe setzten stärker auf Verläufe und Tiefe, andere auf flachere, 
+                eher editoriale Layouts, damit das Produkt ruhig, aber trotzdem hochwertig wirkt.
+        </li>
+        <li>  
+          <strong>Usability-Tests und Feedback.</strong> Ich habe zehn moderierte Remote-Sessions mit deutschen Freelancern auf Basis eines interaktiven 
+          Prototyps durchgeführt. Dabei wollte ich sehen, wie leicht sie durch Kernaufgaben kommen
+          und an welchen Stellen der Flow hakt: wo etwas unklar wird, wo die Navigation ins Leere läuft
+          oder der Screen einfach zu voll wirkt – und das alles, bevor ich eine finale Richtung festgelegt habe. 
+          Ihr Feedback führte zu Anpassungen bei der Platzierung der KI-Insights, dem Kontrast der Statusanzeigen und zu einer etwas weicheren Farbpalette.
+        </li>
+        <li>
+          <strong>Annäherung ans finale Layout.</strong> Das endgültige Dashboard kombiniert die stärksten Elemente der Iterationen:
+           klarere Rechnungsdarstellung, eine aussagekräftigere Zusammenfassungsleiste, konsistente Farbrollen und einen strafferen Rhythmus
+            zwischen Karten, Diagrammen und Tabellen.
+        </li>
+      </ol>
+
+      <p class="mt-6 text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+        Am Ende funktioniert die Hauptansicht einfach und gut nachvollziehbar: Nichts ist nur zum Selbstzweck da, die Wege bleiben kurz und dieselbe Struktur kann auch künftige Screens tragen.
+      </p>
+    </div>
+
+    <!-- RIGHT: visual carousel -->
+    <div>
+      <div class="bg-[#F7F7F7] border border-[#EAEAEA] rounded-lg p-4 md:p-5 shadow-sm">
+        <p class="text-[#6D6D6D] text-[0.8rem] font-semibold tracking-wide uppercase mb-3">
+          Von der Flow-Map zum fertigen Dashboard
+        </p>
+
+        <!-- Main image + arrows -->
+        <div class="relative">
+          <!-- Prev -->
+          <button
+            id="dp-prev"
+            type="button"
+            class="hidden sm:flex items-center justify-center
+                   absolute -left-3 top-1/2 -translate-y-1/2
+                   w-11 h-11 rounded-full border-2 border-[#D7D7D7]
+                   bg-white text-[#333] shadow-sm
+                   hover:bg-[#3D63C2] hover:text-white hover:border-[#3D63C2]
+                   focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3D63C2]/50
+                   transition"
+            aria-label="Previous iteration">
+            <svg viewBox="0 0 24 24" class="w-[22px] h-[22px]" fill="none"
+                 stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 5 L8 12 L15 19" />
+            </svg>
+          </button>
+
+          <!-- Next -->
+          <button
+            id="dp-next"
+            type="button"
+            class="hidden sm:flex items-center justify-center
+                   absolute -right-3 top-1/2 -translate-y-1/2
+                   w-11 h-11 rounded-full border-2 border-[#D7D7D7]
+                   bg-white text-[#333] shadow-sm
+                   hover:bg-[#3D63C2] hover:text-white hover:border-[#3D63C2]
+                   focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3D63C2]/50
+                   transition"
+            aria-label="Next iteration">
+            <svg viewBox="0 0 24 24" class="w-[22px] h-[22px]" fill="none"
+                 stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 5 L16 12 L9 19" />
+            </svg>
+          </button>
+
+          <figure class="mx-auto sm:px-10">
+            <!-- CLICKABLE MAIN IMAGE (opens your existing modal) -->
+            <button
+              id="dp-main-trigger"
+              type="button"
+              class="block w-full text-left"
+              data-full-src="../assets/images/Wireframe.png"
+              data-caption="Erste Iteration: Wireframe-Flow der wichtigsten AxiomLens-Bereiche, Basis für das erste Lo-Fi-Dashboard und die Navigation."
+              aria-label="Open current iteration full-size"
+            >
+              <img
+                id="dp-main-image"
+                src="../assets/images/Wireframe.png"
+                alt="Early flow map wireframe for AxiomLens screens"
+                class="w-full object-contain border border-[#CDC2C2] rounded bg-white"
+              />
+            </button>
+
+            <figcaption
+              id="dp-main-caption"
+              class="text-[#6D6D6D] text-xs md:text-sm mt-2 text-center max-w-[420px] mx-auto">
+              Erste Iteration: Wireframe-Flow der wichtigsten AxiomLens-Bereiche, Basis für das erste Lo-Fi-Dashboard und die Navigation.
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- Thumbnails row -->
+        <div id="dp-thumbs" class="mt-4 flex gap-2 overflow-x-auto pb-1">
+          <!-- MUST stay in the same order as the JS array below -->
+          <button type="button" class="dp-thumb flex-shrink-0 border border-[#CDC2C2] rounded overflow-hidden">
+            <img src="../assets/images/Wireframe.png" alt="Flow map wireframe thumbnail"
+                 class="w-[80px] h-[56px] object-cover" />
+          </button>
+          <button type="button" class="dp-thumb flex-shrink-0 border border-[#CDC2C2] rounded overflow-hidden">
+            <img src="../assets/images/Main_dashboard.png" alt="Lo-fi dashboard layout thumbnail"
+                 class="w-[80px] h-[56px] object-cover" />
+          </button>
+          <button type="button" class="dp-thumb flex-shrink-0 border border-[#CDC2C2] rounded overflow-hidden">
+            <img src="../assets/images/Early_Design_1.png" alt="First hi-fi iteration thumbnail"
+                 class="w-[80px] h-[56px] object-cover" />
+          </button>
+          <button type="button" class="dp-thumb flex-shrink-0 border border-[#CDC2C2] rounded overflow-hidden">
+            <img src="../assets/images/Early_Design_2.png" alt="Gradient experiment thumbnail"
+                 class="w-[80px] h-[56px] object-cover" />
+          </button>
+          <button type="button" class="dp-thumb flex-shrink-0 border border-[#CDC2C2] rounded overflow-hidden">
+            <img src="../assets/images/Early_Design_3.png" alt="Colour exploration thumbnail"
+                 class="w-[80px] h-[56px] object-cover" />
+          </button>
+          <button type="button" class="dp-thumb flex-shrink-0 border border-[#CDC2C2] rounded overflow-hidden">
+            <img src="../assets/images/Axiom_Main.png" alt="Final dashboard thumbnail"
+                 class="w-[80px] h-[56px] object-cover" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Carousel logic for Design process & iterations -->
+<script>
+  (function () {
+    const items = [
+      {
+        src: "../assets/images/Wireframe.png",
+        alt: "Early flow map wireframe for AxiomLens screens",
+        caption:
+          "Erste Iteration: Wireframe-Flow der wichtigsten AxiomLens-Bereiche, Basis für das erste Lo-Fi-Dashboard und die Navigation."
+      },
+      {
+        src: "../assets/images/Main_dashboard.png",
+        alt: "Lo-fi AI-assisted dashboard layout exploring information density",
+        caption:
+          "Lo-Fi-Dashboard mit KI: noch ohne Farben und Abstände – Test, was auf die Seite passt und welche Kennzahlen nach oben gehören."
+      },
+      {
+        src: "../assets/images/Early_Design_1.png",
+        alt: "First high-fidelity dashboard iteration",
+        caption:
+          "Erster Hi-Fi: nah am Wireframe, aber mit schwächerem Rechnungsbereich und einem nicht überzeugenden Überblick."
+      },
+      {
+        src: "../assets/images/Early_Design_2.png",
+        alt: "Gradient and depth experiment for dashboard cards",
+        caption:
+          "Experiment mit Verläufen und Tiefe: wirkte greifbarer, wurde später aber durch flachere, ruhigere Flächen ersetzt."
+      },
+      {
+        src: "../assets/images/Early_Design_3.png",
+        alt: "Colour and emphasis exploration for dashboard sections",
+        caption:
+          "Farbvarianten: welche Bereiche Akzentfarbe bekommen und wie Charts, Karten und Tabellen zusammen stimmig wirken."
+      },
+      {
+        src: "../assets/images/Axiom_Main.png",
+        alt: "Final AxiomLens main dashboard design",
+        caption:
+          "Finales Haupt-Dashboard: klarere Rechnungen, besserer Überblick und ein konsistentes Farbsystem für die Arbeit mit vielen Daten."
+      }
+    ];
+
+    const mainImg      = document.getElementById("dp-main-image");
+    const mainCap      = document.getElementById("dp-main-caption");
+    const mainTrigger  = document.getElementById("dp-main-trigger");
+    const prevBtn      = document.getElementById("dp-prev");
+    const nextBtn      = document.getElementById("dp-next");
+    const thumbButtons = Array.from(document.querySelectorAll(".dp-thumb"));
+
+    if (!mainImg || !mainCap || !mainTrigger || thumbButtons.length === 0) return;
+
+    let current = 0;
+
+    function render() {
+      const item = items[current];
+      mainImg.src = item.src;
+      mainImg.alt = item.alt;
+      mainCap.textContent = item.caption;
+
+      // Keep the modal trigger synced to the current slide
+      mainTrigger.setAttribute("data-full-src", item.src);
+      mainTrigger.setAttribute("data-caption", item.caption);
+
+      thumbButtons.forEach((btn, index) => {
+        if (index === current) {
+          btn.classList.add("ring-2", "ring-[#3D63C2]", "opacity-100");
+          btn.classList.remove("opacity-60");
+        } else {
+          btn.classList.remove("ring-2", "ring-[#3D63C2]");
+          btn.classList.add("opacity-60");
+        }
+      });
+    }
+
+    thumbButtons.forEach((btn, index) => {
+      btn.addEventListener("click", () => {
+        current = index;
+        render();
+      });
+    });
+
+    prevBtn?.addEventListener("click", () => {
+      current = (current - 1 + items.length) % items.length;
+      render();
+    });
+
+    nextBtn?.addEventListener("click", () => {
+      current = (current + 1) % items.length;
+      render();
+    });
+
+    render();
+  })();
+</script>
+
+ <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+
+<!-- DESIGN SYSTEM FOUNDATIONS -->
+<section id="design-system"
+  class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+
+  <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-3">
+    Grundlagen des Designsystems
+  </h2>
+
+  <!-- NOTE: no max-width so it doesn't wrap early -->
+  <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-10">
+    Relativ früh habe ich ein kleines Designsystem aufgesetzt, damit das Dashboard auch bei mehr Inhalt gut 
+    lesbar bleibt. Im Fokus standen eine Typografie, die neben Zahlen trägt, ein ruhiges Dark Theme und einfache Muster, 
+    die sich leicht auf neue Screens übertragen lassen.
+  </p>
+
+  <!-- PRINCIPLES (text-only, compact) -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-[24px] md:gap-[32px] mb-10">
+    <!-- Typography -->
+    <article class="bg-white border border-[#EAEAEA] rounded-lg p-5">
+      <h3 class="text-[clamp(1.1rem,2.6vw,1.35rem)] font-semibold mb-3">Typografie</h3>
+      <ul class="space-y-2 text-black text-[clamp(0.95rem,2.1vw,1.05rem)] leading-relaxed">
+        <li><strong>Lesbar auch unter Druck.</strong> Schriftgrößen bleiben klar neben dichten Tabellen und Charts.</li>
+        <li><strong>Zweistufige Hierarchie.</strong> Überschriften führen, Labels und Hilfstexte halten sich zurück.</li>
+        <li><strong>Monospace als Akzent.</strong> Sparsam für ausgerichtete Beträge und codeartige Details.</li>
+      </ul>
+    </article>
+
+    <!-- Colors & Surface -->
+    <article class="bg-white border border-[#EAEAEA] rounded-lg p-5">
+      <h3 class="text-[clamp(1.1rem,2.6vw,1.35rem)] font-semibold mb-3">Farben & Flächen</h3>
+      <ul class="space-y-2 text-black text-[clamp(0.95rem,2.1vw,1.05rem)] leading-relaxed">
+        <li><strong>Dunkler Hintergrund.</strong> Wirkt modern, ist angenehm für längere Sessions und lässt Diagrammlinien hervortreten. Ein Light Theme ist ebenfalls geplant!</li>
+        <li><strong>Weiche Blautöne.</strong> Akzente fühlen sich analytisch und ruhig an, nicht nach Growth-Hacking-Hype.</li>
+        <li><strong>Rahmen statt Schatten.</strong> Kaum Ebenen, damit der Fokus auf den Daten bleibt.</li>
+      </ul>
+    </article>
+
+    <!-- Spacing & Layout Rhythm -->
+    <article class="bg-white border border-[#EAEAEA] rounded-lg p-5">
+      <h3 class="text-[clamp(1.1rem,2.6vw,1.35rem)] font-semibold mb-3">Abstände & Layout-Rhythmus</h3>
+      <ul class="space-y-2 text-black text-[clamp(0.95rem,2.1vw,1.05rem)] leading-relaxed">
+        <li><strong>Einheitliche Skala.</strong> Gleiche Abstände und Größen über Bereiche und Komponenten lassen das Produkt wie aus einem Guss wirken.</li>
+        <li><strong>Card-first-Struktur.</strong> Dichte Daten sind in klaren, gut lesbaren Modulen organisiert.</li>
+        <li><strong>Saubere Ränder.</strong> Deutliche Außenabstände verhindern visuelles Clutter und lassen das Layout bewusst gesetzt wirken.</li>
+      </ul>
+    </article>
+  </div>
+
+  <!-- CORE COMPONENTS -->
+  <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-4">
+    Kernkomponenten
+  </h3>
+  <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-6">
+    Vier zentrale Komponentenfamilien leisten hier den Großteil der Arbeit. Werden sie über mehrere Screens hinweg wiederverwendet, bleibt das Produkt konsistent – auch ohne aufgeblasenes Designsystem.
+  </p>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-[20px] lg:gap-[28px]">
+
+  <!-- Cards -->
+  <figure class="bg-white border border-[#EAEAEA] rounded-lg p-4 shadow-sm">
+    <button
+      type="button"
+      class="block w-full text-left"
+      data-full-src="../assets/images/Cards1.png"
+      data-caption="Für Einnahmen, Ausgaben, Gewinn, Steuern und Rechnungs-KPIs. Einheitliches Muster: Label, Hauptwert, kleine Trendlinie oder Delta plus Icon."
+      aria-label="Open metric cards visual"
+    >
+      <!-- 16:9 wrapper -->
+      <div class="relative w-full overflow-hidden rounded-md">
+        <div class="pt-[56.25%]"></div>
+        <img
+          src="../assets/images/Cards1.png"
+          alt="Metric card components"
+          class="absolute inset-0 w-full h-full object-contain"
+          loading="lazy"
+        />
+      </div>
+    </button>
+    <figcaption class="text-[#6D6D6D] text-sm mt-3">
+      <strong>Kennzahlen-Karten.</strong> Für Einnahmen, Ausgaben, Gewinn, Steuern und Rechnungs-KPIs. Einheitliches Muster: Label, Hauptwert, kleine Trendlinie oder Delta plus Icon.
+    </figcaption>
+  </figure>
+
+  <!-- Status pills -->
+  <figure class="bg-white border border-[#EAEAEA] rounded-lg p-4 shadow-sm">
+    <button
+      type="button"
+      class="block w-full text-left"
+      data-full-src="../assets/images/Pills1.png"
+      data-caption="Kennzeichnen Zahlungs- und Insight-Status. Die gleiche Farbpalette in Tabellen und Karten sorgt dafür, dass „gut“, Warnung und neutral schnell sitzen."
+      aria-label="Open status pills visual"
+    >
+      <div class="relative w-full overflow-hidden rounded-md">
+        <div class="pt-[56.25%]"></div>
+        <img
+          src="../assets/images/Pills1.png"
+          alt="Status badges (Paid / Pending / Overdue)"
+          class="absolute inset-0 w-full h-full object-contain"
+          loading="lazy"
+        />
+      </div>
+    </button>
+    <figcaption class="text-[#6D6D6D] text-sm mt-3">
+      <strong>Status-Badges.</strong> Kennzeichnen Zahlungs- und Insight-Status. Die gleiche Farbpalette in Tabellen und Karten sorgt dafür, dass „gut“, Warnung und neutral schnell sitzen.
+    </figcaption>
+  </figure>
+
+  <!-- AI Insights cards -->
+  <figure class="bg-white border border-[#EAEAEA] rounded-lg p-4 shadow-sm">
+    <button
+      type="button"
+      class="block w-full text-left"
+      data-full-src="../assets/images/AI_Cards_Alpha.png"
+      data-caption="Etwas reichhaltigere Karten mit Icon, kurzem Titel, Erklärung und klarer Aktion. Sie machen aus Rohanalyse kleine, fokussierte Empfehlungen."
+      aria-label="Open AI insights cards visual"
+    >
+      <div class="relative w-full overflow-hidden rounded-md">
+        <div class="pt-[56.25%]"></div>
+        <img
+          src="../assets/images/AI_Cards_Alpha.png"
+          alt="AI Insights card components"
+          class="absolute inset-0 w-full h-full object-contain"
+          loading="lazy"
+        />
+      </div>
+    </button>
+    <figcaption class="text-[#6D6D6D] text-sm mt-3">
+      <strong>AI-Insights-Karten.</strong> Etwas reichhaltigere Karten mit Icon, kurzem Titel, Erklärung und klarer Aktion. Sie machen aus Rohanalyse kleine, fokussierte Empfehlungen.
+    </figcaption>
+  </figure>
+
+  <!-- Icons -->
+  <figure class="bg-white border border-[#EAEAEA] rounded-lg p-4 shadow-sm">
+    <button
+      type="button"
+      class="block w-full text-left"
+      data-full-src="../assets/images/Icons_New1.png"
+      data-caption="Eignet sich für Navigation, Kennzahlen und Aktionen. Strichstärke und Eckenradius sind aufs UI abgestimmt, damit Icons die Hierarchie stützen, statt mit den Zahlen zu konkurrieren."
+      aria-label="Open icon set visual"
+    >
+      <div class="relative w-full overflow-hidden rounded-md">
+        <div class="pt-[56.25%]"></div>
+        <img
+          src="../assets/images/Icons_New1.png"
+          alt="Icon set for the interface"
+          class="absolute inset-0 w-full h-full object-contain"
+          loading="lazy"
+        />
+      </div>
+    </button>
+    <figcaption class="text-[#6D6D6D] text-sm mt-3">
+      <strong>Icon-Set.</strong> Eignet sich für Navigation, Kennzahlen und Aktionen. Strichstärke und Eckenradius passen zum UI, die Icons stützen die Hierarchie statt mit den Zahlen zu konkurrieren.
+    </figcaption>
+  </figure>
+
+</div>
+
+</section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+
+<!-- NEXT STEPS -->
+<section id="next-steps"
+  class="max-w-[1440px] mx-auto px-[16px] md:px-[84px]
+         py-[40px] md:py-[56px] ">
+
+  <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-3">
+    Nächste Schritte
+  </h2>
+
+  <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)]
+            leading-relaxed mb-6">
+AxiomLens ist bisher ein Konzeptprojekt. Um daraus ein echtes Tool zu machen, bräuchte es ein komplettes Team aus Entwicklung, Data- und KI-Spezialist:innen, Security- und Compliance-Expert:innen, Steuerrecht und einem richtigen Support.
+Trotzdem hilft die Frage „Was kommt als Nächstes?“, die Richtung zu schärfen. Würde ich AxiomLens weiterentwickeln, würde ich mich vor allem auf Folgendes konzentrieren:
+  </p>
+
+  <!-- Two compact columns (no picture) -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-x-[48px] gap-y-[12px] items-start">
+    <!-- LEFT -->
+    <ul class="space-y-3 text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+      <li>
+        <strong>Light- und Dark-Theme.</strong>
+        Der Dark Mode bleibt Standard, dazu kommen ein Light Theme und automatisches Umschalten nach Systemvorgabe. 
+        Moderne Browser unterstützen das bereits, deshalb müssen Layout und Farben in beiden Modi funktionieren, ohne zu zerfallen.
+      </li>
+            <li>
+        <strong>Mehrere Währungen und USt.</strong>
+        Wichtig für Freelancer und Studios mit Kundschaft über Ländergrenzen hinweg: eine Ansicht, die Währungen, MwSt.-Sätze und Steuerregeln auf einen Nenner bringt.
+      </li>
+      <li>
+        <strong>Team-Modus.</strong>
+        Rollen und Berechtigungen für Fälle, in denen mehr als eine Person den Cashflow im Blick haben muss – etwa Gründer, Assistenz oder externe Buchhaltung im selben Workspace.
+      </li>
+    </ul>
+
+    <!-- RIGHT -->
+    <ul class="space-y-3 text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+            <li>
+        <strong>Tiefere Anbindung an Banking und Rechnungen.</strong>
+        Zuerst einfache Uploads von Kontoauszügen und Rechnungen direkt im Tool, 
+        später direkte Anbindungen an wichtige EU-Anbieter (Stripe, PayPal, SEPA, lokale Banken), damit Nutzer Zahlen nicht mehr manuell abgleichen müssen.
+      </li>
+      <li>
+        <strong>Verschiedene Kontotypen.</strong>
+        Eine volle „Business-Owner“-Ansicht für Unternehmer:innen und eine schlankere „Client“-Ansicht nur zum Kommunizieren, Prüfen und Bezahlen von Rechnungen.
+      </li>
+      <li>
+        <strong>Steuerbereich.</strong>
+        Eigener Bereich, der zeigt, welche Steuern gelten, auf Basis der vorhandenen Daten Steuersätze grob schätzt und pro Land oder Region wichtige Fristen und Erinnerungen bündelt.
+      </li>
+    </ul>
+  </div>
+</section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+
+<!-- LEARNINGS -->
+<section id="learnings" class="w-full bg-[#FAFAFA] py-[60px] md:py-[90px]">
+  <div class="max-w-[900px] mx-auto px-[16px] md:px-[84px] text-center">
+
+    <h2 class="font-semibold text-[clamp(1.5rem,3.5vw,1.75rem)] mb-4">
+      Erkenntnisse
+    </h2>
+
+    <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-8">
+      An AxiomLens zu arbeiten, bedeutete für mich weniger, ein schickes Dashboard zu bauen, und mehr zu verstehen, was Finanz-Tools wirklich nutzbar und vertrauenswürdig macht. 
+      Hier sind ein paar Punkte, die ich aus dem Projekt mitnehme:
+    </p>
+
+    <ul class="text-left space-y-6 text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+      <li class="flex items-start">
+        <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+        <p>
+          <strong>Fragen zuerst, Screens danach.</strong> Als ich aufgehört habe in „Features“ zu denken und stattdessen gefragt habe: <em>Was will jemand in den ersten 30 Sekunden wissen?</em>, 
+          ist viel UI einfach weggefallen. So wurde viel klarer, was ganz nach oben gehört und was leise in die Details rutschen kann.
+        </p>
+      </li>
+
+      <li class="flex items-start">
+        <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+        <p>
+          <strong>KI hilft nur, wenn sie am richtigen Ort landet.</strong> Von Anfang an war klar, dass die Insights einen eigenen Bereich brauchen, 
+          aber in einem so datenlastigen Produkt war die Positionierung schwierig. 
+          In den Usability-Sessions haben wir schließlich ein Layout gefunden, in dem die Leute die Insights wahrnehmen, ohne sie als störend zu empfinden.
+        </p>
+      </li>
+
+      <li class="flex items-start">
+        <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+        <p>
+          <strong>Hohe Dichte ist teurer als man denkt.</strong> Auf dem Papier wirkte es, als würde „noch ein Chart“ problemlos in die Hauptansicht passen.
+           In der Praxis hat jedes zusätzliche Element den Blick auf die Zahlen erschwert. 
+          Am Ende habe ich einige Ideen gestrichen und gelernt, lieber wenige starke Bausteine zu nutzen als eine Wand aus scheinbar „nützlichen“ Widgets.
+        </p>
+      </li>
+
+      <li class="flex items-start">
+        <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+        <p>
+          <strong>Marke und Produkt müssen zusammenpassen.</strong> Das erste „Blende + Schaltlinien“-Logo wirkte clever, wurde aber eher als generisches KI-Tool gelesen. 
+          Mit einem klar finanzbezogenen Symbol waren die Erwartungen sofort justiert: Noch bevor jemand einen Text liest, ist klar, um welche Art von Produkt es geht.
+        </p>
+      </li>
+
+            <li class="flex items-start">
+        <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+        <p>
+          <strong>Auch Konzeptarbeit zeigt die echte Komplexität.</strong> Sobald man die „nächsten Schritte“ etwas genauer durchdenkt – Steuern, 
+          mehrere Währungen, Integrationen, Rollen – merkt man, wie viel da wirklich dranhängt. Selbst ein sauber ausgearbeitetes Konzept baut auf 
+          einer Menge Engineering, Regulierung und Datenarbeit auf. Gute Erinnerung daran, wie komplex „einfache“ Finanzprodukte in Wirklichkeit sind.
+        </p>
+      </li>
+    </ul>
+
+    <div class="mt-8 flex justify-center">
+      <button
+        id="open-contact-modal"
+        class="px-10 py-3 rounded bg-[#3D63C2] text-white font-semibold shadow-md hover:shadow-lg transition"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="contact-modal"
+        aria-expanded="false"
+      >
+        KONTAKT AUFNEHMEN
+      </button>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ===== Modal: Contact form ===== -->
+<div
+  id="contact-modal"
+  class="fixed inset-0 z-[999] hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="contact-modal-title"
+>
+  <!-- Backdrop -->
+  <div id="contact-backdrop" class="absolute inset-0 bg-black/40"></div>
+
+  <!-- Dialog -->
+  <div
+    class="relative w-[min(92vw,720px)] mx-auto mt-[8vh]
+           bg-white border border-[#CDC2C2] rounded shadow-xl"
+  >
+    <!-- Close button -->
+    <button
+      id="close-contact-modal"
+      class="absolute right-3 top-3 text-[#6D6D6D] hover:text-black"
+      aria-label="Close"
+      type="button"
+    >
+      ✕
+    </button>
+
+    <!-- Form Container (IDs are -modal to avoid conflicts) -->
+    <form
+      action="https://formspree.io/f/xovwzoed"
+      method="POST"
+      class="w-full max-w-[631px] mx-auto p-[40px] flex flex-col items-center"
+    >
+      <p
+        id="contact-modal-title"
+        class="font-semibold text-black mb-[24px] text-center
+               text-[clamp(1rem,3vw,1.5rem)]"
+      >
+        Melde dich jederzeit gerne!
+      </p>
+
+      <!-- Name -->
+      <input
+        id="contact-name-modal"
+        type="text"
+        name="name"
+        placeholder="Name"
+        required
+        class="w-full border-b-2 border-[#CDC2C2]
+               text-center text-black
+               text-[clamp(1rem,3vw,1.25rem)]
+               placeholder:text-[#CCCCCC]
+               placeholder:text-[clamp(0.875rem,2vw,1rem)]
+               pb-[8px] mb-[24px]
+               focus:outline-none"
+      />
+
+      <!-- Email -->
+      <input
+        id="contact-email-modal"
+        type="email"
+        name="email"
+        placeholder="E-Mail"
+        required
+        class="w-full border-b-2 border-[#CDC2C2]
+               text-center text-black
+               text-[clamp(1rem,3vw,1.25rem)]
+               placeholder:text-[#CCCCCC]
+               placeholder:text-[clamp(0.875rem,2vw,1rem)]
+               pb-[8px] mb-[8px]
+               focus:outline-none"
+      />
+
+      <!-- inline error message: hidden by default -->
+      <p
+        id="email-error-modal"
+        class="hidden text-red-500
+               text-[clamp(0.875rem,2vw,1rem)]
+               mt-[4px] mb-[16px]"
+      >
+        Bitte überprüfe das Format der E-Mail: muster@mail.com
+      </p>
+
+      <!-- Message -->
+      <textarea
+        id="contact-message-modal"
+        name="message"
+        rows="6"
+        maxlength="3500"
+        placeholder="Nachricht"
+        required
+        class="w-full border-b-2 border-[#CDC2C2]
+               text-center text-black
+               text-[clamp(1rem,3vw,1.25rem)]
+               placeholder:text-[#CCCCCC]
+               placeholder:text-[clamp(0.875rem,2vw,1rem)]
+               pb-[8px] mb-[8px]
+               focus:outline-none resize-none"
+      ></textarea>
+
+      <!-- Character counter -->
+      <div
+        id="char-count-modal"
+        class="self-end text-[#6D6D6D] mb-[24px]
+               text-[clamp(0.875rem,2vw,1rem)]"
+      >
+        0 / 3500
+      </div>
+
+      <!-- Send button -->
+      <button
+        id="contact-submit-modal"
+        type="submit"
+        disabled
+        class="bg-[#3F3B3B] text-white font-medium
+               py-[10px] px-[40px] rounded
+               text-[clamp(1rem,3vw,1.25rem)]
+               disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        ABSENDEN
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  (function () {
+    // Modal open/close
+    const openBtn   = document.getElementById('open-contact-modal');
+    const modal     = document.getElementById('contact-modal');
+    const backdrop  = document.getElementById('contact-backdrop');
+    const closeBtn  = document.getElementById('close-contact-modal');
+
+    function openModal() {
+      modal.classList.remove('hidden');
+      openBtn.setAttribute('aria-expanded', 'true');
+      // focus first field
+      const first = document.getElementById('contact-name-modal');
+      if (first) first.focus();
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      openBtn.setAttribute('aria-expanded', 'false');
+      openBtn.focus();
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('hidden') && e.key === 'Escape') closeModal();
+    });
+
+    // ===== Form validation for the modal (IDs are -modal) =====
+    const nameInput   = document.getElementById('contact-name-modal');
+    const emailInput  = document.getElementById('contact-email-modal');
+    const emailError  = document.getElementById('email-error-modal');
+    const msgInput    = document.getElementById('contact-message-modal');
+    const counter     = document.getElementById('char-count-modal');
+    const submitBtn   = document.getElementById('contact-submit-modal');
+    const MAX         = 3500;
+    const emailRegex  = /^\S+@\S+\.\S+$/;
+
+    function updateCounter() {
+      let len = msgInput.value.length;
+      if (len > MAX) msgInput.value = msgInput.value.slice(0, MAX);
+      counter.textContent = `${msgInput.value.length} / ${MAX}`;
+      counter.classList.toggle('text-red-500', msgInput.value.length >= MAX);
+      validateForm();
+    }
+
+    function validateForm() {
+      const nameOK   = nameInput.value.trim().length > 0;
+      const emailVal = emailInput.value.trim();
+      const emailOK  = emailRegex.test(emailVal);
+      const msgLen   = msgInput.value.length;
+      const msgOK    = msgLen > 0 && msgLen <= MAX;
+
+      if (emailVal !== '' && !emailOK) {
+        emailError.classList.remove('hidden');
+      } else {
+        emailError.classList.add('hidden');
+      }
+      submitBtn.disabled = !(nameOK && emailOK && msgOK);
+    }
+
+    nameInput.addEventListener('input', validateForm);
+    emailInput.addEventListener('input', validateForm);
+    msgInput.addEventListener('input', updateCounter);
+
+    // initialize
+    updateCounter();
+    validateForm();
+  })();
+</script>
+
+<div
+  id="screen-modal"
+  class="fixed inset-0 z-[999] hidden"
+  aria-modal="true"
+  role="dialog"
+>
+  <!-- Backdrop (slight dim only) -->
+  <div class="absolute inset-0 bg-black/30" data-modal-close></div>
+
+  <!-- White sheet with padding -->
+<div class="relative w-[min(96vw,1200px)] mx-auto mt-[5vh]
+            bg-white rounded-lg shadow-2xl overflow-hidden
+            p-2 md:p-3">  <!-- padding creates a clean frame for the X -->
+  <button
+    type="button"
+    class="absolute right-2 top-2 md:right-3 md:top-3 z-10
+           text-black/70 hover:text-black rounded-full w-8 h-8
+           flex items-center justify-center text-lg"
+    aria-label="Close"
+    data-modal-close
+  >
+    ✕
+  </button>
+
+    <!-- Content -->
+
+  <figure class="bg-white px-6 md:px-10 py-8 md:py-10">
+      <div class="flex items-center justify-center">
+        <img
+          id="screen-modal-img"
+          src=""
+          alt="AxiomLens screen preview"
+          class="max-h-[78vh] w-full object-contain"
+        />
+      </div>
+      <figcaption
+        id="screen-modal-caption"
+        class="mt-3 text-center text-[#6D6D6D] text-[clamp(0.9rem,2vw,1rem)]"
+      ></figcaption>
+    </figure>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const modal    = document.getElementById('screen-modal');
+    const modalImg = document.getElementById('screen-modal-img');
+    const modalCap = document.getElementById('screen-modal-caption');
+    if (!modal || !modalImg || !modalCap) return;
+
+    const openers = document.querySelectorAll('[data-full-src]');
+    const CLOSE_SELECTOR = '[data-modal-close]';
+
+    function openModal(src, caption) {
+      if (!src) return;
+      modalImg.src = src;
+      modalCap.textContent = caption || '';
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      modal.classList.add('hidden');
+      modalImg.src = '';
+      modalCap.textContent = '';
+      document.body.style.overflow = '';
+    }
+
+    openers.forEach((el) => {
+      el.addEventListener('click', () => {
+        const src = el.getAttribute('data-full-src');
+        let caption = el.getAttribute('data-caption');
+        if (!caption) {
+          const fig = el.closest('figure');
+          caption = fig?.querySelector('figcaption')?.innerText?.trim() || '';
+        }
+        openModal(src, caption);
+      });
+    });
+
+    modal.querySelectorAll(CLOSE_SELECTOR).forEach((el) => {
+      el.addEventListener('click', closeModal);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+    });
+  })();
+</script>
+
+</main>
+
+
+
+<!-- ----------------------------------------
+     FOOTER 
+---------------------------------------- -->
+
+<footer class="mt-auto w-full bg-[#545455] text-white">
+  <!-- Top row: left & right blocks -->
+  <div class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[16px]
+              grid grid-cols-2 items-start
+              md:flex md:justify-between md:items-start gap-y-3">
+
+    <!-- LEFT: site + email -->
+    <div class="text-left">
+      <a href="../de/index.html#home"
+         class="block text-[clamp(1rem,2vw,1.25rem)] font-medium hover:underline">
+        alexmedved.com
+      </a>
+      <a href="mailto:smellfigty@gmail.com"
+         class="block text-[clamp(0.875rem,1.8vw,1rem)] hover:underline">
+        smellfigty@gmail.com
+      </a>
+    </div>
+
+    <!-- RIGHT: links (right-aligned) -->
+    <div class="justify-self-end text-right
+                text-[clamp(0.875rem,1.8vw,1rem)] space-y-1 md:space-y-0 md:flex md:gap-[40px]">
+      <a href="impressum.html" class="block hover:underline">Impressum</a>
+      <a href="privacy.html"   class="block hover:underline">Datenschutzerklärung</a>
+    </div>
+  </div>
+
+  <!-- Bottom copyright -->
+  <div class="text-center py-[8px] text-[clamp(0.75rem,1.5vw,0.875rem)]">
+    &copy; 2025 Alle Rechte vorbehalten.
+  </div>
+</footer>
+
+<!-- =========================================
+     JS: language toggles + mobile menu
+========================================= -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    /* ---------- Language Toggles ---------- */
+    const lBtn  = id => document.getElementById(id + 'Btn');
+    const lMenu = id => document.getElementById(id + 'Menu');
+
+    ['lang', 'mobileLang'].forEach(id => {
+      const btn = lBtn(id), menu = lMenu(id);
+      btn?.addEventListener('click', e => {
+        e.stopPropagation();
+        menu?.classList.toggle('hidden');
+      });
+    });
+
+    document.addEventListener('click', () => {
+      lMenu('lang')?.classList.add('hidden');
+      lMenu('mobileLang')?.classList.add('hidden');
+    });
+
+    /* ---------- Mobile Hamburger / Slide Menu ---------- */
+    const toggle     = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    toggle?.addEventListener('click', e => {
+      e.stopPropagation();
+      document.body.classList.toggle('nav-open');
+      mobileMenu?.classList.toggle('-translate-x-full');
+    });
+
+    document.addEventListener('click', e => {
+      if (mobileMenu && !mobileMenu.contains(e.target) && !toggle?.contains(e.target)) {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      }
+    });
+
+    mobileMenu?.querySelectorAll('a').forEach(link =>
+      link.addEventListener('click', () => {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      })
+    );
+
+    // Close if resized to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768 && mobileMenu) {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      }
+    });
+  });
+</script>
+</body>
+</html>

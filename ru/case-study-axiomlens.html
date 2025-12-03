@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aleksandr Medved | UX Designer</title>
+  <meta name="description" content="AxiomLens – концепт дашборда по денежному потоку для фрилансеров и малого бизнеса: плотные данные, AI-инсайты и спокойный темный UI для ежедневной работы с деньгами.">
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  
+
+
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'gray-custom': '#6D6D6D',
+            'line-custom': '#CDC2C2',
+            'card-bg': '#F5F5F5',
+            'btn-blue': '#3D63C2',
+          },
+          
+          
+        }
+      }
+    }
+  </script>
+
+<!-- 3) Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<style>html{scroll-behavior:smooth}</style>
+<style>
+  /* Hamburger / X (your working version, thinned) */
+  .bar {
+    position: absolute;
+    top: 50%;
+    margin-top: -1px;
+    right: 0;
+    width: 100%;
+    height: 2px; /* thinner */
+    border-radius: 4px;
+    background-color: black;
+    transition: all 0.3s ease;
+  }
+  .bar--top { transform: translateY(-8px); }
+  .bar--bottom { transform: translateY(8px); }
+  body.nav-open .bar--top { transform: rotate(45deg) translateY(0); }
+  body.nav-open .bar--middle { opacity: 0; }
+  body.nav-open .bar--bottom { transform: rotate(-45deg) translateY(0); }
+</style>
+
+<style>
+  /* --- Key Screens: chess/zig-zag pattern on md+ --- */
+  @media (min-width: 768px) {
+    #key-screens .zig article:nth-child(even) figure { order: 2; }
+  }
+
+  /* --- Ensure only the actual trigger shows a click cursor --- */
+  #key-screens figure { cursor: default; }         /* grey card: neutral */
+  #key-screens figure button { cursor: pointer; }  /* image trigger only */
+</style>
+
+
+<body class="flex flex-col min-h-screen overflow-x-hidden font-raleway">
+
+<!-- =========================================
+     HEADER 
+========================================= -->
+<header class="sticky top-0 w-full bg-white z-50 pt-[14px] md:pt-[20px]">
+  <div class="relative max-w-[1440px] mx-auto flex items-center justify-between px-4 md:px-[84px]">
+
+    <!-- Mobile Hamburger -->
+    <div id="menu-toggle" class="md:hidden relative w-[29px] h-[26px] p-2 z-50">
+      <span class="bar bar--top"></span>
+      <span class="bar bar--middle"></span>
+      <span class="bar bar--bottom"></span>
+    </div>
+
+    <!-- Logo -->
+    <a href="../ru/index.html#home" class="absolute left-1/2 transform -translate-x-1/2 md:static md:transform-none z-40">
+      <img src="../assets/images/FullLogo_Transparent_NoBuffer.png"
+           alt="Logo" class="h-[56px] md:h-[96px] object-contain" />
+    </a>
+
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex flex-1 justify-center space-x-[60px] text-[20px]">
+      <a href="../ru/index.html#home" class="hover:text-[#6D6D6D]">Главная</a>
+      <a href="../ru/index.html#about" class="hover:text-[#6D6D6D]">Обо мне</a>
+      <a href="../ru/index.html#case-studies" class="hover:text-[#6D6D6D] hidden md:inline">Портфолио</a>
+      <a href="../ru/index.html#certificates" class="hover:text-[#6D6D6D] hidden lg:inline">Сертификаты</a>
+      <a href="../ru/index.html#contact" class="hover:text-[#6D6D6D] hidden xl:inline">Контакты</a>
+      <a href="../ru/impressum.html" class="hover:text-[#6D6D6D] hidden xl:inline">Импрессум</a>
+    </nav>
+
+    <!-- Language Dropdown -->
+<div class="relative min-w-max">
+  <button id="langBtn"
+          class="flex items-center gap-1 px-2 py-1 text-[18px]">
+    RU <span class="inline-block transform rotate-90">›</span>
+  </button>
+
+  <ul id="langMenu"
+      class="hidden absolute right-0 mt-2 bg-white border border-line-custom rounded shadow-lg
+             text-[18px] text-center divide-y divide-line-custom"> 
+    <li>
+      <a href="../en/case-study-axiomlens.html"
+         class="block px-4 py-2 hover:bg-gray-100 cursor-pointer"> 
+        EN
+      </a>
+    </li>
+    <li>
+      <a href="../de/case-study-axiomlens.html"
+         class="block px-4 py-2 hover:bg-gray-100 cursor-pointer"> 
+        DE
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <!-- Divider -->
+  <div class="w-full px-4 md:px-[84px] mt-[8px]">
+    <hr class="border-0 h-[2px] bg-[#CDC2C2]" />
+  </div>
+</header>
+
+<!-- Mobile Slide-In Menu -->
+<div id="mobileMenu"
+     class="fixed inset-0 z-40 bg-white transform -translate-x-full transition-transform duration-300 overflow-x-hidden">
+  <nav class="flex flex-col px-4 py-6 space-y-4 text-[18px]">
+    <a href="../ru/index.html#home" class="hover:text-[#6D6D6D]">Главная</a>
+    <a href="../ru/index.html#about" class="hover:text-[#6D6D6D]">Обо мне</a>
+    <a href="../ru/index.html#case-studies" class="hover:text-[#6D6D6D]">Портфолио</a>
+    <a href="../ru/index.html#certificates" class="hover:text-[#6D6D6D]">Сертификаты</a>
+    <a href="../ru/index.html#contact" class="hover:text-[#6D6D6D]">Контакты</a>
+    <a href="../ru/impressum.html" class="hover:text-[#6D6D6D]">Импрессум</a>
+  </nav>
+</div>
+
+<!-- =========================================
+     MAIN: Case Study – AxiomLens
+========================================= -->
+<main class="flex-grow">
+
+<!-- HERO – AxiomLens -->
+<section id="axiomlens"
+  class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px] scroll-mt-[76px] md:scroll-mt-[96px]">
+
+  <!-- one column on mobile, two on lg+ -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-[32px] lg:gap-[60px] items-start">
+
+    <!-- RIGHT ON DESKTOP, TOP ON MOBILE -->
+    <figure class="order-1 lg:order-2 w-full lg:justify-self-end">
+      <div class="w-full max-w-[640px] mx-auto lg:mx-0">
+        <button
+          type="button"
+          class="block w-full text-left cursor-pointer"
+          data-full-src="../assets/images/Axiom_Main.png"
+          data-caption="Главный дашборд – ключевые метрики, тренды и инсайты по денежным потокам в едином, сфокусированном виде."
+          aria-label="Open full-size main dashboard"
+        >
+          <img
+            src="../assets/images/Axiom_Main.png"
+            alt="AxiomLens cashflow dashboard – main overview screen"
+            class="w-full object-contain border border-[#CDC2C2] shadow-md rounded"
+          />
+        </button>
+        <figcaption class="text-[#6D6D6D] text-sm mt-2 text-center">
+          Главный дашборд: ключевые метрики, тренды и инсайты по денежным потокам.
+        </figcaption>
+      </div>
+    </figure>
+
+    <!-- LEFT ON DESKTOP, BOTTOM ON MOBILE -->
+    <div class="order-2 lg:order-1 lg:self-start">
+      <h1 class="text-[clamp(1.75rem,4vw,2.5rem)] font-bold mb-2">
+        AxiomLens – Финансовая аналитика для малого бизнеса
+      </h1>
+
+      <h2 class="text-[#6D6D6D] font-semibold text-[clamp(1.25rem,3vw,1.5rem)] mb-4">
+        Четкий план действий из разрозненных данных
+      </h2>
+
+      <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+        Этот авторский концепт показывает, как SaaS-дашборд может помочь малому и среднему бизнесу и фрилансерам видеть денежные потоки 
+        и какую пользу можно извлечь из прогнозов на базе ИИ, позволяющих действовать на опережение. 
+        Я сосредоточился на структурировании насыщенного данными интерфейса, сделал ключевые метрики считываемыми с первого взгляда и разработал флоу, которые в любой ситуации ощущаются спокойными и надежными.
+      </p>
+
+      <!-- Skip button -->
+      <div class="mt-6 w-full max-w-[560px]">
+        <a href="#visuals-start"
+           class="group block w-full rounded-lg bg-[#3D63C2] px-6 py-4 text-center
+                  text-white font-semibold text-[clamp(1rem,2.2vw,1.125rem)]
+                  shadow-md hover:shadow-lg hover:bg-[#3153a6]
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3D63C2]/60
+                  transition">
+          <span class="inline-flex items-center justify-center gap-3">
+            Перейти к визуалам
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                 class="h-5 w-5 flex-none transition-transform duration-200 ease-out
+                        motion-safe:group-hover:translate-y-1"
+                 fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="12" y1="6" x2="12" y2="14" />
+              <path d="M8.5 13.5 L12 17 L15.5 13.5" />
+            </svg>
+          </span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+
+ <!-- PROJECT IN A NUTSHELL -->
+  <section class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+    <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-6">
+      Проект в двух словах
+    </h2>
+
+    <!-- Meta row -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-[24px] md:gap-[40px] mb-4">
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-1">
+          Моя роль
+        </h3>
+        <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)]">
+          Концепт продукта, UX/UI-дизайн, UX-исследования, паттерны взаимодействий, информационная архитектура, микротексты, основы визуальной дизайн-системы
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-1">
+          Сроки
+        </h3>
+        <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)]">
+          ~2 недели вечерней работы – от первых набросков до выверенных hi-fi-экранов
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-1">
+          Инструменты
+        </h3>
+        <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)]">
+          Figma, Google Sheets & Docs, Notion, ChatGPT, UX Pilot
+        </p>
+      </div>
+    </div>
+
+    <!-- Centered outlined chips -->
+    <div class="w-full mb-8">
+      <div class="flex flex-wrap justify-center gap-2">
+        <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">
+          UX дашборда
+        </span>
+        <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">
+          Насыщенный данными UI
+        </span>
+                <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">
+          Исследования
+        </span>
+                <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">
+          Брендинг
+        </span>
+        <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">
+          Финансовый SaaS
+        </span>
+        <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">
+          Базовая дизайн-система
+        </span>
+        <span class="px-3 py-1 border border-[#D9D9D9] rounded-full text-sm text-[#333]">
+          Микротексты (EN)
+        </span>
+      </div>
+    </div>
+
+    <!-- Challenge / Objectives -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[24px] md:gap-[40px] mb-8">
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] font-semibold mb-2">
+          Вызовы
+        </h3>
+        <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+          Фрилансеры и владельцы малого бизнеса разрываются между кучей банковских приложений, сервисов для выставления счетов и таблиц. 
+          Цифр вокруг много, но нет простого, наглядного ответа, что происходит с деньгами: где назревает кассовый разрыв и какие клиенты тормозят оплату. 
+          Типичные дашборды либо перегружены графиками, либо дают слишком общую картину, а ИИ-подсказки редко реализованы прозрачно и по-настоящему надежно.
+        </p>
+      </div>
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] font-semibold mb-2">
+          Задача
+        </h3>
+        <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+          Разработать графический концепт сервиса аналитики денежных потоков <strong>AxiomLens</strong>: единой платформы, которая объединяет доходы, расходы и счета и 
+          дополняет их понятными ИИ-инсайтами. Основной акцент на насыщенном данными интерфейсе, который считывается за секунду: с ясной логикой переходов между обзорным экраном, 
+          управлением счетами и детальной историей, чтобы у пользователя было единый обзор на всю финансовую ситуацию. 
+        </p>
+      </div>
+    </div>
+
+    <!-- Highlights / Outcome -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[24px] md:gap-[40px]">
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-2">
+          Мои основные достижения
+        </h3>
+        <ul class="list-disc ml-5 space-y-2 text-black text-[clamp(1rem,2.2vw,1.125rem)]">
+          <li>Темный дашборд с понятной иерархией ключевых метрик и трендов</li>
+          <li>Единый набор карточек (доходы, расходы, налоги и инсайты)</li>
+          <li>Таблица счетов и детализированный вид (статусы, сроки оплаты и быстрые действия)</li>
+          <li>Последовательная система компонентов для статусов платежей и иных состояний</li>
+          <li>Тексты интерфейса с самого начала писались с заделом на локализацию</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] text-[#6D6D6D] mb-2">
+          Результаты
+        </h3>
+        <ul class="list-disc ml-5 space-y-2 text-black text-[clamp(1rem,2.2vw,1.125rem)]">
+          <li>Консистентный набор из 4 hi-fi-экранов, готовых к передаче в разработку или прототипированию</li>
+          <li>Информационная архитектура, связывающая денежные потоки, счета и ИИ-инсайты</li>
+          <li>Базовый набор дизайн-системы (типографика, сетка, карточки, бейджи, стили)</li>
+          <li>Кейс о постановке задачи, ключевых дизайн-решениях и бизнес-ценности продукта</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+<!-- Divider -->
+<div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+
+<!-- PROBLEM & CONTEXT -->
+<section id="problem-context"
+         class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+  <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-6">
+    Проблема и контекст
+  </h2>
+
+  <div class="grid grid-cols-1 lg:grid-cols-[3fr,2fr] gap-[32px] md:gap-[48px] items-start">
+    <!-- LEFT: narrative + bullets -->
+    <div class="space-y-6">
+      <!-- Starting point -->
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] font-semibold mb-2">
+          Отправная точка
+        </h3>
+        <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+         Вместо того чтобы создавать очередное абстрактное «финансовое приложение», я сфокусировался на весьма конкретном сценарии: 
+         фаундер или фрилансер открывает дашборд перед началом работы, чтобы быстро оценить ситуацию. У него нет времени на глубокий разбор данных – 
+         нужно просто за пару секунд понять, есть ли что-то, что требует внимания прямо сейчас.
+        </p>
+        <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mt-3">
+          В реальности все данные раскиданы по разным сервисам и живут на разных 
+          временных шкалах: ежедневные движения по счету, ежемесячные подписки, нерегулярные счета и налоги, 
+          которые нужно платить ежемесячно, ежеквартально или ежегодно. AxiomLens это своего рода эксперимент: как собрать все эти временные линии 
+          в один рабочий экран, чтобы четко видеть, что уже произошло, что запланировано и что может превратиться в проблему, если ничего не менять.
+        </p>
+      </div>
+
+      <!-- Challenges + success criteria -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
+        <div>
+          <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] font-semibold mb-2">
+            Основные вызовы
+          </h3>
+          <ul class="list-disc ml-5 space-y-2 text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+            <li>Свести в одну систему данные, которые живут в разных временах и плоскостях.</li>
+            <li>Создать визуальные сигналы для просрочек, которые бы добавляли срочности, но не вызывали бы панику.</strong>.</li>
+            <li>Оформить ИИ-инсайты в короткие, четкие и легко перевариваемые карточки.</li>
+            <li>Сделать интерфейс понятным людям без бухгалтерского бэкграунда, не жертвуя уровнем детализации.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] font-semibold mb-2">
+            Критерии успешного интерфейса
+          </h3>
+          <ul class="list-disc ml-5 space-y-2 text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+            <li>Главный экран должен отвечать на три простых вопроса:<br> <em>- «Как сейчас обстоят дела?»</em>; <br><em>- «На что нужно обратить внимание?»</em>;<br> <em>- «Есть ли на горизонте риски?»</em></li>
+            <li>Риски – кассовые разрывы, просроченные счета, крупные предстоящие расходы – сгруппированы в блоках и не спрятаны за фильтрами.</li>
+            <li>Даже самые плотные таблицы и графики остаются легкими для восприятия за счет расположения элементов, цветовой палитры и узнаваемых паттернов.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Constraints -->
+      <div>
+        <h3 class="text-[clamp(1rem,2.5vw,1.125rem)] font-semibold mb-2">
+         Ограничения концепта
+        </h3>
+        <ul class="list-disc ml-5 space-y-2 text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+          <li>В MVP поддерживается только один пользователь: никаких ролей, разграничения прав и инструментов совместной работы на этом этапе.</li>
+          <li>Фокус макета на денежных потоках и счетах; это не полноценный бухучет и не сервис подготовки налоговой отчетности.</li>
+          <li>Импорт данных из банков и иных сервисов имплицирован; концепт сосредоточен на отображении информации и поддержке принятия решений, а не на интеграциях (разработчикам предстоит много работы).</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- RIGHT: early wireframe logic (opens in the same zoom modal as Key Screens) -->
+<aside class="bg-[#F7F7F7] border border-[#EAEAEA] rounded-lg p-4 md:p-5 shadow-sm">
+  <p class="text-[#6D6D6D] text-[0.8rem] font-semibold tracking-wide uppercase mb-2">
+    Ранняя логика в виде вайрфрейма
+  </p>
+
+  <p class="text-black text-[clamp(0.95rem,2vw,1.05rem)] leading-relaxed mb-4">
+    Прежде чем браться за lo-fi-макеты и визуал, я сначала разобрал структуру продукта на уровне экранов. Первый вайрфрейм стал картой AxiomLens: какие модули нужны, как устроена навигация и где проходят границы сценариев (включая зоны, которых нет на четырех финальных hi-fi-экранах).
+  </p>
+
+  <figure class="w-full">
+    <!-- Button triggers the same modal handler used in Key screens -->
+    <button
+      type="button"
+      class="group block w-full text-left"
+      data-full-src="../assets/images/Wireframe.png"
+      data-caption="Карта вайрфреймов первой итерации, на которой обозначены онбординг, дашборд, денежный поток, счета, инсайты, налоги, клиенты, расходы, настройки и мобильная навигацая – именно эта карта легла в основу первого lo-fi-прототипа."
+      aria-label="Open full-size wireframe"
+    >
+      <img
+        src="../assets/images/Wireframe.png"
+        alt="Вайрфрейм первой итерации с планируемыми модулями и пользовательскими флоу в AxiomLens."
+        class="w-full object-contain border border-[#CDC2C2] rounded bg-white transition-shadow duration-200"
+      />
+    </button>
+
+    <figcaption class="text-[#6D6D6D] text-xs md:text-sm mt-2 text-center max-w-[360px] mx-auto">
+      Карта вайрфреймов первой итерации, на основе которой позже был собран первый lo-fi-прототип.
+    </figcaption>
+</figure>
+</aside>
+
+</div>
+</section>
+
+<!-- Divider -->
+<div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+
+<!-- USERS & GOALS -->
+<section id="users-goals" class="max-w-[1200px] mx-auto px-[16px] md:px-[40px] py-[50px] md:py-[70px]">
+  <!-- Heading + intro -->
+<div class="mb-8 md:mb-10">
+  <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-3">Пользователи и задачи</h2>
+  <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+    Я задумывал AxiomLens не только как универсальный центр управления финансами,
+     но и как инструмент, который поможет улучшить финансовую ситуацию. Система использует
+      AI-аналитику и понятные инсайты, чтобы подсветить закономерности и события, незаметные человеческому глазу, 
+      и помочь управлять денежным потоком более осознанно и уверенно.
+  </p>
+</div>
+
+  <!-- 2-column editorial layout -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+
+    <!-- LEFT COLUMN: Personas stacked -->
+    <div class="space-y-6">
+      <!-- Persona 1  -->
+      <article class="bg-white border border-gray-200 rounded-lg p-5 md:p-6">
+        <h3 class="text-[clamp(1.1rem,2.6vw,1.35rem)] font-semibold mb-3">Занятой владелец малого бизнеса</h3>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-[52px] h-[52px] rounded-full overflow-hidden border border-gray-200 bg-white">
+            <img src="../assets/images/guy_1.jfif" alt="Guy avatar" class="w-full h-full object-cover" />
+          </div>
+          <div>
+            <p class="font-semibold text-[clamp(1rem,2.2vw,1.1rem)]">Геннадий, 33</p>
+            <p class="text-gray-500 text-sm">Владелец небольшой креативной студии</p>
+          </div>
+        </div>
+        <p class="text-[clamp(0.95rem,2.1vw,1.05rem)] leading-relaxed mb-4">
+          Ведет бизнес с парой сотрудников и подрядчиков. Между созвонами, переписками и проектами у него есть всего несколько минут на проверку финансов и принятие решений.
+        </p>
+        <h4 class="font-semibold mb-2">Какие сведения нужны моментально</h4>
+        <ul class="list-disc ml-5 space-y-1">
+          <li>Закрыты ли ближайшие 2-4 недели (аренда, зарплаты, базовые расходы).</li>
+          <li>Какие счета просрочены, на какую сумму, и как это влияет на текущий месяц.</li>
+          <li>Быстрый экран «сейчас + перспектива» без еженедельного перелопачивания таблиц.</li>
+        </ul>
+        <h4 class="font-semibold mt-4 mb-2">Болевые точки</h4>
+        <ul class="list-disc ml-5 space-y-1">
+          <li>Данные раскиданы по банкам, таблицам и иным сервисам.</li>
+          <li>Вечера уходят на сверку цифр вместо бизнеса.</li>
+        </ul>
+      </article>
+
+      <!-- Persona 2 -->
+      <article class="bg-white border border-gray-200 rounded-lg p-5 md:p-6">
+        <h3 class="text-[clamp(1.1rem,2.6vw,1.35rem)] font-semibold mb-3">Консультант-фрилансер</h3>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-[52px] h-[52px] rounded-full overflow-hidden border border-gray-200 bg-white">
+            <img src="../assets/images/girl_1.jfif" alt="Max avatar" class="w-full h-full object-cover" />
+          </div>
+          <div>
+            <p class="font-semibold text-[clamp(1rem,2.2vw,1.1rem)]">Мин, 29</p>
+            <p class="text-gray-500 text-sm">Консультант с несколькими постоянными клиентами</p>
+          </div>
+        </div>
+        <p class="text-[clamp(0.95rem,2.1vw,1.05rem)] leading-relaxed mb-4">
+          Работает с несколькими клиентами на бессрочных и проектных договорах. У всех разные условия оплаты, поэтому доход нестабильный и его легко переоценить.
+        </p>
+        <h4 class="font-semibold mb-2">Какие сведения нужны моментально</h4>
+        <ul class="list-disc ml-5 space-y-1">
+          <li>Список регулярных счетов и «дыры» в будущих поступлениях.</li>
+          <li>Разбивка по клиентам и проектам, чтобы понять, кто приносит львиную долю выручки.</li>
+          <li>Подсказки выставить счет или напомналку клиенту до неловких задержек.</li>
+        </ul>
+        <h4 class="font-semibold mt-4 mb-2">Болевые точки</h4>
+        <ul class="list-disc ml-5 space-y-1">
+          <li>Нет единого места, где видны будущие поступления и кэшфлоу целиком.</li>
+          <li>Слабые месяцы становятся сюрпризом: проблемы заметны только когда на счете уже мало денег.</li>
+          <li>Мысли «а отправила ли я тот счет?» по ночам, приводящие к частой фоновой тревоге.</li>
+        </ul>
+      </article>
+    </div>
+
+    <!-- RIGHT COLUMN: Outcomes, goals, constraints -->
+  
+    <div class="flex flex-col h-full justify-between">
+      <!-- Success (GREY) -->
+      <aside class="bg-[#F7F7F7] border border-gray-200 rounded-lg p-5 md:p-6">
+        <h3 class="font-semibold text-[clamp(1.1rem,2.5vw,1.25rem)] mb-2">Как выглядит успех</h3>
+        <ul class="space-y-2">
+          <li><strong>Быстрая проверка пульса.</strong> Геннадий или Мин открывают дашборд и понимают, что ожидать в ближайшие недели.</li>
+          <li><strong>Прозрачный горизонт.</strong> Будущие просадки и большие траты видно заранее – есть время среагировать.</li>
+          <li><strong>Осмысленные сигналы.</strong> Вместе с каждым предупреждением (просроченные счета, прогнозируемый доход ниже нормы) идут 1-2 предложения действий.</li>
+          <li><strong>Низкая когнитивная нагрузка.</strong> Деталей хватает для решений, но они сгруппированы так, что экран остается спокойным, чистым и под контролем.</li>
+        </ul>
+      </aside>
+
+      <!-- Combined goals (GREY, 2-column inside) -->
+      <article class="bg-[#F7F7F7] border border-gray-200 rounded-lg p-5 md:p-6 my-6">
+        <h3 class="text-[clamp(1.1rem,2.6vw,1.35rem)] font-semibold mb-4">Цели дашборда и дизайна</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- User goals -->
+          <div>
+            <h4 class="font-semibold mb-2 text-sm uppercase tracking-wide text-gray-500">
+              Цели пользователей
+            </h4>
+            <ul class="list-disc ml-5 space-y-2 text-[0.95rem]">
+              <li>Видеть текущую ликвидность и 30-45 ближайших дней в одном экране.</li>
+              <li>Замечать просроченные и проблемные счета без копания в почте и таблицах.</li>
+              <li>Понимать, что двигает тренд вверх или вниз – конкретные клиенты, месяцы или счета.</li>
+              <li>Быстрые решения: инвестировать, отложить или поторопить оплату.</li>
+              <li>Экспорт обзора для бухгалтера, сооснователя или партнеров.</li>
+            </ul>
+          </div>
+
+          <!-- Product & design goals -->
+          <div>
+            <h4 class="font-semibold mb-2 text-sm uppercase tracking-wide text-gray-500">
+              Принципы продукта и UX
+            </h4>
+            <ul class="list-disc ml-5 space-y-2 text-[0.95rem]">
+              <li>Превратить разрозненные финансовые данные в один надежный рабочий экран, а не стену из графиков.</li>
+              <li>Подсвечивать риски чистой, легко считываемой визуализацией.</li>
+              <li>Держать навигацию интуитивной: от дашборда к деталям за 1-2 клика.</li>
+              <li>Проработать флоу, которые позже масштабируются на налоги, подписки и более глубокие AI-инсайты без переделки ядра.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Constraints (GREY) -->
+      <aside class="bg-[#F7F7F7] border border-gray-200 rounded-lg p-5 md:p-6">
+        <h3 class="font-semibold text-[clamp(1.1rem,2.5vw,1.25rem)] mb-2">Ограничения и «не-цели»</h3>
+        <ul class="space-y-2 text-[0.95rem]">
+          <li><strong>Вне рамок:</strong> полноценный бухучет и система ролей.</li>
+          <li><strong>Интеграции:</strong> подразумевается, что связь с банком и почтой уже есть;</li>
+          <li><strong>Актуальность:</strong> показываем статус и время обновления без «ложной точности».</li>
+          <li><strong>Защита от перегруза:</strong> вместо россыпи графиков – короткие текстовые сводки.</li>
+          <li><strong>Фокус:</strong> UI/UX дашборда для одного пользователя в MVP.</li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+
+<!-- Divider -->
+<div id="visuals-start" class="w-full px-[84px] scroll-mt-[96px]">
+  <hr class="border-b border-[#CDC2C2]" />
+</div>
+
+<!-- KEY SCREENS -->
+<section id="key-screens" class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+  <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-3">
+    Ключевые экраны
+  </h2>
+  <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed max-w-none">
+    Здесь представлен ключевой сценарий работы в AxiomLens: от главного дашборда к детальному 
+    обзору денежного потока и далее к управлению счетами. Вместе эти экраны показывают, как плотные финансовые 
+    данные складываются в простой цикл: понять ситуацию, заметить проблему, открыть детали и начать действовать.
+  </p>
+
+  <div class="mt-10 space-y-[56px] zig">
+    <!-- 01 · Main dashboard -->
+    <article class="grid grid-cols-1 md:grid-cols-2 gap-[28px] md:gap-[40px] items-start">
+      <figure class="bg-[#F7F7F7] border border-[#EAEAEA] rounded-lg p-4">
+        <button
+          type="button"
+          class="block text-left"
+          data-full-src="../assets/images/Axiom_Main.png"
+          data-caption="Общий обзор денежного потока: ключевые метрики, тренды и AI-инсайты в одном окне."
+        >
+          <img
+            src="../assets/images/Axiom_Main.png"
+            alt="AxiomLens main dashboard with key cashflow metrics"
+            class="w-full max-w-[720px] rounded border border-[#CDC2C2] object-contain"
+          />
+        </button>
+        <figcaption class="text-[#6D6D6D] text-[clamp(0.9rem,2vw,1rem)] mt-3 max-w-[720px]">
+          <strong>Главный дашборд.</strong> Общий обзор денежного потока: ключевые метрики, тренды и AI-инсайты в одном окне.
+        </figcaption>
+      </figure>
+
+      <div class="text-black">
+        <div class="text-[clamp(1rem,2.4vw,1.125rem)] font-semibold text-[#6D6D6D] mb-1">
+          01 · Главный дашборд
+        </div>
+        <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-3">
+          Экран для ежедневной работы + знакомство с продуктом
+        </h3>
+        <p class="text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-3">
+<strong>Главный дашборд</strong> – это экран, который пользователи видят чаще всего.
+Тут собраны ключевые цифры, тренды, AI-инсайты и последние счета в одном рабочем экране, чтобы одного взгляда было достаточно для понимания того, требует ли что-нибудь внимания сегодня.</p>
+        <p class="text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-3">
+Поскольку это первый экран, который видит пользователь, он должен был удерживать баланс между плотной информацией, визуальным спокойствием и понятными следующими шагами.
+Он также задает визуальный язык всего продукта, поэтому именно он пережил больше всего итераций – от ранних вайрфреймов до нескольких hi-fi-версий, описанных в разделе <strong>«Процесс дизайна и итерации»</strong>.
+        </p>
+        <h3 class="font-semibold text-[clamp(1.1rem,2.5vw,1.25rem)] mb-2">Ключевые решения:</h3>
+        <ul class="list-disc ml-5 space-y-2 text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+          <li><strong>Карточки метрик </strong> по доходам, расходам, чистой прибыли и налогам плюс короткие заметки о тренде к прошлому месяцу дают быстрый срез ситуации.</li>
+          <li><strong>Обзор денежного потока</strong> показывает, как вы пришли к текущему состоянию за выбранный период, и дает простой переход к полной картине.</li>
+          <li><strong>Панель AI-инсайтов</strong> простым языком подсвечивает риски и возможности и включает прямые ссылки на нужные экраны.</li>
+          <li><strong>Таблица последних счетов</strong> отражает текущую картину по клиентам и суммам с понятными статусами и действиями в один клик.</li>
+          <li><strong>Темный, спокойный интерфейс</strong> с плотной сеткой и сдержанными цветами делает насыщенные данные читаемыми, не превращая экран в торговый терминал (а еще он круто выглядит).</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 02 · Cashflow overview -->
+    <article class="grid grid-cols-1 md:grid-cols-2 gap-[28px] md:gap-[40px] items-start">
+      <figure class="bg-[#F7F7F7] border border-[#EAEAEA] rounded-lg p-4">
+        <button
+          type="button"
+          class="block text-left"
+          data-full-src="../assets/images/cashflow_overview.png"
+          data-caption="График притока и оттока с фильтрами и карточками инсайтов – что изменилось и за счет чего."
+        >
+          <img
+            src="../assets/images/cashflow_overview.png"
+            alt="Detailed cashflow overview graph and breakdown"
+            class="w-full max-w-[720px] rounded border border-[#CDC2C2] object-contain"
+          />
+        </button>
+        <figcaption class="text-[#6D6D6D] text-[clamp(0.9rem,2vw,1rem)] mt-3 max-w-[720px]">
+          <strong>Обзор денежного потока.</strong> График притока и оттока с фильтрами и карточками инсайтов – что изменилось и за счет чего.
+        </figcaption>
+      </figure>
+
+      <div class="text-black">
+        <div class="text-[clamp(1rem,2.4vw,1.125rem)] font-semibold text-[#6D6D6D] mb-1">
+          02 · Обзор денежного потока
+        </div>
+        <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-3">
+          Вгзляд на динамику дает понимание, что за ней стоит
+        </h3>
+        <p class="text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-3">
+          На этом экране пользователь переключается с главного дашборда на картину движения денег за выбранный период – 
+          по счетам и разным периодам. В выбранном режиме как приток, так и отток раскладываются по неделям.
+        </p>
+        <h3 class="font-semibold text-[clamp(1.1rem,2.5vw,1.25rem)] mb-2">Ключевые решения:</h3>
+        <ul class="list-disc ml-5 space-y-2 text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+          <li><strong>График с единой шкалой</strong> и легкой сеткой показывает приток и отток рядом – тренды и провалы видны сразу.</li>
+          <li><strong>Фильтры по счету, году и кварталу/месяцу</strong> отвечают на вопросы типа «Каким был Q4 по основному счету?» без перехода на другие экраны.</li>
+          <li><strong>Карточки под графиком</strong> переводят цифры на понятный язык: когда сезонный всплеск, где можно сэкономить и какие счета уже тянут квартал вниз.</li>
+          <li><strong>Минимум интерфейсного шума</strong> вокруг графика – второстепенные действия вроде «экспорта отчета» убраны в сторону, но всегда под рукой.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 03 · Invoices list -->
+    <article class="grid grid-cols-1 md:grid-cols-2 gap-[28px] md:gap-[40px] items-start">
+      <figure class="bg-[#F7F7F7] border border-[#EAEAEA] rounded-lg p-4">
+        <button
+          type="button"
+          class="block text-left"
+          data-full-src="../assets/images/Invoices_Overivew.png"
+          data-caption="Плотная, но легко просматриваемая таблица со статусами, быстрыми действиями и карточками инсайтов для работы с длинной историей выставленных счетов."
+        >
+          <img
+            src="../assets/images/Invoices_Overivew.png"
+            alt="Invoices table with statuses and quick actions"
+            class="w-full max-w-[720px] rounded border border-[#CDC2C2] object-contain"
+          />
+        </button>
+        <figcaption class="text-[#6D6D6D] text-[clamp(0.9rem,2vw,1rem)] mt-3 max-w-[720px]">
+          <strong>Список счетов.</strong> Плотная, но понятная таблица со статусами, быстрыми действиями и карточками инсайтов для работы с длинной историей.
+        </figcaption>
+      </figure>
+
+      <div class="text-black">
+        <div class="text-[clamp(1rem,2.4vw,1.125rem)] font-semibold text-[#6D6D6D] mb-1">
+          03 · Счета
+        </div>
+        <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-3">
+          Рабочая лошадка любого самозанятого
+        </h3>
+        <p class="text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-3">
+          Здесь Геннадий и Мин управляют входящими платежами.
+          Экран совмещает ключевые метрики по счетам с плотной, но читаемой таблицей, так что за несколько секунд можно перейти от «Сколько денег зависло в счетах?» к «За какие взяться в первую очередь?».
+        </p>
+        <h3 class="font-semibold text-[clamp(1.1rem,2.5vw,1.25rem)] mb-2">Ключевые решения:</h3>
+        <ul class="list-disc ml-5 space-y-2 text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+          <li><strong>Карточки сверху</strong> дают быстрый обзор: всего выставлено, оплачено, просрочено и какая средняя задержка оплаты.</li>
+          <li><strong>Фильтры по статусу, счету и году</strong> позволяют быстро сузить список без перехода на другой экран.</li>
+          <li><strong>Аккуратная таблица счетов</strong> удобна для быстрого просмотра и сортировки даже длинной истории..</li>
+          <li><strong>Действия прямо в строке таблицы</strong> позволяют выполнить типовые задачи в один клик без необходимости копаться в меню.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 04 · Invoice details -->
+    <article class="grid grid-cols-1 md:grid-cols-2 gap-[28px] md:gap-[40px] items-start">
+      <figure class="bg-[#F7F7F7] border border-[#EAEAEA] rounded-lg p-4">
+        <button
+          type="button"
+          class="block text-left"
+          data-full-src="../assets/images/invoice_details.png"
+          data-caption="Оверлей с данными клиента, разбивкой по позициям, итогами и наглядной лентой оплаты."
+        >
+          <img
+            src="../assets/images/invoice_details.png"
+            alt="Invoice details overlay with breakdown and payment timeline"
+            class="w-full max-w-[720px] rounded border border-[#CDC2C2] object-contain"
+          />
+        </button>
+        <figcaption class="text-[#6D6D6D] text-[clamp(0.9rem,2vw,1rem)] mt-3 max-w-[720px]">
+          <strong>Детали счета.</strong> Оверлей с данными клиента, разбивкой по позициям, итогами и наглядной лентой оплаты.
+        </figcaption>
+      </figure>
+
+      <div class="text-black">
+        <div class="text-[clamp(1rem,2.4vw,1.125rem)] font-semibold text-[#6D6D6D] mb-1">
+          04 · Детали счета
+        </div>
+        <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-3">
+          Детали счета под рукой, без потери фокуса
+        </h3>
+        <p class="text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-3">
+          Открытие счета не должно мешать работе. Детальная карточка появляется поверх списка: можно быстро проверить данные, 
+          отправить напоминание, посмотреть историю или скачать PDF – потом закрыть ее и продолжить ровно с того места в таблице,
+           где был пользователь.
+        </p>
+        <h3 class="font-semibold text-[clamp(1.1rem,2.5vw,1.25rem)] mb-2">Ключевые решения:</h3>
+        <ul class="list-disc ml-5 space-y-2 text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+          <li><strong>Оверлей поверх списка</strong> оставляет пользователя в разделе счетов, а не уводит на отдельную страницу.</li>
+          <li><strong>Блок клиента </strong> (контакты и адрес для выставления счета) расположены наверху для удобной быстрой сверки.</li>
+          <li><strong>Блок с суммами</strong> явно разводит нетто, НДС и итог – так сложнее неправильно прочитать сумму.</li>
+          <li><strong>Лента истории</strong> когда счет создан, отправлен, просмотрен и оплачен – поэтому «мы ничего не получали» будет гиблой отговоркой, если и клиент и специалист работают в AxiomLens.</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Divider -->
+<div class="w-full px-[84px]">
+  <hr class="border-b border-[#CDC2C2]" />
+</div>
+
+<!-- LOGO & BRANDING -->
+<section id="logo-branding"
+  class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+
+  <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-3">
+    Логотип и айдентика
+  </h2>
+
+  <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-8 max-w-none">
+    Для финансового продукта доверие часто начинается с логотипа. Внятная айдентика сглаживает многие шероховатости ранних версий, а неуклюжая – легко делает даже неплохую концепцию любительской еще до первого клика.
+  Для AxiomLens нужно было решение, которое ощущается аналитичным и современным, 
+  намекает на «умную» помощь ИИ, но при этом в первую очередь воспринимается как финансовый инструмент.
+   Само название уже задает направление: <strong>«Axiom»</strong> – как опора на надежную истину, <strong>«Lens»</strong> – как способ смотреть на данные под увеличением.
+ Эскизы ниже показывают путь от довольно общего знака в духе «AI + диафрагма» к более приземленному символу на основе графиков, который лучше отражает суть продукта (хотя до идеала ему еще далеко).
+  </p>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-[28px] md:gap-[48px] items-start">
+
+    <!-- LEFT: Brand intentions -->
+    <div>
+      <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-4">
+        Что стоит за брендом
+      </h3>
+
+      <ul class="space-y-3 text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-8">
+        <li>
+          <strong>Финансовая ясность.</strong> Достаточно серьезный, чтобы доверить ему финансы, но без образа спекулятивного трейдинга или криптоплощадки.
+        </li>
+        <li>
+          <strong>Умный, но не Sci-Fi.</strong> Легкий намек на ИИ и автоматизацию, без превращения логотипа в иконку очередного гаджета.
+        </li>
+        <li>
+          <strong>Устойчивый и приземленный.</strong> Четкая геометрия и сетка в основе, чтобы считывались структура, надежность и долгая жизнь продукта.
+        </li>
+      </ul>
+
+      <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-3">
+        Логика наименования
+      </h3>
+
+      <ul class="space-y-3 text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+        <li>
+          <strong>Axiom</strong> – опорное утверждение, надежная база для решений.
+        </li>
+        <li>
+          <strong>Lens</strong> – фокус и ясность, прямая метафора того, что мы поможем смотреть вперед.
+        </li>
+        <li>
+       <strong>AxiomLens</strong> считывается как «надежные цифры, которые видно ясно».
+      </ul>
+    </div>
+
+<!-- RIGHT: Logo evolution visuals -->
+<div>
+  <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-4">
+    Эволюция логотипа
+  </h3>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-[16px]">
+    <!-- Early mark -->
+    <figure class="bg-white border border-[#EAEAEA] rounded-lg p-3 flex flex-col items-center text-center h-full overflow-hidden">
+      <!-- fixed-height media box -->
+      <div class="w-full h-[180px] md:h-[220px]">
+        <button
+          type="button"
+          class="block w-full h-full flex items-center justify-center cursor-pointer"
+          data-full-src="../assets/images/Axiom_White_Square.png"
+          data-caption="Первый рабочий вариант: знак в виде камерной диафрагмы с условными «печатными дорожками», который должен был совместить образ линзы с ощущением умной, самодействующей системы. Логотип хорошо передавал технологичность и динамику, но слабо читался как финансовый продукт и в мелких размерах превращался в шум."
+          aria-label="Open early AxiomLens square logo"
+        >
+          <img
+            src="../assets/images/Axiom_White_Square.png"
+            alt="Early AxiomLens logo concept – heavy gradient square mark"
+            class="max-h-full max-w-[90%] object-contain"
+          />
+        </button>
+      </div>
+      <figcaption class="text-[#6D6D6D] text-[clamp(0.85rem,2vw,0.95rem)] mt-2">
+        Диафрагма камеры плюс дорожки «платы» – попытка скрестить образ линзы с ощущением умной системы
+      </figcaption>
+    </figure>
+
+    <!-- Exploration -->
+    <figure class="bg-white border border-[#EAEAEA] rounded-lg p-3 flex flex-col items-center text-center h-full overflow-hidden">
+      <div class="w-full h-[180px] md:h-[220px]">
+        <button
+          type="button"
+          class="block w-full h-full flex items-center justify-center cursor-pointer"
+          data-full-src="../assets/images/Axiom_White_Horizontal.png"
+          data-caption="Тот же знак, но уже с горизонтальным написанием названия. В шапках и на белом фоне он работал заметно лучше, но по ощущению это всё еще был скорее абстрактный «AI-инструмент», а не сервис про кэшфлоу для малого бизнеса."
+          aria-label="Open exploration horizontal logo"
+        >
+          <img
+            src="../assets/images/Axiom_White_Horizontal.png"
+            alt="Exploration logo with updated graph symbol and old typography"
+            class="max-h-full max-w-[90%] object-contain"
+          />
+        </button>
+      </div>
+      <figcaption class="text-[#6D6D6D] text-[clamp(0.85rem,2vw,0.95rem)] mt-2">
+        Итерация 2: тот же знак с горизонтальным логотипом – лучше смотрится в заголовках и на белом фоне
+      </figcaption>
+    </figure>
+
+    <!-- Final square -->
+    <figure class="bg-white border border-[#EAEAEA] rounded-lg p-3 flex flex-col items-center text-center h-full overflow-hidden">
+      <div class="w-full h-[180px] md:h-[220px]">
+        <button
+          type="button"
+          class="block w-full h-full flex items-center justify-center cursor-pointer"
+          data-full-src="../assets/images/Axiom_Square_Old_Font.png"
+          data-caption="Финальный знак: в итоге я остановился на иконке в духе графика на темном фоне – сетка, точки данных, восходящая линия. Финансовая метафора читается сразу, но из-за сильных градиентов и острых углов знак все равно выглядит чуть агрессивнее, чем хотелось для спокойного, консультативного тона."
+          aria-label="Open final square logo"
+        >
+          <img
+            src="../assets/images/Axiom_Square_Old_Font.png"
+            alt="Final AxiomLens square logo"
+            class="max-h-full max-w-[90%] object-contain"
+          />
+        </button>
+      </div>
+      <figcaption class="text-[#6D6D6D] text-[clamp(0.85rem,2vw,0.95rem)] mt-2">
+        Иконка на основе графика на темном фоне: финансовый смысл читается, но выглядит немного агрессивно
+      </figcaption>
+    </figure>
+
+    <!-- Final horizontal -->
+    <figure class="bg-white border border-[#EAEAEA] rounded-lg p-3 flex flex-col items-center text-center h-full overflow-hidden">
+      <div class="w-full h-[180px] md:h-[220px]">
+        <button
+          type="button"
+          class="block w-full h-full flex items-center justify-center cursor-pointer"
+          data-full-src="../assets/images/Axiom_Logo_Horizontal.png"
+          data-caption="Для этой концептуальной кейс-стади я остановился на знаке в виде графика с более приглушенной синей палитрой в паре с словесным знаком Electrolize – так логотип сохраняет легкий техно-характер.
+В интерфейсе и на сайте используется Bricolage Grotesque: этот шрифт делает тексты более живыми и читаемыми, а логотип берет на себя аналитическую сторону."
+          aria-label="Open final horizontal logo"
+        >
+          <img
+            src="../assets/images/Axiom_Logo_Horizontal.png"
+            alt="Final AxiomLens horizontal logo"
+            class="max-h-full max-w-[90%] object-contain"
+          />
+        </button>
+      </div>
+      <figcaption class="text-[#6D6D6D] text-[clamp(0.85rem,2vw,0.95rem)] mt-2">
+        Логотип шрифтом Electrolize сохраняет легкий техно-оттенок, палитра стала мягче
+      </figcaption>
+    </figure>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- Divider -->
+<div class="w-full px-[84px]">
+  <hr class="border-b border-[#CDC2C2]" />
+</div>
+
+<!-- DESIGN PROCESS & ITERATIONS -->
+<section id="design-process"
+  class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+
+  <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-3">
+    Процесс дизайна и итерации
+  </h2>
+
+  <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed max-w-[900px] mb-8">
+    К AxiomLens я подошел так же, как к живому продукту: сначала продумал пользовательские сценарии и структуру информации, потом сделал серию lo-fi-эскизов 
+    и более сфокусированных hi-fi-экранов, а затем прогнал их через юзабилити-тесты. Только после этого имело смысл фиксировать финальную визуальную систему.
+    Задача была сначала проверить, что логика работает: какие экраны вообще нужны, что каждый из них показывает и насколько легко люди проходят весь путь – и уже потом
+    доводить до ума баланс между данными и интерфейсом, иерархию и цвет.
+  </p>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-[32px] md:gap-[48px] items-start">
+    <!-- LEFT: process narrative -->
+    <div>
+      <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-4">
+        От сценариев к финальному дашборду
+      </h3>
+
+      <ol class="list-decimal ml-5 space-y-4 text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+        <li>
+          <strong>Карта сценариев и логика вайрфреймов.</strong> Сначала я свел ключевые зоны – денежный поток, счета, клиенты, расходы, налоги, 
+          инсайты, настройки и мобильную версию – в один общий поток вайрфреймов. Это помогло зафиксировать, какие экраны вообще нужны, как они связаны 
+          и на какие вопросы отвечает каждый.
+        </li>
+        <li>
+          <strong>Lo-fi макет с помощью AI.</strong> Опираясь на карту сценариев как на бриф, я собрал грубый lo-fi вариант главного дашборда, 
+          чтобы проверить плотность информации: какие метрики заслуживают место в верхней части экрана, что можно отправить на второй план и сколько 
+          контента вообще поместится на один экран, не превращаясь в кашу.
+        </li>
+        <li>
+          <strong>Hi-fi итерации и работа с иерархией.</strong> На этапе hi-fi я перепробовал несколько вариантов расстановки акцентов между быстрым 
+                  обзором, блоком счетов и графиками. В одних макетах добавлял больше градиентов и глубины, 
+                  в других – делал подачу более плоской и почти журнальной, 
+                  чтобы продукт казался спокойным, но при этом оставался премиальным инструментом.
+        </li>
+        <li>  
+          <strong>Юзабилити-тесты и обратная связь.</strong> Я провел десять удаленных сессий с немецкими фрилансерами, давая им поработать с интерактивным прототипом. 
+          Мне было важно увидеть, насколько естественно им даются ключевые сценарии и где появляются непонятные места, тупики в навигации или перегрузка информацией – 
+          еще до того, как фиксировать финальное направление. По их комментариям я поменял расположение AI-инсайтов, усилил контраст статусов и смягчил палитру.
+        </li>
+        <li>
+          <strong>Переход к финальному макету.</strong> Итоговый дашборд собирает сильные стороны прошлых версий: 
+          более наглядный блок со счетами, информативную сводку наверху, последовательные роли цвета и более живой ритм 
+          между карточками, графиками и таблицами.
+        </li>
+      </ol>
+
+      <p class="mt-6 text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+        В итоге главный экран работает просто и предсказуемо: на нем нет элементов «для галочки», навигация остается короткой, а та же структура без проблем выдержит и будущие экраны.
+      </p>
+    </div>
+
+    <!-- RIGHT: visual carousel -->
+    <div>
+      <div class="bg-[#F7F7F7] border border-[#EAEAEA] rounded-lg p-4 md:p-5 shadow-sm">
+        <p class="text-[#6D6D6D] text-[0.8rem] font-semibold tracking-wide uppercase mb-3">
+          От карты сценариев к финальному дашборду
+        </p>
+
+        <!-- Main image + arrows -->
+        <div class="relative">
+          <!-- Prev -->
+          <button
+            id="dp-prev"
+            type="button"
+            class="hidden sm:flex items-center justify-center
+                   absolute -left-3 top-1/2 -translate-y-1/2
+                   w-11 h-11 rounded-full border-2 border-[#D7D7D7]
+                   bg-white text-[#333] shadow-sm
+                   hover:bg-[#3D63C2] hover:text-white hover:border-[#3D63C2]
+                   focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3D63C2]/50
+                   transition"
+            aria-label="Previous iteration">
+            <svg viewBox="0 0 24 24" class="w-[22px] h-[22px]" fill="none"
+                 stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 5 L8 12 L15 19" />
+            </svg>
+          </button>
+
+          <!-- Next -->
+          <button
+            id="dp-next"
+            type="button"
+            class="hidden sm:flex items-center justify-center
+                   absolute -right-3 top-1/2 -translate-y-1/2
+                   w-11 h-11 rounded-full border-2 border-[#D7D7D7]
+                   bg-white text-[#333] shadow-sm
+                   hover:bg-[#3D63C2] hover:text-white hover:border-[#3D63C2]
+                   focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3D63C2]/50
+                   transition"
+            aria-label="Next iteration">
+            <svg viewBox="0 0 24 24" class="w-[22px] h-[22px]" fill="none"
+                 stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 5 L16 12 L9 19" />
+            </svg>
+          </button>
+
+          <figure class="mx-auto sm:px-10">
+            <!-- CLICKABLE MAIN IMAGE (opens your existing modal) -->
+            <button
+              id="dp-main-trigger"
+              type="button"
+              class="block w-full text-left"
+              data-full-src="../assets/images/Wireframe.png"
+              data-caption="Первая итерация: карта экранов по ключевым разделам AxiomLens, основа первого lo-fi дашборда и навигации."
+              aria-label="Open current iteration full-size"
+            >
+              <img
+                id="dp-main-image"
+                src="../assets/images/Wireframe.png"
+                alt="Early flow map wireframe for AxiomLens screens"
+                class="w-full object-contain border border-[#CDC2C2] rounded bg-white"
+              />
+            </button>
+
+            <figcaption
+              id="dp-main-caption"
+              class="text-[#6D6D6D] text-xs md:text-sm mt-2 text-center max-w-[420px] mx-auto">
+              Первая итерация: карта экранов по ключевым разделам AxiomLens, основа первого lo-fi дашборда и навигации.
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- Thumbnails row -->
+        <div id="dp-thumbs" class="mt-4 flex gap-2 overflow-x-auto pb-1">
+          <!-- MUST stay in the same order as the JS array below -->
+          <button type="button" class="dp-thumb flex-shrink-0 border border-[#CDC2C2] rounded overflow-hidden">
+            <img src="../assets/images/Wireframe.png" alt="Flow map wireframe thumbnail"
+                 class="w-[80px] h-[56px] object-cover" />
+          </button>
+          <button type="button" class="dp-thumb flex-shrink-0 border border-[#CDC2C2] rounded overflow-hidden">
+            <img src="../assets/images/Main_dashboard.png" alt="Lo-fi dashboard layout thumbnail"
+                 class="w-[80px] h-[56px] object-cover" />
+          </button>
+          <button type="button" class="dp-thumb flex-shrink-0 border border-[#CDC2C2] rounded overflow-hidden">
+            <img src="../assets/images/Early_Design_1.png" alt="First hi-fi iteration thumbnail"
+                 class="w-[80px] h-[56px] object-cover" />
+          </button>
+          <button type="button" class="dp-thumb flex-shrink-0 border border-[#CDC2C2] rounded overflow-hidden">
+            <img src="../assets/images/Early_Design_2.png" alt="Gradient experiment thumbnail"
+                 class="w-[80px] h-[56px] object-cover" />
+          </button>
+          <button type="button" class="dp-thumb flex-shrink-0 border border-[#CDC2C2] rounded overflow-hidden">
+            <img src="../assets/images/Early_Design_3.png" alt="Colour exploration thumbnail"
+                 class="w-[80px] h-[56px] object-cover" />
+          </button>
+          <button type="button" class="dp-thumb flex-shrink-0 border border-[#CDC2C2] rounded overflow-hidden">
+            <img src="../assets/images/Axiom_Main.png" alt="Final dashboard thumbnail"
+                 class="w-[80px] h-[56px] object-cover" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Carousel logic for Design process & iterations -->
+<script>
+  (function () {
+    const items = [
+      {
+        src: "../assets/images/Wireframe.png",
+        alt: "Early flow map wireframe for AxiomLens screens",
+        caption:
+          "Первая итерация: карта экранов по ключевым разделам AxiomLens, основа первого lo-fi дашборда и навигации."
+      },
+      {
+        src: "../assets/images/Main_dashboard.png",
+        alt: "Lo-fi AI-assisted dashboard layout exploring information density",
+        caption:
+          "Lo-fi дашборд с AI: без цветов и отступов – проверяем, что помещается на экран и какие метрики выводить наверх."
+      },
+      {
+        src: "../assets/images/Early_Design_1.png",
+        alt: "First high-fidelity dashboard iteration",
+        caption:
+          "Первый hi-fi вариант: близко к вайрфрейму, но блок счетов слабее, а быстрый обзор может быть оптимальнее."
+      },
+      {
+        src: "../assets/images/Early_Design_2.png",
+        alt: "Gradient and depth experiment for dashboard cards",
+        caption:
+          "Эксперимент с градиентами и объемом: интерфейс стал более «тактильным», но вид вышел менее «премиальным»"
+      },
+      {
+        src: "../assets/images/Early_Design_3.png",
+        alt: "Colour and emphasis exploration for dashboard sections",
+        caption:
+          "Работа с цветом: какие зоны брать в акцент и как собрать графики, карточки и таблицы в одну систему."
+      },
+      {
+        src: "../assets/images/Axiom_Main.png",
+        alt: "Final AxiomLens main dashboard design",
+        caption:
+          "Финальный вариант: более понятные счета, продуманный обзор и согласованная цветовая система для работы с данными."
+      }
+    ];
+
+    const mainImg      = document.getElementById("dp-main-image");
+    const mainCap      = document.getElementById("dp-main-caption");
+    const mainTrigger  = document.getElementById("dp-main-trigger");
+    const prevBtn      = document.getElementById("dp-prev");
+    const nextBtn      = document.getElementById("dp-next");
+    const thumbButtons = Array.from(document.querySelectorAll(".dp-thumb"));
+
+    if (!mainImg || !mainCap || !mainTrigger || thumbButtons.length === 0) return;
+
+    let current = 0;
+
+    function render() {
+      const item = items[current];
+      mainImg.src = item.src;
+      mainImg.alt = item.alt;
+      mainCap.textContent = item.caption;
+
+      // Keep the modal trigger synced to the current slide
+      mainTrigger.setAttribute("data-full-src", item.src);
+      mainTrigger.setAttribute("data-caption", item.caption);
+
+      thumbButtons.forEach((btn, index) => {
+        if (index === current) {
+          btn.classList.add("ring-2", "ring-[#3D63C2]", "opacity-100");
+          btn.classList.remove("opacity-60");
+        } else {
+          btn.classList.remove("ring-2", "ring-[#3D63C2]");
+          btn.classList.add("opacity-60");
+        }
+      });
+    }
+
+    thumbButtons.forEach((btn, index) => {
+      btn.addEventListener("click", () => {
+        current = index;
+        render();
+      });
+    });
+
+    prevBtn?.addEventListener("click", () => {
+      current = (current - 1 + items.length) % items.length;
+      render();
+    });
+
+    nextBtn?.addEventListener("click", () => {
+      current = (current + 1) % items.length;
+      render();
+    });
+
+    render();
+  })();
+</script>
+
+ <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+
+<!-- DESIGN SYSTEM FOUNDATIONS -->
+<section id="design-system"
+  class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[50px] md:py-[70px]">
+
+  <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-3">
+    Основы дизайн-системы
+  </h2>
+
+  <!-- NOTE: no max-width so it doesn't wrap early -->
+  <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-10">
+    На довольно ранних этапах я собрал небольшую дизайн-систему, чтобы дашборд по мере развития оставался плотным по данным, но читабельным. 
+    В центре внимания были типографика, которая держится рядом с цифрами, спокойная темная тема и простые паттерны, которые легко перенести на новые экраны.
+  </p>
+
+  <!-- PRINCIPLES (text-only, compact) -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-[24px] md:gap-[32px] mb-10">
+    <!-- Typography -->
+    <article class="bg-white border border-[#EAEAEA] rounded-lg p-5">
+      <h3 class="text-[clamp(1.1rem,2.6vw,1.35rem)] font-semibold mb-3">Типографика</h3>
+      <ul class="space-y-2 text-black text-[clamp(0.95rem,2.1vw,1.05rem)] leading-relaxed">
+        <li><strong>Читается под нагрузкой.</strong> Кегли выдерживают соседство с плотными таблицами и графиками.</li>
+        <li><strong>Двухуровневая иерархия.</strong> Заголовки ведут взгляд, подписи и подсказки не отвлекают.</li>
+        <li><strong>Моноширинные акценты.</strong> Точечно для выровненных сумм и «кодовых» деталей.</li>
+      </ul>
+    </article>
+
+    <!-- Colors & Surface -->
+    <article class="bg-white border border-[#EAEAEA] rounded-lg p-5">
+      <h3 class="text-[clamp(1.1rem,2.6vw,1.35rem)] font-semibold mb-3">Цвет и поверхности</h3>
+      <ul class="space-y-2 text-black text-[clamp(0.95rem,2.1vw,1.05rem)] leading-relaxed">
+        <li><strong>Темный фон.</strong> Современно, удобно для долгой работы и помогает линиям графиков выделяться. Светлая тема тоже в планах!</li>
+        <li><strong>Мягкие оттенки синего.</strong> Акценты выглядят аналитично и спокойно, избегая крикливый «growth»-хайп.</li>
+        <li><strong>Рамки вместо теней.</strong> Минимальный объем, чтобы внимание оставалось на данных.</li>
+      </ul>
+    </article>
+
+    <!-- Spacing & Layout Rhythm -->
+    <article class="bg-white border border-[#EAEAEA] rounded-lg p-5">
+      <h3 class="text-[clamp(1.1rem,2.6vw,1.35rem)] font-semibold mb-3">Отступы и ритм макета</h3>
+      <ul class="space-y-2 text-black text-[clamp(0.95rem,2.1vw,1.05rem)] leading-relaxed">
+        <li><strong>Единый масштаб.</strong> Общая система отступов и размеров в разных секциях и компонентах делает продукт цельным.</li>
+        <li><strong>Структура вокруг карточек.</strong> Плотные данные разбиты на понятные, «дышащие» модули.</li>
+        <li><strong>Чистые края.</strong> Сильные внешние отступы не дают дашборду захламиться и сохраняют ощущение продуманной компоновки.</li>
+      </ul>
+    </article>
+  </div>
+
+  <!-- CORE COMPONENTS -->
+  <h3 class="text-[clamp(1.25rem,3vw,1.5rem)] font-semibold mb-4">
+    Базовые компоненты
+  </h3>
+  <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-6">
+    Четыре основных семейства компонентов делают здесь большую часть работы. Их повторное использование от экрана к экрану помогает продукту оставаться цельным и узнаваемым даже без огромной дизайн-системы.
+  </p>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-[20px] lg:gap-[28px]">
+
+  <!-- Cards -->
+  <figure class="bg-white border border-[#EAEAEA] rounded-lg p-4 shadow-sm">
+    <button
+      type="button"
+      class="block w-full text-left"
+      data-full-src="../assets/images/Cards1.png"
+      data-caption="Для доходов, расходов, прибыли, налогов и показателей по счетам. Один шаблон: подпись, главное число, небольшой тренд или дельта и иконка."
+      aria-label="Open metric cards visual"
+    >
+      <!-- 16:9 wrapper -->
+      <div class="relative w-full overflow-hidden rounded-md">
+        <div class="pt-[56.25%]"></div>
+        <img
+          src="../assets/images/Cards1.png"
+          alt="Metric card components"
+          class="absolute inset-0 w-full h-full object-contain"
+          loading="lazy"
+        />
+      </div>
+    </button>
+    <figcaption class="text-[#6D6D6D] text-sm mt-3">
+      <strong>Карточки метрик.</strong> Для доходов, расходов, прибыли, налогов и показателей по счетам. Один шаблон: подпись, главное число, небольшой тренд или дельта и иконка.
+    </figcaption>
+  </figure>
+
+  <!-- Status pills -->
+  <figure class="bg-white border border-[#EAEAEA] rounded-lg p-4 shadow-sm">
+    <button
+      type="button"
+      class="block w-full text-left"
+      data-full-src="../assets/images/Pills1.png"
+      data-caption="Эти значки обозначают состояние оплаты и инсайтов. Одна палитра в таблицах и карточках помогает быстро запомнить, какие цвета позитивные, нейтральные или предупрежающие."
+      aria-label="Open status pills visual"
+    >
+      <div class="relative w-full overflow-hidden rounded-md">
+        <div class="pt-[56.25%]"></div>
+        <img
+          src="../assets/images/Pills1.png"
+          alt="Status badges (Paid / Pending / Overdue)"
+          class="absolute inset-0 w-full h-full object-contain"
+          loading="lazy"
+        />
+      </div>
+    </button>
+    <figcaption class="text-[#6D6D6D] text-sm mt-3">
+      <strong>Статусные ярлыки.</strong> Обозначают состояние оплаты и инсайтов. Одна палитра в таблицах и карточках помогает быстро запомнить значения цветов.
+    </figcaption>
+  </figure>
+
+  <!-- AI Insights cards -->
+  <figure class="bg-white border border-[#EAEAEA] rounded-lg p-4 shadow-sm">
+    <button
+      type="button"
+      class="block w-full text-left"
+      data-full-src="../assets/images/AI_Cards_Alpha.png"
+      data-caption="Более содержательные блоки: иконка, короткий заголовок, пояснение и понятное действие. Они превращают сырые данные в точечные советы."
+      aria-label="Open AI insights cards visual"
+    >
+      <div class="relative w-full overflow-hidden rounded-md">
+        <div class="pt-[56.25%]"></div>
+        <img
+          src="../assets/images/AI_Cards_Alpha.png"
+          alt="AI Insights card components"
+          class="absolute inset-0 w-full h-full object-contain"
+          loading="lazy"
+        />
+      </div>
+    </button>
+    <figcaption class="text-[#6D6D6D] text-sm mt-3">
+      <strong>Карточки AI-инсайтов.</strong> Более содержательные блоки: иконка, короткий заголовок, пояснение и понятное действие. Они превращают сырые данные в точечные советы.
+    </figcaption>
+  </figure>
+
+  <!-- Icons -->
+  <figure class="bg-white border border-[#EAEAEA] rounded-lg p-4 shadow-sm">
+    <button
+      type="button"
+      class="block w-full text-left"
+      data-full-src="../assets/images/Icons_New1.png"
+      data-caption="Используется в навигации, метриках и действиях. Толщина линий и скругления совпадают с остальным UI, поэтому иконки поддерживают иерархию."
+      aria-label="Open icon set visual"
+    >
+      <div class="relative w-full overflow-hidden rounded-md">
+        <div class="pt-[56.25%]"></div>
+        <img
+          src="../assets/images/Icons_New1.png"
+          alt="Icon set for the interface"
+          class="absolute inset-0 w-full h-full object-contain"
+          loading="lazy"
+        />
+      </div>
+    </button>
+    <figcaption class="text-[#6D6D6D] text-sm mt-3">
+      <strong>Набор иконок.</strong> Используется в навигации, метриках и действиях. Толщина линий и скругления совпадают с остальным UI, поэтому иконки поддерживают иерархию.
+    </figcaption>
+  </figure>
+
+</div>
+
+</section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+
+<!-- NEXT STEPS -->
+<section id="next-steps"
+  class="max-w-[1440px] mx-auto px-[16px] md:px-[84px]
+         py-[40px] md:py-[56px] ">
+
+  <h2 class="text-[clamp(1.5rem,4vw,2.25rem)] font-bold mb-3">
+    Следующие шаги
+  </h2>
+
+  <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)]
+            leading-relaxed mb-6">
+AxiomLens пока остается концептом. Чтобы превратить его в рабочий инструмент, понадобилась бы полноценная команда: разработчики, специалисты по данным и AI, эксперты по безопасности и комплаенсу, налоговые юристы и нормальная служба поддержки.
+Тем не менее, вопрос «что дальше?» предлагает полезное упражнение. Если развивать AxiomLens далее, я бы сосредоточился на следующем:
+  </p>
+
+  <!-- Two compact columns (no picture) -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-x-[48px] gap-y-[12px] items-start">
+    <!-- LEFT -->
+    <ul class="space-y-3 text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+      <li>
+        <strong>Светлая и темная темы.</strong>
+        Темный режим – вариант по умолчанию, но будет создана светлая тема и автопереключение по системным настройкам. 
+        Современные браузеры уже поддерживают это, поэтому макет и цвета должны одинаково хорошо работать в обоих режимах.
+      </li>
+            <li>
+        <strong>Работа с разными валютами и НДС.</strong>
+        Важно для предпринимателей, которые работают с разными странами: один экран, где суммы, ставки НДС и налоговые правила приводятся к общей картине по всем юрисдикциям.
+      </li>
+      <li>
+        <strong>Командный режим.</strong>
+        Роли и права доступа для ситуаций, когда за денежным потоком следит не один человек – основатели, ассистенты или внешние бухгалтеры в общем рабочем пространстве.
+      </li>
+    </ul>
+
+    <!-- RIGHT -->
+    <ul class="space-y-3 text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+            <li>
+        <strong>Более глубокие интеграции с банками.</strong>
+        Сначала – простые встроенные импорты банковских выписок и счетов, потом – прямые интеграции с 
+        ключевыми EU-провайдерами (Stripe, PayPal, SEPA, локальные банки), чтобы пользователям не пришлось сверять цифры вручную.
+      </li>
+      <li>
+        <strong>Разные типы аккаунтов.</strong>
+        Полноценный режим для владельцев бизнеса и более легкий – для клиентов: общение, просмотр и оплата счетов.
+      </li>
+      <li>
+        <strong>Налоговый раздел.</strong>
+        Отдельная зона, где видно, какие налоги применяются, по имеющимся данным считается примерная ставка и показываются ключевые дедлайны и напоминания по каждой стране или региону.
+      </li>
+    </ul>
+  </div>
+</section>
+
+  <!-- Divider -->
+  <div class="w-full px-[84px]"><hr class="border-b border-[#CDC2C2]" /></div>
+
+<!-- LEARNINGS -->
+<section id="learnings" class="w-full bg-[#FAFAFA] py-[60px] md:py-[90px]">
+  <div class="max-w-[900px] mx-auto px-[16px] md:px-[84px] text-center">
+
+    <h2 class="font-semibold text-[clamp(1.5rem,3.5vw,1.75rem)] mb-4">
+      Уроки
+    </h2>
+
+    <p class="text-black text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed mb-8">
+      В своей работе над AxiomLens я ставил целью не просто «нарисовать красивый дашборд», а разобраться, что на самом деле делает финансовый инструмент удобным и внушающим доверие. Вот несколько вещей, которые мне особенно запомнились:
+    </p>
+
+    <ul class="text-left space-y-6 text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed">
+      <li class="flex items-start">
+        <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+        <p>
+          <strong>Сначала вопросы, потом экраны.</strong> В какой-то момент я перестал думать <em>«какие еще фичи еще добавить?»</em> и начал спрашивать себя: что юзеру важнее всего понять за первые 30 секунд? 
+          Лишний UI сам отвалился. Так стало гораздо проще решить, что должно быть в верхней строке, а что можно спокойно увести в детали.
+        </p>
+      </li>
+
+      <li class="flex items-start">
+        <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+        <p>
+          <strong>Польза от AI зависит от места в интерфейсе.</strong> С самого начала было понятно, что инсайтам нужен свой отдельный блок, но в продукте с таким количеством данных было сложно найти им правильное место. 
+          Юзабилити-сессии помогли прийти к макету, где люди действительно замечают инсайты, и где они не создают помеху.
+        </p>
+      </li>
+
+      <li class="flex items-start">
+        <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+        <p>
+          <strong>Плотность данных обходится дороже, чем кажется.</strong> На бумаге казалось, что в главный экран влезет «еще один график». 
+          В реальности каждый дополнительный блок только усложнял чтение реальных цифр. В итоге я выкинул несколько идей и еще раз убедился, 
+          что лучше меньше, но продуманнее, чем стена из «полезных» виджетов.
+        </p>
+      </li>
+
+      <li class="flex items-start">
+        <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+        <p>
+          <strong>Бренд и продукт должны говорить об одном и том же.</strong> Ранний логотип «диафрагма + платы» выглядел остроумно, но считывался как абстрактный AI-сервис. 
+          Переход к более явно финансовому символу сразу выровнял ожидания: еще до текста людям было понятно, с каким типом продукта они имеют дело.
+        </p>
+      </li>
+
+            <li class="flex items-start">
+        <span class="mt-[6px] mr-3 w-3 h-3 rounded-full bg-[#3D63C2] shrink-0"></span>
+        <p>
+          <strong>Даже концепт показывает уровни сложности.</strong> Когда начинаешь набрасывать «следующие шаги» – налоговую логику, работу с разными валютами, интеграции, роли – быстро понимаешь масштаб. 
+          Даже небольшой концепт опирается на тонну разработки, комплаенса и работы с данными. Это хорошее напоминание о том, какая глубина прячется за «простыми» финансовыми продуктами.
+        </p>
+      </li>
+    </ul>
+
+    <div class="mt-8 flex justify-center">
+      <button
+        id="open-contact-modal"
+        class="px-10 py-3 rounded bg-[#3D63C2] text-white font-semibold shadow-md hover:shadow-lg transition"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="contact-modal"
+        aria-expanded="false"
+      >
+        СВЯЗАТЬСЯ СО МНОЙ
+      </button>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ===== Modal: Contact form ===== -->
+<div
+  id="contact-modal"
+  class="fixed inset-0 z-[999] hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="contact-modal-title"
+>
+  <!-- Backdrop -->
+  <div id="contact-backdrop" class="absolute inset-0 bg-black/40"></div>
+
+  <!-- Dialog -->
+  <div
+    class="relative w-[min(92vw,720px)] mx-auto mt-[8vh]
+           bg-white border border-[#CDC2C2] rounded shadow-xl"
+  >
+    <!-- Close button -->
+    <button
+      id="close-contact-modal"
+      class="absolute right-3 top-3 text-[#6D6D6D] hover:text-black"
+      aria-label="Close"
+      type="button"
+    >
+      ✕
+    </button>
+
+    <!-- Form Container (IDs are -modal to avoid conflicts) -->
+    <form
+      action="https://formspree.io/f/xovwzoed"
+      method="POST"
+      class="w-full max-w-[631px] mx-auto p-[40px] flex flex-col items-center"
+    >
+      <p
+        id="contact-modal-title"
+        class="font-semibold text-black mb-[24px] text-center
+               text-[clamp(1rem,3vw,1.5rem)]"
+      >
+        Буду рад вашему сообщению в любое время!
+      </p>
+
+      <!-- Name -->
+      <input
+        id="contact-name-modal"
+        type="text"
+        name="name"
+        placeholder="Имя"
+        required
+        class="w-full border-b-2 border-[#CDC2C2]
+               text-center text-black
+               text-[clamp(1rem,3vw,1.25rem)]
+               placeholder:text-[#CCCCCC]
+               placeholder:text-[clamp(0.875rem,2vw,1rem)]
+               pb-[8px] mb-[24px]
+               focus:outline-none"
+      />
+
+      <!-- Email -->
+      <input
+        id="contact-email-modal"
+        type="email"
+        name="email"
+        placeholder="Email"
+        required
+        class="w-full border-b-2 border-[#CDC2C2]
+               text-center text-black
+               text-[clamp(1rem,3vw,1.25rem)]
+               placeholder:text-[#CCCCCC]
+               placeholder:text-[clamp(0.875rem,2vw,1rem)]
+               pb-[8px] mb-[8px]
+               focus:outline-none"
+      />
+
+      <!-- inline error message: hidden by default -->
+      <p
+        id="email-error-modal"
+        class="hidden text-red-500
+               text-[clamp(0.875rem,2vw,1rem)]
+               mt-[4px] mb-[16px]"
+      >
+        Введите email в правильном формате: primer@mail.com
+      </p>
+
+      <!-- Message -->
+      <textarea
+        id="contact-message-modal"
+        name="message"
+        rows="6"
+        maxlength="3500"
+        placeholder="Сообщение"
+        required
+        class="w-full border-b-2 border-[#CDC2C2]
+               text-center text-black
+               text-[clamp(1rem,3vw,1.25rem)]
+               placeholder:text-[#CCCCCC]
+               placeholder:text-[clamp(0.875rem,2vw,1rem)]
+               pb-[8px] mb-[8px]
+               focus:outline-none resize-none"
+      ></textarea>
+
+      <!-- Character counter -->
+      <div
+        id="char-count-modal"
+        class="self-end text-[#6D6D6D] mb-[24px]
+               text-[clamp(0.875rem,2vw,1rem)]"
+      >
+        0 / 3500
+      </div>
+
+      <!-- Send button -->
+      <button
+        id="contact-submit-modal"
+        type="submit"
+        disabled
+        class="bg-[#3F3B3B] text-white font-medium
+               py-[10px] px-[40px] rounded
+               text-[clamp(1rem,3vw,1.25rem)]
+               disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        ОТПРАВИТЬ
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  (function () {
+    // Modal open/close
+    const openBtn   = document.getElementById('open-contact-modal');
+    const modal     = document.getElementById('contact-modal');
+    const backdrop  = document.getElementById('contact-backdrop');
+    const closeBtn  = document.getElementById('close-contact-modal');
+
+    function openModal() {
+      modal.classList.remove('hidden');
+      openBtn.setAttribute('aria-expanded', 'true');
+      // focus first field
+      const first = document.getElementById('contact-name-modal');
+      if (first) first.focus();
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      openBtn.setAttribute('aria-expanded', 'false');
+      openBtn.focus();
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('hidden') && e.key === 'Escape') closeModal();
+    });
+
+    // ===== Form validation for the modal (IDs are -modal) =====
+    const nameInput   = document.getElementById('contact-name-modal');
+    const emailInput  = document.getElementById('contact-email-modal');
+    const emailError  = document.getElementById('email-error-modal');
+    const msgInput    = document.getElementById('contact-message-modal');
+    const counter     = document.getElementById('char-count-modal');
+    const submitBtn   = document.getElementById('contact-submit-modal');
+    const MAX         = 3500;
+    const emailRegex  = /^\S+@\S+\.\S+$/;
+
+    function updateCounter() {
+      let len = msgInput.value.length;
+      if (len > MAX) msgInput.value = msgInput.value.slice(0, MAX);
+      counter.textContent = `${msgInput.value.length} / ${MAX}`;
+      counter.classList.toggle('text-red-500', msgInput.value.length >= MAX);
+      validateForm();
+    }
+
+    function validateForm() {
+      const nameOK   = nameInput.value.trim().length > 0;
+      const emailVal = emailInput.value.trim();
+      const emailOK  = emailRegex.test(emailVal);
+      const msgLen   = msgInput.value.length;
+      const msgOK    = msgLen > 0 && msgLen <= MAX;
+
+      if (emailVal !== '' && !emailOK) {
+        emailError.classList.remove('hidden');
+      } else {
+        emailError.classList.add('hidden');
+      }
+      submitBtn.disabled = !(nameOK && emailOK && msgOK);
+    }
+
+    nameInput.addEventListener('input', validateForm);
+    emailInput.addEventListener('input', validateForm);
+    msgInput.addEventListener('input', updateCounter);
+
+    // initialize
+    updateCounter();
+    validateForm();
+  })();
+</script>
+
+<div
+  id="screen-modal"
+  class="fixed inset-0 z-[999] hidden"
+  aria-modal="true"
+  role="dialog"
+>
+  <!-- Backdrop (slight dim only) -->
+  <div class="absolute inset-0 bg-black/30" data-modal-close></div>
+
+  <!-- White sheet with padding -->
+<div class="relative w-[min(96vw,1200px)] mx-auto mt-[5vh]
+            bg-white rounded-lg shadow-2xl overflow-hidden
+            p-2 md:p-3">  <!-- padding creates a clean frame for the X -->
+  <button
+    type="button"
+    class="absolute right-2 top-2 md:right-3 md:top-3 z-10
+           text-black/70 hover:text-black rounded-full w-8 h-8
+           flex items-center justify-center text-lg"
+    aria-label="Close"
+    data-modal-close
+  >
+    ✕
+  </button>
+
+    <!-- Content -->
+
+  <figure class="bg-white px-6 md:px-10 py-8 md:py-10">
+      <div class="flex items-center justify-center">
+        <img
+          id="screen-modal-img"
+          src=""
+          alt="AxiomLens screen preview"
+          class="max-h-[78vh] w-full object-contain"
+        />
+      </div>
+      <figcaption
+        id="screen-modal-caption"
+        class="mt-3 text-center text-[#6D6D6D] text-[clamp(0.9rem,2vw,1rem)]"
+      ></figcaption>
+    </figure>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const modal    = document.getElementById('screen-modal');
+    const modalImg = document.getElementById('screen-modal-img');
+    const modalCap = document.getElementById('screen-modal-caption');
+    if (!modal || !modalImg || !modalCap) return;
+
+    const openers = document.querySelectorAll('[data-full-src]');
+    const CLOSE_SELECTOR = '[data-modal-close]';
+
+    function openModal(src, caption) {
+      if (!src) return;
+      modalImg.src = src;
+      modalCap.textContent = caption || '';
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      modal.classList.add('hidden');
+      modalImg.src = '';
+      modalCap.textContent = '';
+      document.body.style.overflow = '';
+    }
+
+    openers.forEach((el) => {
+      el.addEventListener('click', () => {
+        const src = el.getAttribute('data-full-src');
+        let caption = el.getAttribute('data-caption');
+        if (!caption) {
+          const fig = el.closest('figure');
+          caption = fig?.querySelector('figcaption')?.innerText?.trim() || '';
+        }
+        openModal(src, caption);
+      });
+    });
+
+    modal.querySelectorAll(CLOSE_SELECTOR).forEach((el) => {
+      el.addEventListener('click', closeModal);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+    });
+  })();
+</script>
+
+</main>
+
+
+
+<!-- ----------------------------------------
+     FOOTER 
+---------------------------------------- -->
+
+<footer class="mt-auto w-full bg-[#545455] text-white">
+  <!-- Top row: left & right blocks -->
+  <div class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] py-[16px]
+              grid grid-cols-2 items-start
+              md:flex md:justify-between md:items-start gap-y-3">
+
+    <!-- LEFT: site + email -->
+    <div class="text-left">
+      <a href="../ru/index.html#home"
+         class="block text-[clamp(1rem,2vw,1.25rem)] font-medium hover:underline">
+        alexmedved.com
+      </a>
+      <a href="mailto:smellfigty@gmail.com"
+         class="block text-[clamp(0.875rem,1.8vw,1rem)] hover:underline">
+        smellfigty@gmail.com
+      </a>
+    </div>
+
+    <!-- RIGHT: links (right-aligned) -->
+    <div class="justify-self-end text-right
+                text-[clamp(0.875rem,1.8vw,1rem)] space-y-1 md:space-y-0 md:flex md:gap-[40px]">
+      <a href="impressum.html" class="block hover:underline">Импрессум</a>
+      <a href="privacy.html"   class="block hover:underline">Политика конфиденциальности</a>
+    </div>
+  </div>
+
+  <!-- Bottom copyright -->
+  <div class="text-center py-[8px] text-[clamp(0.75rem,1.5vw,0.875rem)]">
+    &copy; 2025 Все права защищены.
+  </div>
+</footer>
+
+<!-- =========================================
+     JS: language toggles + mobile menu
+========================================= -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    /* ---------- Language Toggles ---------- */
+    const lBtn  = id => document.getElementById(id + 'Btn');
+    const lMenu = id => document.getElementById(id + 'Menu');
+
+    ['lang', 'mobileLang'].forEach(id => {
+      const btn = lBtn(id), menu = lMenu(id);
+      btn?.addEventListener('click', e => {
+        e.stopPropagation();
+        menu?.classList.toggle('hidden');
+      });
+    });
+
+    document.addEventListener('click', () => {
+      lMenu('lang')?.classList.add('hidden');
+      lMenu('mobileLang')?.classList.add('hidden');
+    });
+
+    /* ---------- Mobile Hamburger / Slide Menu ---------- */
+    const toggle     = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    toggle?.addEventListener('click', e => {
+      e.stopPropagation();
+      document.body.classList.toggle('nav-open');
+      mobileMenu?.classList.toggle('-translate-x-full');
+    });
+
+    document.addEventListener('click', e => {
+      if (mobileMenu && !mobileMenu.contains(e.target) && !toggle?.contains(e.target)) {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      }
+    });
+
+    mobileMenu?.querySelectorAll('a').forEach(link =>
+      link.addEventListener('click', () => {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      })
+    );
+
+    // Close if resized to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768 && mobileMenu) {
+        document.body.classList.remove('nav-open');
+        mobileMenu.classList.add('-translate-x-full');
+      }
+    });
+  });
+</script>
+</body>
+</html>
