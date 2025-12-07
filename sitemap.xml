@@ -29,11 +29,19 @@
   </url>
 
   <url>
-    <loc>https://alexmedved.com/en/case-study-slott.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://alexmedved.com/en/case-study-slott.html"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://alexmedved.com/de/case-study-slott.html"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://alexmedved.com/ru/case-study-slott.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://alexmedved.com/en/case-study-slott.html"/>
+    <loc>https://alexmedved.com/en/case-study-gaming.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alexmedved.com/en/case-study-gaming.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alexmedved.com/de/case-study-gaming.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alexmedved.com/ru/case-study-gaming.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alexmedved.com/en/case-study-gaming.html"/>
+  </url>
+
+  <url>
+    <loc>https://alexmedved.com/en/case-study-gaming.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alexmedved.com/en/case-study-axiomlens.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alexmedved.com/de/case-study-axiomlens.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alexmedved.com/ru/case-study-axiomlens.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alexmedved.com/en/case-study-axiomlens.html"/>
   </url>
 
   <!-- Certificates -->
