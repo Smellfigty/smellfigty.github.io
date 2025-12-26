@@ -449,19 +449,21 @@
     </li>
   </ul>
   
-    <div class="mt-8 flex justify-center">
-      <button
-        id="open-contact-modal"
-        class="px-10 py-3 rounded bg-[#3D63C2] text-white font-semibold shadow-md hover:shadow-lg transition"
-        type="button"
-        aria-haspopup="dialog"
-        aria-controls="contact-modal"
-        aria-expanded="false"
-      >
-        СВЯЗАТЬСЯ СО МНОЙ
-      </button>
-    </div>
-  </div>
+<!-- ===== Modal: Contact form ===== -->
+<div class="mt-8 flex justify-center">
+  <button
+    id="open-contact-modal"
+    class="px-10 py-3 rounded bg-[#3D63C2] text-white font-semibold shadow-md hover:shadow-lg transition"
+    type="button"
+    aria-haspopup="dialog"
+    aria-controls="contact-modal"
+    aria-expanded="false"
+  >
+    СВЯЗАТЬСЯ СО МНОЙ
+  </button>
+</div>
+
+</div>
 </section>
 
 <!-- ===== Modal: Contact form ===== -->
@@ -490,10 +492,12 @@
       ✕
     </button>
 
-    <!-- Form Container (IDs are -modal to avoid conflicts) -->
+    <!-- Form Container -->
     <form
+      id="contact-form-modal"
       action="https://formspree.io/f/xovwzoed"
       method="POST"
+      novalidate
       class="w-full max-w-[631px] mx-auto p-[40px] flex flex-col items-center"
     >
       <p
@@ -525,7 +529,7 @@
         id="contact-email-modal"
         type="email"
         name="email"
-        placeholder="Email"
+        placeholder="Email" 
         required
         class="w-full border-b-2 border-[#CDC2C2]
                text-center text-black
@@ -542,6 +546,8 @@
         class="hidden text-red-500
                text-[clamp(0.875rem,2vw,1rem)]
                mt-[4px] mb-[16px]"
+        role="alert"
+        aria-live="polite"
       >
         Введите email в правильном формате: primer@mail.com
       </p>
@@ -552,7 +558,7 @@
         name="message"
         rows="6"
         maxlength="3500"
-        placeholder="Сообщение"
+        placeholder="Сообщение" 
         required
         class="w-full border-b-2 border-[#CDC2C2]
                text-center text-black
@@ -588,18 +594,21 @@
   </div>
 </div>
 
+
 <script>
   (function () {
-    // Modal open/close
-    const openBtn   = document.getElementById('open-contact-modal');
-    const modal     = document.getElementById('contact-modal');
-    const backdrop  = document.getElementById('contact-backdrop');
-    const closeBtn  = document.getElementById('close-contact-modal');
+    // Guard: if this page doesn't have the modal, do nothing (prevents errors on other pages)
+    const openBtn  = document.getElementById('open-contact-modal');
+    const modal    = document.getElementById('contact-modal');
+    const backdrop = document.getElementById('contact-backdrop');
+    const closeBtn = document.getElementById('close-contact-modal');
 
+    if (!openBtn || !modal || !backdrop || !closeBtn) return;
+
+    // Modal open/close
     function openModal() {
       modal.classList.remove('hidden');
       openBtn.setAttribute('aria-expanded', 'true');
-      // focus first field
       const first = document.getElementById('contact-name-modal');
       if (first) first.focus();
     }
@@ -614,51 +623,103 @@
     closeBtn.addEventListener('click', closeModal);
     backdrop.addEventListener('click', closeModal);
 
-    // Close on Escape
     document.addEventListener('keydown', (e) => {
       if (!modal.classList.contains('hidden') && e.key === 'Escape') closeModal();
     });
 
-    // ===== Form validation for the modal (IDs are -modal) =====
-    const nameInput   = document.getElementById('contact-name-modal');
-    const emailInput  = document.getElementById('contact-email-modal');
-    const emailError  = document.getElementById('email-error-modal');
-    const msgInput    = document.getElementById('contact-message-modal');
-    const counter     = document.getElementById('char-count-modal');
-    const submitBtn   = document.getElementById('contact-submit-modal');
-    const MAX         = 3500;
-    const emailRegex  = /^\S+@\S+\.\S+$/;
+    // ===== Form validation (modal) =====
+    const form      = document.getElementById('contact-form-modal');
+    const nameInput = document.getElementById('contact-name-modal');
+    const emailInput= document.getElementById('contact-email-modal');
+    const emailError= document.getElementById('email-error-modal');
+    const msgInput  = document.getElementById('contact-message-modal');
+    const counter   = document.getElementById('char-count-modal');
+    const submitBtn = document.getElementById('contact-submit-modal');
 
-    function updateCounter() {
-      let len = msgInput.value.length;
-      if (len > MAX) msgInput.value = msgInput.value.slice(0, MAX);
-      counter.textContent = `${msgInput.value.length} / ${MAX}`;
-      counter.classList.toggle('text-red-500', msgInput.value.length >= MAX);
-      validateForm();
+    // Guard: if form elements aren't on this page, do nothing
+    if (!form || !nameInput || !emailInput || !emailError || !msgInput || !counter || !submitBtn) return;
+
+    const MAX = 3500;
+
+    // Good-enough UX validation (not “perfect email RFC”, but practical)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    let triedSubmit = false;
+
+    function showEmailError() {
+      emailError.classList.remove('hidden');
+      emailInput.setAttribute('aria-invalid', 'true');
     }
 
-    function validateForm() {
-      const nameOK   = nameInput.value.trim().length > 0;
-      const emailVal = emailInput.value.trim();
-      const emailOK  = emailRegex.test(emailVal);
-      const msgLen   = msgInput.value.length;
-      const msgOK    = msgLen > 0 && msgLen <= MAX;
+    function hideEmailError() {
+      emailError.classList.add('hidden');
+      emailInput.removeAttribute('aria-invalid');
+    }
 
-      if (emailVal !== '' && !emailOK) {
-        emailError.classList.remove('hidden');
-      } else {
-        emailError.classList.add('hidden');
+    function updateCounter() {
+      if (msgInput.value.length > MAX) {
+        msgInput.value = msgInput.value.slice(0, MAX);
       }
+      const len = msgInput.value.length;
+      counter.textContent = `${len} / ${MAX}`;
+      counter.classList.toggle('text-red-500', len >= MAX);
+    }
+
+    // Button enabled when all fields are non-empty (email format not required yet)
+    function updateButtonState() {
+      const nameOK  = nameInput.value.trim().length > 0;
+      const emailOK = emailInput.value.trim().length > 0; // only non-empty here
+      const msgLen  = msgInput.value.length;
+      const msgOK   = msgLen > 0 && msgLen <= MAX;
+
       submitBtn.disabled = !(nameOK && emailOK && msgOK);
     }
 
-    nameInput.addEventListener('input', validateForm);
-    emailInput.addEventListener('input', validateForm);
-    msgInput.addEventListener('input', updateCounter);
+    // After the user tries to submit once, keep the error synced while they fix the email
+    function syncEmailErrorIfNeeded() {
+      if (!triedSubmit) return;
+      const emailVal = emailInput.value.trim();
+      const formatOK = emailRegex.test(emailVal);
+      if (!formatOK) showEmailError();
+      else hideEmailError();
+    }
+
+    // Prevent submission if the email format is invalid, show error instead
+    form.addEventListener('submit', function (e) {
+      triedSubmit = true;
+
+      const emailVal = emailInput.value.trim();
+      const formatOK = emailRegex.test(emailVal);
+
+      if (!formatOK) {
+        e.preventDefault();
+        showEmailError();
+        emailInput.focus();
+        return;
+      }
+
+      hideEmailError();
+      // Allow the form to submit to Formspree normally
+    });
+
+    nameInput.addEventListener('input', function () {
+      updateButtonState();
+    });
+
+    emailInput.addEventListener('input', function () {
+      updateButtonState();
+      syncEmailErrorIfNeeded();
+    });
+
+    msgInput.addEventListener('input', function () {
+      updateCounter();
+      updateButtonState();
+    });
 
     // initialize
+    hideEmailError();
     updateCounter();
-    validateForm();
+    updateButtonState();
   })();
 </script>
 

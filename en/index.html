@@ -668,12 +668,14 @@ class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] scroll-mt-[76px] md:scroll-
   </h3>
 
   <!-- Form Container -->
-  <form
-    action="https://formspree.io/f/xovwzoed"
-    method="POST"
-    class="w-full max-w-full md:max-w-2xl mx-auto
-           border border-[#CDC2C2] px-[24px] py-[32px] md:p-[40px]
-           shadow-md flex flex-col items-center"
+<form
+  id="contact-form"
+  action="https://formspree.io/f/xovwzoed"
+  method="POST"
+  novalidate
+  class="w-full max-w-full md:max-w-2xl mx-auto
+         border border-[#CDC2C2] px-[24px] py-[32px] md:p-[40px]
+         shadow-md flex flex-col items-center"
   >
     <!-- Intro text: larger & semi-bold -->
     <p
@@ -716,14 +718,16 @@ class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] scroll-mt-[76px] md:scroll-
     />
 
     <!-- Inline error message: hidden by default -->
-    <p
-      id="email-error"
-      class="hidden text-red-500
-             text-[clamp(0.875rem,2vw,1rem)]
-             mt-[4px] mb-[16px]"
-    >
-      Please make sure the email format is correct: example@mail.com
-    </p>
+<p
+  id="email-error"
+  role="alert"
+  aria-live="polite"
+  class="hidden text-red-500
+         text-[clamp(0.875rem,2vw,1rem)]
+         mt-[4px] mb-[16px]"
+>
+  Please make sure the email format is correct: example@mail.com
+</p>
 
     <!-- Message -->
     <textarea
@@ -837,49 +841,97 @@ class="max-w-[1440px] mx-auto px-[16px] md:px-[84px] scroll-mt-[76px] md:scroll-
      CONTACT JS
 ---------------------------------------- -->
 <script>
-  (function() {
-    const nameInput   = document.getElementById('contact-name');
-    const emailInput  = document.getElementById('contact-email');
-    const emailError  = document.getElementById('email-error');
-    const msgInput    = document.getElementById('contact-message');
-    const counter     = document.getElementById('char-count');
-    const submitBtn   = document.getElementById('contact-submit');
-    const MAX         = 3500;
+  (function () {
+    const form       = document.getElementById('contact-form');
+    const nameInput  = document.getElementById('contact-name');
+    const emailInput = document.getElementById('contact-email');
+    const emailError = document.getElementById('email-error');
+    const msgInput   = document.getElementById('contact-message');
+    const counter    = document.getElementById('char-count');
+    const submitBtn  = document.getElementById('contact-submit');
+    const MAX        = 3500;
 
-    const emailRegex  = /^\S+@\S+\.\S+$/;
+    // Reasonable, simple email check (not “perfect”, but good UX-wise)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    function updateCounter() {
-      let len = msgInput.value.length;
-      if (len > MAX) msgInput.value = msgInput.value.slice(0, MAX);
-      counter.textContent = `${msgInput.value.length} / ${MAX}`;
-      counter.classList.toggle('text-red-500', msgInput.value.length >= MAX);
-      validateForm();
+    let triedSubmit = false;
+
+    function showEmailError() {
+      emailError.classList.remove('hidden');
+      emailInput.setAttribute('aria-invalid', 'true');
     }
 
-    function validateForm() {
-      const nameOK   = nameInput.value.trim().length > 0;
-      const emailVal = emailInput.value.trim();
-      const emailOK  = emailRegex.test(emailVal);
-      const msgLen   = msgInput.value.length;
-      const msgOK    = msgLen > 0 && msgLen <= MAX;
+    function hideEmailError() {
+      emailError.classList.add('hidden');
+      emailInput.removeAttribute('aria-invalid');
+    }
 
-      // show/hide the inline error if they’ve typed something invalid
-      if (emailVal !== '' && !emailOK) {
-        emailError.classList.remove('hidden');
-      } else {
-        emailError.classList.add('hidden');
+    function updateCounter() {
+      if (msgInput.value.length > MAX) {
+        msgInput.value = msgInput.value.slice(0, MAX);
       }
+      const len = msgInput.value.length;
+      counter.textContent = `${len} / ${MAX}`;
+      counter.classList.toggle('text-red-500', len >= MAX);
+    }
+
+    // Button becomes active once ALL fields have something (email format NOT required yet)
+    function updateButtonState() {
+      const nameOK  = nameInput.value.trim().length > 0;
+      const emailOK = emailInput.value.trim().length > 0; // only non-empty here
+      const msgLen  = msgInput.value.length;
+      const msgOK   = msgLen > 0 && msgLen <= MAX;
 
       submitBtn.disabled = !(nameOK && emailOK && msgOK);
     }
 
-    nameInput.addEventListener('input', validateForm);
-    emailInput.addEventListener('input', validateForm);
-    msgInput.addEventListener('input', updateCounter);
+    // After user tried to submit once, we keep the error in sync while they fix email
+    function syncEmailErrorIfNeeded() {
+      if (!triedSubmit) return;
+
+      const emailVal = emailInput.value.trim();
+      const formatOK = emailRegex.test(emailVal);
+
+      if (!formatOK) showEmailError();
+      else hideEmailError();
+    }
+
+    // On actual submission attempt: block if email format is wrong, show error
+    form.addEventListener('submit', function (e) {
+      triedSubmit = true;
+
+      const emailVal = emailInput.value.trim();
+      const formatOK = emailRegex.test(emailVal);
+
+      if (!formatOK) {
+        e.preventDefault();     // stop Formspree submit
+        showEmailError();
+        emailInput.focus();
+        return;
+      }
+
+      // If valid, let the form submit naturally to Formspree
+      hideEmailError();
+    });
+
+    nameInput.addEventListener('input', function () {
+      updateButtonState();
+    });
+
+    emailInput.addEventListener('input', function () {
+      updateButtonState();
+      syncEmailErrorIfNeeded();
+    });
+
+    msgInput.addEventListener('input', function () {
+      updateCounter();
+      updateButtonState();
+    });
 
     // initialize
     updateCounter();
-    validateForm();
+    updateButtonState();
+    hideEmailError();
   })();
 </script>
 
