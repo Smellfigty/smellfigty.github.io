@@ -1,0 +1,23 @@
+/* ============================================================
+   ARCHIVE — Case pyramid layout (2 flagships up top, 3 equal below)
+   Retired from prod in favour of the Mash-up flagship bento.
+   Loaded only by index-pyramid-archive.html.
+   ============================================================ */
+.case-pyramid { display:grid; grid-template-columns: repeat(6, 1fr); gap: var(--gap); align-items:stretch; }
+.case-pyramid .case-wrap, .case-pyramid .case { height:100%; }
+.case-pyramid .pyr-top { grid-column: span 3; }
+.case-pyramid .pyr-low { grid-column: span 2; }
+.case-pyramid .pyr-top .case-media { aspect-ratio: 16/8.4; }
+.case-pyramid .pyr-top .case-title { font-size: clamp(1.5rem, 2.1vw, 2.1rem); }
+.case-pyramid .pyr-top .case-desc { font-size: 1rem; max-width: 52ch; }
+.case-pyramid .pyr-top .case-plate { width: clamp(120px, 30%, 184px); }
+@media (max-width: 1000px){
+  .case-pyramid { grid-template-columns: repeat(2, 1fr); }
+  .case-pyramid .pyr-top { grid-column: span 2; }
+  .case-pyramid .pyr-low { grid-column: span 1; }
+  .case-pyramid .pyr-low:last-child { grid-column: span 2; }
+}
+@media (max-width: 620px){
+  .case-pyramid { grid-template-columns: 1fr; }
+  .case-pyramid .pyr-top, .case-pyramid .pyr-low, .case-pyramid .pyr-low:last-child { grid-column: auto; }
+}

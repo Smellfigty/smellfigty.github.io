@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 – Hic Sunt Dracones · Александр Медведь</title>
+  <meta name="description" content="Такой страницы нет." />
+  <meta name="robots" content="noindex,follow" />
+
+  <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Electrolize&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .nf { flex: 1; display: flex; align-items: center; justify-content: center; padding-block: clamp(2.5rem, 7vh, 6rem); }
+    .nf-inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: clamp(.85rem, 1.8vw, 1.35rem); max-width: 640px; margin-inline: auto; }
+    .nf-art { width: clamp(150px, 22vw, 250px); margin-bottom: .3rem; }
+    .nf-art img { width: 100%; height: auto; display: block; opacity: .9; margin-inline: auto; }
+    .nf-code { font-family: var(--font-display); font-weight: 800; letter-spacing: -.04em; line-height: .88; font-size: clamp(4.25rem, 12vw, 8rem); color: var(--accent); }
+    .nf-latin { font-family: var(--font-display); font-weight: 700; letter-spacing: -.02em; line-height: 1.02; font-size: clamp(1.55rem, 3.4vw, 2.4rem); }
+    .nf-msg { max-width: 52ch; margin-inline: auto; }
+    .nf-msg a { color: var(--ink); border-bottom: 1px solid var(--accent); padding-bottom: 1px; transition: color .2s ease, border-color .2s ease; }
+    .nf-msg a:hover { color: var(--accent); border-color: var(--ink-faint); }
+    .nf-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .brandmark { width: 11px; height: 11px; border-radius: 3px; background: var(--accent); display: inline-block; }
+  </style>
+</head>
+<body>
+  <div class="app" data-theme="dark" data-font="swiss" data-density="regular"
+       style="--accent:#7FD858; --accent-ink:#0b0b0d; --font-display:'Archivo',system-ui,sans-serif; --font-body:'Archivo',system-ui,sans-serif; --font-mono:'Space Mono',ui-monospace,monospace; display:flex; flex-direction:column; min-height:100vh;">
+
+    <header class="nav">
+      <div class="wrap-wide nav-inner nf-head">
+        <a href="../ru/index.html" class="row" style="gap:.62rem;" aria-label="Александр Медведь – главная">
+          <span class="sm-mark" aria-hidden="true">
+            <span class="sm-mark-layer sm-mark-ink" id="mk-ink"></span>
+            <span class="sm-mark-layer sm-mark-accent" id="mk-accent"></span>
+          </span>
+          <span style="display:flex; flex-direction:column; line-height:1;">
+            <span style="font-family:var(--font-display); font-weight:700; font-size:15px; letter-spacing:-.02em;">Aleksandr Medved</span>
+            <span class="mono-sm" style="color:var(--ink-faint); margin-top:3px;">Продуктовый дизайнер <span style="color:var(--accent);">//</span> Smellfigty</span>
+          </span>
+        </a>
+        <span class="lang" aria-label="Язык">
+          <a href="../index.html">EN</a>
+          <a href="../de/index.html">DE</a>
+          <a class="active" href="../ru/index.html">RU</a>
+        </span>
+      </div>
+    </header>
+
+    <main class="nf">
+      <div class="nf-inner">
+        <div class="nf-art">
+          <img src="../assets/hic-sunt-dracones-light.png" alt="Геральдический морской дракон — здесь водятся драконы" />
+        </div>
+        <span class="nf-code">404</span>
+        <h1 class="nf-latin">Hic Sunt Dracones</h1>
+        <p class="lead nf-msg">Кажется, вы заплыли слишком далеко! Мне очень нравится ваша страсть к приключениям, но вам, наверное, было бы интереснее посмотреть мое <a href="../ru/index.html#work">портфолио</a>.</p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap-wide" style="display:flex; justify-content:space-between; gap:2rem; flex-wrap:wrap; align-items:flex-end;">
+        <div class="stack" style="gap:.8rem;">
+          <span class="mono-sm" style="color:var(--ink-faint); max-width:360px; line-height:1.6;">Влюблён в UX, CX, данные, интерфейсы и шоколад.</span>
+          <a class="footer-mail" href="mailto:alex@alexmedved.com">alex<span class="footer-mail-at">@</span>alexmedved.com</a>
+        </div>
+        <div class="stack" style="gap:.5rem; align-items:flex-start;">
+          <a class="mono-sm" href="../ru/index.html#impressum" style="color:var(--ink-soft);">Импрессум</a>
+          <a class="mono-sm" href="../ru/index.html#privacy" style="color:var(--ink-soft);">Политика конфиденциальности</a>
+          <span class="mono-sm" style="color:var(--ink-faint); margin-top:.6rem;">© 2026 – Все права защищены.</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../assets/icons.js"></script>
+  <script>
+    (function () {
+      var I = window.ICONS || {};
+      var ink = document.getElementById("mk-ink");
+      var acc = document.getElementById("mk-accent");
+      if (ink && I.logoInk) { ink.style.webkitMaskImage = 'url("' + I.logoInk + '")'; ink.style.maskImage = 'url("' + I.logoInk + '")'; }
+      if (acc && I.logoAccent) { acc.style.webkitMaskImage = 'url("' + I.logoAccent + '")'; acc.style.maskImage = 'url("' + I.logoAccent + '")'; }
+    })();
+  </script>
+</body>
+</html>
