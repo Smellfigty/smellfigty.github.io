@@ -1,0 +1,460 @@
+/* casestudy-migroplan.css — MigroPlan case study specific styles */
+
+/* ============================================================
+   Live site embeds — scaled iframes with minimal browser chrome
+   ============================================================ */
+.mg-live { margin: 0; }
+.mg-live-shell {
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-2);
+}
+.mg-live-chrome {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  padding: .5rem .8rem;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in oklab, var(--card) 75%, transparent);
+}
+.mg-live-dots { display: flex; gap: 5px; flex: none; }
+.mg-live-dots i { width: 9px; height: 9px; border-radius: 999px; background: var(--line-2); display: block; }
+.mg-live-url {
+  font-family: var(--font-mono);
+  font-size: .66rem;
+  letter-spacing: .05em;
+  color: var(--ink-faint);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: .3em 1em;
+  margin-inline: auto;
+  background: var(--bg);
+}
+.mg-live-open {
+  display: inline-flex;
+  align-items: center;
+  gap: .45em;
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: .64rem;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: opacity .2s;
+}
+.mg-live-open:hover { opacity: .75; }
+.mg-live-pulse {
+  width: 7px; height: 7px; border-radius: 999px; background: var(--accent); display: block;
+  animation: mgPulse 2s ease-in-out infinite;
+}
+@keyframes mgPulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 45%, transparent); }
+  50% { opacity: .7; box-shadow: 0 0 0 5px transparent; }
+}
+@media (prefers-reduced-motion: reduce) { .mg-live-pulse { animation: none; } }
+.mg-live-shot {
+  display: block;
+  width: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  cursor: zoom-in;
+  background: #0d1b2a;
+  overflow: hidden;
+  line-height: 0;
+}
+.mg-live-shot img { display: block; width: 100%; height: auto; }
+
+/* equalised pair — both shots share one aspect ratio so the cards align */
+.mg-live--fit .mg-live-shot { aspect-ratio: 3 / 2; }
+.mg-live--fit .mg-live-shot img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+.mg-live-zoom {
+  position: absolute;
+  top: .6rem;
+  right: .6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  color: #fff;
+  background: color-mix(in oklab, #0b0b0d 55%, transparent);
+  border: 1px solid color-mix(in oklab, #fff 22%, transparent);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transform: translateY(-2px);
+  transition: opacity .2s, transform .2s;
+  pointer-events: none;
+}
+.mg-live-shot:hover .mg-live-zoom,
+.mg-live-shot:focus-visible .mg-live-zoom { opacity: 1; transform: translateY(0); }
+.mg-live-shot:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ============================================================
+   Stat band
+   ============================================================ */
+.mg-statband { position: relative; }
+
+/* ============================================================
+   Funnel direction cards (5 A–E wireframe diagrams)
+   ============================================================ */
+.mg-fdirs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(.8rem, 1.6vw, 1.2rem);
+  align-items: stretch;
+}
+@media (max-width: 1100px) { .mg-fdirs { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 720px)  { .mg-fdirs { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px)  { .mg-fdirs { grid-template-columns: 1fr; } }
+
+.mg-fdir {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in oklab, var(--card) 55%, transparent);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: border-color .25s;
+}
+.mg-fdir:hover { border-color: color-mix(in oklab, var(--accent) 40%, var(--line)); }
+.mg-fdir--chosen {
+  border-color: color-mix(in oklab, var(--accent) 60%, var(--line));
+  background: color-mix(in oklab, var(--accent) 5%, var(--card));
+}
+
+.mg-fdir-head {
+  display: flex;
+  align-items: flex-start;
+  gap: .65rem;
+  padding: clamp(.9rem, 1.6vw, 1.1rem) clamp(.9rem, 1.6vw, 1.1rem) 0;
+}
+.mg-fdir-id {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  line-height: .9;
+  letter-spacing: -.04em;
+  color: color-mix(in oklab, var(--accent) 80%, var(--ink));
+  flex: none;
+}
+.mg-fdir--chosen .mg-fdir-id { color: var(--accent); }
+.mg-fdir-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: .96rem;
+  letter-spacing: -.01em;
+  line-height: 1.2;
+  padding-top: .25rem;
+}
+
+.mg-fdir-wire {
+  flex: 1;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin-top: .8rem;
+  background: var(--bg);
+  min-height: 130px;
+}
+
+.mg-fdir-pin {
+  font-family: var(--font-mono);
+  font-size: .63rem;
+  letter-spacing: .04em;
+  color: var(--ink-faint);
+  line-height: 1.45;
+  padding: .7rem clamp(.9rem, 1.6vw, 1.1rem) clamp(.9rem, 1.6vw, 1rem);
+  text-wrap: pretty;
+}
+.mg-fdir--chosen .mg-fdir-pin { color: var(--ink-soft); }
+
+/* ---- Winner vs. rejected emphasis ------------------------------------
+   The five cards are a record of a decision, not a chooser: A won and
+   B–E were set aside. Rejected cards lose their clickable hover affordance
+   and carry a rotated "not chosen" stamp. */
+.mg-fdir--rejected { position: relative; cursor: none; opacity: .78 !important; }
+.mg-fdir--rejected:hover { border-color: var(--line); }
+
+/* Winner reads as the result, never just "hovered". */
+.mg-fdir--chosen {
+  box-shadow: 0 10px 30px -16px color-mix(in oklab, var(--accent) 55%, transparent);
+}
+
+/* Rotated stamp over each non-winner. data-stamp is localised per language. */
+.mg-fdir--rejected::after {
+  content: attr(data-stamp);
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-9deg);
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: oklch(0.5 0.18 18);
+  border: 2.5px solid oklch(0.5 0.18 18 / 0.7);
+  border-radius: 4px;
+  padding: .3em .55em;
+  white-space: nowrap;
+  background: color-mix(in oklab, var(--bg) 78%, transparent);
+  pointer-events: none;
+}
+
+/* ============================================================
+   Quiz storyboard
+   ============================================================ */
+.mg-qboard {
+  display: flex;
+  gap: .9rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: .6rem;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--accent) 50%, transparent) transparent;
+}
+.mg-qboard::-webkit-scrollbar { height: 6px; }
+.mg-qboard::-webkit-scrollbar-track { background: transparent; }
+.mg-qboard::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--accent) 45%, var(--line-2));
+  border-radius: 999px;
+}
+
+.mg-qframe {
+  flex: 0 0 min(76%, 240px);
+  scroll-snap-align: start;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in oklab, var(--card) 55%, transparent);
+  padding: clamp(1rem, 2vw, 1.3rem);
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+.mg-qframe--result {
+  border-color: color-mix(in oklab, var(--accent) 55%, var(--line));
+  background: color-mix(in oklab, var(--accent) 6%, var(--card));
+}
+
+.mg-qframe-n {
+  font-family: var(--font-mono);
+  font-size: .65rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.mg-qframe-q {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: .98rem;
+  letter-spacing: -.01em;
+  line-height: 1.25;
+  color: var(--ink);
+}
+.mg-qframe--result .mg-qframe-q { color: var(--accent); }
+
+.mg-qframe-note {
+  font-family: var(--font-mono);
+  font-size: .63rem;
+  letter-spacing: .04em;
+  color: var(--ink-faint);
+  line-height: 1.4;
+}
+.mg-qframe-opts {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  margin-top: .2rem;
+}
+.mg-qframe-opt {
+  font-size: .88rem;
+  color: var(--ink-soft);
+  padding: .45em .7em;
+  border: 1px solid var(--line-2);
+  border-radius: 6px;
+  background: var(--bg);
+  line-height: 1.35;
+}
+.mg-qframe-cta {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: .88rem;
+  margin-top: auto;
+  padding-top: .4rem;
+  color: var(--ink-soft);
+}
+.mg-qframe-cta.accent { color: var(--accent); }
+
+/* ============================================================
+   Funnel stage strip (production funnel, end to end)
+   ============================================================ */
+.mg-stageflow {
+  display: flex;
+  align-items: stretch;
+  gap: 1.7rem;
+}
+
+.mg-stage {
+  position: relative;
+  flex: 1 1 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in oklab, var(--card) 55%, transparent);
+  padding: .85rem .9rem .95rem;
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+}
+/* left-to-right connector arrows between stages */
+.mg-stage:not(:last-child)::after {
+  content: "\2192";
+  position: absolute;
+  top: 50%;
+  right: -1.7rem;
+  width: 1.7rem;
+  transform: translateY(-50%);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1;
+  color: color-mix(in oklab, var(--accent) 80%, var(--ink-faint));
+  pointer-events: none;
+}
+@media (max-width: 760px) {
+  .mg-stageflow { flex-direction: column; gap: 1.5rem; }
+  .mg-stage:not(:last-child)::after {
+    content: "\2193";
+    top: auto;
+    right: 50%;
+    bottom: -1.5rem;
+    width: auto;
+    transform: translateX(50%);
+  }
+}
+.mg-stage-n {
+  font-family: var(--font-mono);
+  font-size: .58rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.mg-stage-t {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: .98rem;
+  letter-spacing: -.01em;
+  line-height: 1.15;
+}
+.mg-stage-d {
+  font-size: .8rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
+  margin-top: .1rem;
+  text-wrap: pretty;
+}
+
+/* ============================================================
+   Phone frames (mobile-first build)
+   ============================================================ */
+.mg-phones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(1.2rem, 4vw, 3rem);
+}
+.mg-phone { flex: 0 1 270px; max-width: 290px; margin: 0; }
+.mg-phone-frame {
+  border: 9px solid #11141b;
+  border-radius: 34px;
+  overflow: hidden;
+  background: #11141b;
+  box-shadow: 0 24px 60px -20px rgba(0,0,0,.6), 0 0 0 1px color-mix(in oklab, #fff 8%, transparent) inset;
+  position: relative;
+}
+.mg-phone-frame::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 38%;
+  height: 16px;
+  background: #11141b;
+  border-radius: 0 0 12px 12px;
+  z-index: 2;
+}
+.mg-phone-shot {
+  display: block;
+  width: 100%;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: zoom-in;
+  background: #1a2236;
+  line-height: 0;
+  position: relative;
+}
+.mg-phone-shot img { display: block; width: 100%; height: auto; }
+.mg-phone-shot:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.mg-phone figcaption { text-align: center; margin-top: .9rem; }
+
+/* Hide captions in the expanded lightbox view (MigroPlan only) */
+.lbx-cap { display: none; }
+
+/* Telegram-button highlight chip inside the bug-fix note */
+.mg-tgchip {
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  font-family: var(--font-mono);
+  font-size: .82em;
+  padding: .12em .55em;
+  border-radius: 6px;
+  background: color-mix(in oklab, #3aa0e3 22%, transparent);
+  color: color-mix(in oklab, #3aa0e3 75%, var(--ink));
+  border: 1px solid color-mix(in oklab, #3aa0e3 35%, transparent);
+  white-space: nowrap;
+}
+
+/* booking cause→effect pairing arrow */
+.mg-paircap {
+  font-family: var(--font-mono);
+  font-size: .66rem;
+  letter-spacing: .05em;
+  color: var(--ink-faint);
+  text-align: center;
+  margin-top: 1rem;
+  text-wrap: pretty;
+}
+
+/* keep the image leading when a reversed split stacks on mobile */
+@media (max-width: 820px) {
+  .cs-order-1 { order: 1; }
+  .cs-order-2 { order: 2; }
+}
+
+/* ============================================================
+   Pricing & booking — centered, single-column composition
+   ============================================================ */
+.mg-pricing { text-align: center; }
+.mg-pricing .gm-subh { text-align: center; }
+.mg-pricing .cs-p {
+  max-width: 62ch;
+  margin-inline: auto;
+  text-align: left;
+}
+.mg-pricing .cs-p + .cs-p { margin-top: .9rem; }
+.mg-pricing .mg-live {
+  max-width: 760px;
+  margin: 1.9rem auto 0;
+  text-align: left;
+}
+.mg-pricing .cs-cap { text-align: center; }

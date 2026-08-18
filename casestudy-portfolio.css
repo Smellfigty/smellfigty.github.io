@@ -1,0 +1,166 @@
+/* casestudy-portfolio.css — bespoke pieces for the Portfolio case study only.
+   Loaded after casestudy.css on case-study-portfolio.html.
+   Browser-chrome shots, before/after grid, skills marquee, oversized SM mark,
+   hover-lift panels. Everything self-contained — no external image deps. */
+
+/* ============================================================
+   Browser-chrome framed screenshot (real site shots)
+   ============================================================ */
+.pf-browser { margin: 0; }
+.pf-shell {
+  border: 1px solid var(--line-2);
+  border-radius: calc(var(--radius) + 2px);
+  overflow: hidden;
+  background: var(--bg-2);
+  box-shadow: 0 34px 80px -46px rgba(0,0,0,.72);
+}
+.pf-chrome {
+  display: flex; align-items: center; gap: .7rem;
+  padding: .5rem .8rem;
+  border-bottom: 1px solid var(--line-2);
+  background: color-mix(in oklab, var(--card) 78%, transparent);
+}
+.pf-dots { display: flex; gap: 5px; flex: none; }
+.pf-dots i { width: 9px; height: 9px; border-radius: 999px; background: var(--line-2); display: block; }
+.pf-url {
+  font-family: var(--font-mono); font-size: .64rem; letter-spacing: .02em;
+  color: var(--ink-faint); background: var(--bg);
+  border: 1px solid var(--line-2); border-radius: 999px;
+  padding: .28em 1em; margin: 0 auto; white-space: nowrap;
+}
+.pf-tag {
+  display: inline-flex; align-items: center; gap: .45em;
+  font-family: var(--font-mono); font-size: .58rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-faint); flex: none;
+}
+.pf-tag.is-new { color: var(--accent); }
+.pf-shot {
+  display: block; width: 100%; padding: 0; border: 0; cursor: zoom-in;
+  background: var(--bg-2); position: relative; line-height: 0; overflow: hidden;
+}
+.pf-shot img { display: block; width: 100%; height: auto; transition: transform .55s cubic-bezier(.2,.7,.2,1); }
+.pf-shot:hover img { transform: scale(1.025); }
+.pf-zoom {
+  position: absolute; top: .65rem; right: .65rem; display: grid; place-items: center;
+  width: 2em; height: 2em; border-radius: 999px; color: var(--accent-ink); background: var(--accent);
+  opacity: 0; transform: translateY(-5px) scale(.9); transition: opacity .3s, transform .3s;
+  box-shadow: 0 6px 18px -6px rgba(0,0,0,.6);
+}
+.pf-shot:hover .pf-zoom, .pf-shot:focus-visible .pf-zoom { opacity: 1; transform: translateY(0) scale(1); }
+.pf-shot:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.pf-pulse {
+  width: 7px; height: 7px; border-radius: 999px; background: var(--accent); display: inline-block; flex: none;
+  animation: pfPulse 2s ease-in-out infinite;
+}
+@keyframes pfPulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 65%, transparent); }
+  55% { box-shadow: 0 0 0 6px transparent; }
+}
+
+/* equalised before/after pair */
+.pf-ba { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.1rem, 2.4vw, 1.6rem); align-items: start; }
+@media (max-width: 860px) { .pf-ba { grid-template-columns: 1fr; } }
+.pf-ba .pf-shot { aspect-ratio: 16 / 9; }
+.pf-ba .pf-shot img { height: 100%; object-fit: cover; object-position: top center; }
+
+/* twin shots — wide list shot over a detail shot */
+.pf-twin { display: grid; grid-template-columns: 1.35fr 1fr; gap: clamp(1.1rem, 2.4vw, 1.6rem); align-items: stretch; }
+@media (max-width: 900px) { .pf-twin { grid-template-columns: 1fr; } }
+.pf-twin > * { display: flex; }
+.pf-twin .pf-browser { flex: 1; display: flex; flex-direction: column; }
+.pf-twin .pf-shell { flex: 1; display: flex; flex-direction: column; }
+.pf-twin .pf-shot { flex: 1; min-height: 220px; }
+.pf-twin .pf-shot img { height: 100%; object-fit: cover; object-position: top center; }
+
+/* old-design paired figures — equal-height framed boxes regardless of image size */
+.pf-oldpair { align-items: stretch; }
+.pf-oldpair > * { display: flex; }
+.pf-oldpair .pf-oldfig { flex: 1; display: flex; flex-direction: column; margin: 0; }
+.pf-oldpair .pf-oldfig .zoomfig-btn { display: block; aspect-ratio: 16 / 10; }
+.pf-oldpair .pf-oldfig .zoomfig-btn img {
+  width: 100%; height: 100%; object-fit: contain;
+  padding: clamp(.9rem, 2vw, 1.5rem); background: var(--bg-2);
+}
+.pf-oldpair .pf-oldfig .cs-cap { flex: none; }
+
+/* ============================================================
+   Skills marquee (old-design liveliness)
+   ============================================================ */
+.pf-marquee {
+  overflow: hidden; position: relative; border-block: 1px solid var(--line);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.pf-marquee-track { display: flex; width: max-content; animation: pfMarq 30s linear infinite; }
+.pf-marquee:hover .pf-marquee-track { animation-play-state: paused; }
+.pf-marq-item { display: inline-flex; align-items: center; gap: 1.5rem; padding: 1.05rem 1.5rem 1.05rem 0; }
+.pf-marq-word {
+  font-family: var(--font-display); font-weight: 800; letter-spacing: -.025em;
+  font-size: clamp(1.3rem, 3vw, 2.1rem); color: var(--ink); white-space: nowrap;
+}
+.pf-marq-word.dim { color: transparent; -webkit-text-stroke: 1px var(--line-2); }
+.pf-marq-sep { font-family: var(--font-mono); color: var(--accent); font-size: 1.2rem; font-weight: 700; }
+@keyframes pfMarq { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .pf-marquee-track { animation: none; } }
+
+/* ============================================================
+   Oversized SM mark — old-design hero centrepiece
+   ============================================================ */
+.pf-logohero {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: clamp(2rem, 5vw, 3.6rem);
+  position: relative; overflow: hidden;
+  background:
+    radial-gradient(120% 120% at 50% -10%, color-mix(in oklab, var(--accent) 9%, transparent), transparent 58%),
+    color-mix(in oklab, var(--card) 45%, transparent);
+}
+.pf-logohero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 38px 38px; opacity: .5;
+  -webkit-mask-image: radial-gradient(100% 100% at 50% 50%, #000, transparent 75%);
+          mask-image: radial-gradient(100% 100% at 50% 50%, #000, transparent 75%);
+}
+.pf-bigmark {
+  position: relative; width: clamp(118px, 21vw, 184px); height: clamp(118px, 21vw, 184px);
+  display: inline-block;
+  z-index: 1; animation: pfMarkIn .9s cubic-bezier(.2,.8,.2,1) both;
+}
+.pf-bigmark .sm-mark-layer {
+  position: absolute; inset: 0;
+  -webkit-mask-size: contain; mask-size: contain;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
+}
+.pf-bigmark .pf-mark-accent { animation: pfMarkShimmer 4.5s ease-in-out infinite; }
+.pf-logo-cap {
+  font-family: var(--font-mono); font-size: .72rem; letter-spacing: .03em; line-height: 1.6;
+  color: var(--ink-faint); text-align: center; max-width: 34ch; z-index: 1; text-wrap: pretty;
+}
+.pf-logo-cap .accent { color: var(--accent); }
+.pf-v1badge {
+  position: absolute; top: 1rem; right: 1rem; z-index: 2;
+  font-family: var(--font-mono); font-size: .58rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent); border: 1px solid color-mix(in oklab, var(--accent) 40%, var(--line));
+  border-radius: 999px; padding: .35em .8em;
+}
+@keyframes pfMarkIn { from { opacity: 0; transform: translateY(14px) scale(.94); } to { opacity: 1; transform: none; } }
+@keyframes pfMarkShimmer { 0%, 100% { opacity: .85; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .pf-bigmark, .pf-bigmark .pf-mark-accent { animation: none; }
+}
+
+/* ============================================================
+   Hover-lift panels (subtle designerly motion)
+   ============================================================ */
+.pf-lift { transition: transform .32s cubic-bezier(.2,.7,.2,1), border-color .32s, box-shadow .32s; }
+.pf-lift:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in oklab, var(--accent) 32%, var(--line));
+  box-shadow: 0 22px 50px -36px rgba(0,0,0,.6);
+}
+@media (prefers-reduced-motion: reduce) { .pf-lift:hover { transform: none; } }
+
+/* small inline caption under a centred figure */
+.pf-fig-note { text-align: center; margin-top: 1.1rem; }

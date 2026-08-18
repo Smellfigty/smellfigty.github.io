@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Localized 404s shouldn't be indexed (they're noindex anyway)
+Disallow: /404.html
+Disallow: /de/404.html
+Disallow: /ru/404.html
+
+Sitemap: https://alexmedved.com/sitemap.xml
