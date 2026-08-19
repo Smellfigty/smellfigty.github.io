@@ -146,11 +146,11 @@ function MMCase({ onPrototype }) {
         <div className="cs-wrap">
           <div className="cs-kicker">
             <Reveal><MonoLabel>Fallstudie · Mission Mittelstand</MonoLabel></Reveal>
-            <Reveal as="span" className="mono-sm" style={{ color: "var(--ink-faint)" }}>· Landingpage · 2026</Reveal>
+            <Reveal as="span" className="mono-sm" style={{ color: "var(--ink-faint)" }}>Landingpage · 2026</Reveal>
           </div>
           <div className="ax-hero-grid">
             <Reveal className="ax-hero-text">
-              <h1 className="cs-title" style={{ whiteSpace: "nowrap" }}>Lead-Magnet, <span className="accent">neu aufgebaut</span></h1>
+              <h1 className="cs-title">Lead-Magnet, <span className="accent">neu aufgebaut</span></h1>
               <p className="cs-sub">Mobile-first-Redesign der Landingpage für Mission Mittelstands kostenlose Vorlage - mit klarerem Funnel und weniger Hürden bis zum Download.</p>
               <p className="cs-lead">
                 Mission Mittelstand bietet eine kostenlose Vorlage für Mitarbeitergespräche als Lead-Magnet an. Die Seite hat ein klares Ziel: Downloads. Der Auftrag war ein Mobile-first-Redesign mit genau diesem Fokus. Mobile hatte Priorität, Desktop stand an zweiter Stelle - der Auftritt sollte dabei klar als Mission Mittelstand erkennbar bleiben.
@@ -159,11 +159,11 @@ function MMCase({ onPrototype }) {
                 Im Mittelpunkt standen eine klarere Informationsarchitektur und eine neue visuelle Richtung. Der Look sollte weiterhin eindeutig zur Welt von Mission Mittelstand gehören, zugleich aber frischer wirken und der bestehenden Marke mehr Luft geben.
               </p>
               <div className="ax-skip-wrap" style={{ display: "flex", gap: ".8rem", flexWrap: "wrap" }}>
-                <a href="#visuals" className="btn btn-accent ax-skip-btn" data-hot style={{ flex: "1 1 0", justifyContent: "center", whiteSpace: "nowrap" }}>
+                <a href="#visuals" className="btn btn-accent ax-skip-btn" data-hot>
                   Direkt zu den Visuals
                   <span className="btn-arrow btn-arrow--down"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M6 13l6 6 6-6" /></svg></span>
                 </a>
-                <button type="button" className="btn ax-skip-btn" data-hot onClick={onPrototype} style={{ flex: "1 1 0", justifyContent: "center", whiteSpace: "nowrap" }}>
+                <button type="button" className="btn ax-skip-btn" data-hot onClick={onPrototype}>
                   Prototyp ansehen
                   <span className="btn-arrow btn-arrow--download"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><g className="dl-arrow"><path d="M12 4v8M8 11l4 4 4-4" /></g><path d="M5 19h14" /></svg></span>
                 </button>
@@ -173,6 +173,16 @@ function MMCase({ onPrototype }) {
               <MMPhone src={MMI + "after-hero.png"} alt="Neu gestalteter mobiler Hero von Mission Mittelstand"
                 caption={<><strong>Der neue Mobile-Hero.</strong></>} />
             </Reveal>
+            <div className="ax-skip-wrap mm-cta-mobile">
+              <a href="#visuals" className="btn btn-accent ax-skip-btn" data-hot>
+                Direkt zu den Visuals
+                <span className="btn-arrow btn-arrow--down"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M6 13l6 6 6-6" /></svg></span>
+              </a>
+              <button type="button" className="btn ax-skip-btn" data-hot onClick={onPrototype}>
+                Prototyp ansehen
+                <span className="btn-arrow btn-arrow--download"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><g className="dl-arrow"><path d="M12 4v8M8 11l4 4 4-4" /></g><path d="M5 19h14" /></svg></span>
+              </button>
+            </div>
           </div>
         </div>
       </section>

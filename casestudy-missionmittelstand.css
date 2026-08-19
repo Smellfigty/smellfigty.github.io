@@ -105,7 +105,10 @@
 
 /* Hero CTAs — equal size, side by side (wrap to equal full-width when tight); clean arrow motion */
 .cs-hero .ax-skip-wrap { align-items: stretch; }
-.cs-hero .ax-skip-wrap .btn { flex: 1 1 210px; justify-content: center; text-align: center; white-space: nowrap; line-height: 1.3; }
+.cs-hero .ax-skip-wrap .btn { flex: 1 1 0; min-width:0; justify-content: center; text-align: center; white-space: nowrap; line-height: 1.3; }
+@media (min-width: 881px) { .cs-hero .cs-title { white-space: nowrap; } }
+@media (max-width: 880px) { .cs-hero .cs-title { white-space: normal; } .cs-hero .ax-skip-wrap { flex-direction: column; align-items: center; } .cs-hero .ax-skip-wrap .btn, .cs-hero .ax-skip-wrap .ax-skip-btn { white-space: normal; flex: 0 0 auto; width: 100%; max-width: 420px; align-self: center; } }
+@media (max-width: 880px) { .cs-hero, .cs-hero .ax-hero-grid, .cs-hero .ax-hero-text { min-width: 0; max-width: 100%; } }
 .cs-hero .ax-skip-btn .btn-arrow { display: inline-flex; align-items: center; }
 /* "Skip to …" style arrows drop straight down on hover. Download icons are
    EXEMPT: their tray line must stay put, only the arrow inside moves. */
@@ -346,4 +349,21 @@
 @media (max-width: 620px) {
   .mm-proto-actions { flex-direction: column; align-items: stretch; gap: .7rem; }
   .mm-proto-actions .btn { width: 100%; padding: 1em 1.2em; }
+}
+
+/* hero CTAs: side by side on desktop, stacked full-width on phones */
+@media (min-width: 881px) { .cs-hero .ax-skip-wrap .btn { flex: 1 1 0; min-width: 0; justify-content: center; } }
+@media (max-width: 880px) { .cs-hero .ax-skip-wrap { flex-direction: column; align-items: center; } .cs-hero .ax-skip-wrap .btn { flex: 1 1 auto; width: 100% !important; max-width: none; justify-content: center; text-align: center; white-space: normal; } }
+/* mobile: hero CTAs centered. NB: .ax-hero-text is flex-column + align-items:flex-start,
+   so the wrap is shrink-to-fit and pinned left — it MUST be stretched before any
+   centering inside it can do anything. */
+@media (max-width: 880px) { .cs-hero .ax-skip-wrap { align-self: stretch !important; width: 100% !important; align-items: center !important; justify-content: center !important; } .cs-hero .ax-skip-wrap .btn, .cs-hero .ax-skip-wrap .ax-skip-btn { width: auto !important; max-width: 100%; margin-left: auto !important; margin-right: auto !important; align-self: center !important; } }
+
+/* mobile: hero CTAs move below the phone screenshot (desktop copy stays in the text column) */
+.mm-cta-mobile { display: none; }
+@media (max-width: 880px) {
+  .cs-hero .ax-hero-text .ax-skip-wrap { display: none !important; }
+  .cs-hero .mm-cta-mobile { display: flex !important; flex-direction: column; align-items: center; justify-content: center; gap: .8rem; width: 100%; margin-top: 1.8rem; }
+  .cs-hero .mm-cta-mobile { width: max-content; max-width: 100%; margin-left: auto; margin-right: auto; }
+  .cs-hero .mm-cta-mobile .btn { width: 100% !important; max-width: none; margin: 0 !important; align-self: stretch !important; flex: 0 0 auto; justify-content: center; white-space: nowrap; }
 }

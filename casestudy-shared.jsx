@@ -41,8 +41,8 @@ function CaseLogo() {
         <span className="sm-mark-layer sm-mark-accent" style={maskStyleCS(I.logoAccent)}></span>
       </span>
       <span style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
-        <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15, letterSpacing: "-.02em" }}>Aleksandr Medved</span>
-        <span className="mono-sm" style={{ color: "var(--ink-faint)", marginTop: 3 }}>Product Designer <span style={{ color: "var(--accent)" }}>//</span> Smellfigty</span>
+        <span className="brand-name" style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15, letterSpacing: "-.02em" }}>Aleksandr Medved</span>
+        <span className="mono-sm brand-sub" style={{ color: "var(--ink-faint)", marginTop: 3 }}><span className="brand-line">Product Designer</span><span className="brand-sep" style={{ color: "var(--accent)" }}> // </span><span className="brand-line">Smellfigty</span></span>
       </span>
     </a>
   );
@@ -96,6 +96,37 @@ function csLangLinks() {
   }));
 }
 
+/* compact language dropdown – mobile case-study header */
+function CSLangMenu() {
+  const [open, setOpen] = React.useState(false);
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    if (!open) return;
+    const away = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    const esc = (e) => { if (e.key === "Escape") setOpen(false); };
+    document.addEventListener("pointerdown", away);
+    document.addEventListener("keydown", esc);
+    return () => { document.removeEventListener("pointerdown", away); document.removeEventListener("keydown", esc); };
+  }, [open]);
+  const links = csLangLinks();
+  const cur = links.find((l) => l.active) || links[0];
+  return (
+    <span className="lang-menu" ref={ref}>
+      <button type="button" className="theme-toggle lang-menu-btn" data-hot aria-label="Language" aria-expanded={open} onClick={() => setOpen((v) => !v)}>
+        {cur.label}
+        <svg className="lang-caret" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+      </button>
+      {open && (
+        <span className="lang-menu-pop">
+          {links.filter((l) => !l.active).map((l) => (
+            <a key={l.label} href={l.href} className={l.active ? "active" : ""} data-hot onClick={() => setOpen(false)}>{l.label}</a>
+          ))}
+        </span>
+      )}
+    </span>
+  );
+}
+
 function CSLangSwitch({ style }) {
   return (
     <span className="lang" aria-label="Language" style={style}>
@@ -125,6 +156,7 @@ function CaseStudyNav({ theme, onToggleTheme, onContact }) {
           <button type="button" className="btn" data-hot style={{ padding: ".7em 1.1em" }} onClick={onContact}>{UI.navGetInTouch}</button>
         </nav>
         <span className="nav-toggle">
+          <CSLangMenu />
           <ThemeToggle theme={theme} onToggle={onToggleTheme} />
           <button className="btn" data-hot onClick={() => setOpen((v) => !v)} style={{ padding: ".55em .9em" }} aria-label="Menu">
             {open ? UI.navClose : UI.navMenu}
@@ -136,7 +168,6 @@ function CaseStudyNav({ theme, onToggleTheme, onContact }) {
           {csNav().map((n) => (
             <a key={n.href} href={n.href} className="nav-link" data-hot onClick={() => setOpen(false)} style={{ fontSize: "1.1rem", padding: ".4rem 0" }}>{n.label}</a>
           ))}
-          <CSLangSwitch style={{ marginTop: ".4rem" }} />
           <button type="button" className="btn btn-accent" data-hot style={{ marginTop: ".6rem", alignSelf: "flex-start" }}
             onClick={() => { setOpen(false); onContact && onContact(); }}>{UI.navGetInTouch}</button>
         </div>
@@ -145,7 +176,7 @@ function CaseStudyNav({ theme, onToggleTheme, onContact }) {
   );
 }
 
-Object.assign(window, { maskStyleCS, CaseLogo, ReadingProgress, CaseStudyNav, csNav, csLangLinks, CSLangSwitch });
+Object.assign(window, { maskStyleCS, CaseLogo, ReadingProgress, CaseStudyNav, csNav, csLangLinks, CSLangSwitch, CSLangMenu });
 
 /* ---- modals ---- */
 

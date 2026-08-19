@@ -30,7 +30,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Electrolize&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/styles.css?v=8" />
   <style>
     .nf { flex: 1; display: flex; align-items: center; justify-content: center; padding-block: clamp(2.5rem, 7vh, 6rem); }
     .nf-inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: clamp(.85rem, 1.8vw, 1.35rem); max-width: 640px; margin-inline: auto; }
@@ -57,8 +57,8 @@
             <span class="sm-mark-layer sm-mark-accent" id="mk-accent"></span>
           </span>
           <span style="display:flex; flex-direction:column; line-height:1;">
-            <span style="font-family:var(--font-display); font-weight:700; font-size:15px; letter-spacing:-.02em;">Aleksandr Medved</span>
-            <span class="mono-sm" style="color:var(--ink-faint); margin-top:3px;">Product Designer <span style="color:var(--accent);">//</span> Smellfigty</span>
+            <span class="brand-name" style="font-family:var(--font-display); font-weight:700; font-size:15px; letter-spacing:-.02em;">Aleksandr Medved</span>
+            <span class="mono-sm brand-sub" style="color:var(--ink-faint); margin-top:3px;"><span class="brand-line">Product Designer</span><span class="brand-sep" style="color:var(--accent);"> // </span><span class="brand-line">Smellfigty</span></span>
           </span>
         </a>
         <span class="lang" aria-label="Language">
@@ -95,7 +95,7 @@
     </footer>
   </div>
 
-  <script src="/assets/icons.js"></script>
+  <script src="/assets/icons.js?v=8"></script>
   <script>
     (function () {
       var I = window.ICONS || {};

@@ -302,8 +302,8 @@ function Logo({ onDark }) {
         <span className="sm-mark-layer sm-mark-accent" style={maskStyle(I.logoAccent)}></span>
       </span>
       <span style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
-        <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15, letterSpacing: "-.02em" }}>Aleksandr Medved</span>
-        <span className="mono-sm" style={{ color: "var(--ink-faint)", marginTop: 3 }}>Product Designer <span style={{ color: "var(--accent)" }}>//</span> Smellfigty</span>
+        <span className="brand-name" style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15, letterSpacing: "-.02em" }}>Aleksandr Medved</span>
+        <span className="mono-sm brand-sub" style={{ color: "var(--ink-faint)", marginTop: 3 }}><span className="brand-line">Product Designer</span><span className="brand-sep" style={{ color: "var(--accent)" }}> // </span><span className="brand-line">Smellfigty</span></span>
       </span>
     </a>
   );
@@ -351,6 +351,38 @@ function LangSwitch({ style }) {
   );
 }
 
+/* compact language dropdown – mobile header */
+function LangMenu() {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  useEffect(() => {
+    if (!open) return;
+    const away = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    const esc = (e) => { if (e.key === "Escape") setOpen(false); };
+    document.addEventListener("pointerdown", away);
+    document.addEventListener("keydown", esc);
+    return () => { document.removeEventListener("pointerdown", away); document.removeEventListener("keydown", esc); };
+  }, [open]);
+  const links = UI.langLinks || [];
+  const cur = links.find((l) => l.active) || links[0] || { label: "EN" };
+  return (
+    <span className="lang-menu" ref={ref}>
+      <button type="button" className="theme-toggle lang-menu-btn" data-hot aria-label="Language" aria-expanded={open} onClick={() => setOpen((v) => !v)}>
+        {cur.label}
+        <svg className="lang-caret" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+      </button>
+      {open && (
+        <span className="lang-menu-pop">
+          {links.filter((l) => !l.active).map((l) => (
+            <a key={l.label} href={l.href} className={l.active ? "active" : ""} data-hot onClick={() => setOpen(false)}
+              {...(/^https?:/.test(l.href) ? { target: "_blank", rel: "noopener" } : {})}>{l.label}</a>
+          ))}
+        </span>
+      )}
+    </span>
+  );
+}
+
 function Nav({ theme, onToggleTheme }) {
   const stuck = useStuck();
   const [open, setOpen] = useState(false);
@@ -367,7 +399,7 @@ function Nav({ theme, onToggleTheme }) {
           <a href="#contact" className="btn" data-hot style={{ padding: ".7em 1.1em" }}>{UI.navGetInTouch}</a>
         </nav>
         <span className="nav-toggle">
-          <LangSwitch />
+          <LangMenu />
           <ThemeToggle theme={theme} onToggle={onToggleTheme} />
           <button className="btn" data-hot onClick={() => setOpen((v) => !v)} style={{ padding: ".55em .9em" }} aria-label="Menu">
             {open ? UI.navClose : UI.navMenu}
@@ -412,5 +444,5 @@ function Footer() {
 /* export */
 Object.assign(window, {
   useReveal, useParallax, useCursor, useStuck, useAnimReady, useContactForm,
-  MonoLabel, Reveal, GridBackdrop, Logo, Nav, Footer, SocialLink, ThemeToggle, LangSwitch,
+  MonoLabel, Reveal, GridBackdrop, Logo, Nav, Footer, SocialLink, ThemeToggle, LangSwitch, LangMenu,
 });
