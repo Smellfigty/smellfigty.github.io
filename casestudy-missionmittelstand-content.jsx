@@ -208,11 +208,11 @@ function MMCase({ onPrototype }) {
             </div>
             <div className="cs-meta-cell">
               <div className="cs-meta-k">Format</div>
-              <div className="cs-meta-v">Company brief, concept project - no live analytics available</div>
+              <div className="cs-meta-v">Company brief, independent project</div>
             </div>
             <div className="cs-meta-cell">
               <div className="cs-meta-k">Constraints</div>
-              <div className="cs-meta-v">Barlow typeface · existing Mission Mittelstand visual identity · mobile required / desktop secondary · feasible without component libraries</div>
+              <div className="cs-meta-v">Existing Mission Mittelstand visual identity, mobile required, desktop secondary, feasible without component libraries</div>
             </div>
           </Reveal>
           <Reveal className="cs-chips cs-mt-m" style={{ justifyContent: "center" }}>
@@ -421,7 +421,7 @@ function MMDisclaimer() {
               <strong style={{ color: "var(--ink-soft)" }}>Trademarks &amp; usage.</strong> "Mission Mittelstand", the BVMW mark, and all related names, logos, imagery and brand assets shown here are the property of their respective owners. I don't own or claim any rights to them.
             </p>
             <p>
-              This case study was produced for a brief from the company, and all brand materials shown were provided to me for that purpose — reproduced here solely to document my work. It is an independent concept: not affiliated with, endorsed by, or an official product of Mission Mittelstand, and it was never deployed on any live site.
+              This case study was produced for a brief from the company, and all brand materials shown were provided to me for that purpose — reproduced here solely to document my work. It is an independent project: not affiliated with, endorsed by, or an official product of Mission Mittelstand, and it was never deployed on any live site.
             </p>
           </div>
         </div>

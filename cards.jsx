@@ -184,9 +184,9 @@ function AboutHead() {
 /* About – Dossier (photo left, everything about me on the right) */
 function AboutDossier({ showPhoto }) {
   return (
-    <div className="about-grid" style={{ display: "grid", gridTemplateColumns: showPhoto ? ".72fr 1.28fr" : "1fr", gap: "clamp(2rem,4vw,3.5rem)", alignItems: "stretch" }}>
+    <div className={"about-grid" + (showPhoto ? "" : " about-grid--nophoto")}>
       {showPhoto && (
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "1.2rem" }}>
+        <div className="about-side">
           <Reveal d="1" className="dossier-card">
             <div className="dossier-portrait">
               <img src={PROFILE.photoNeon} alt="Aleksandr Medved" />
@@ -195,44 +195,45 @@ function AboutDossier({ showPhoto }) {
               <span className="mono-sm" style={{ color: "var(--ink-faint)" }}>{PROFILE.first} <span style={{ color: "var(--accent)" }}>{PROFILE.alias}</span> {PROFILE.last}</span>
             </div>
           </Reveal>
-          <Reveal d="5">
-            <div style={{ border: "1px solid var(--line)", borderRadius: "var(--radius)", background: "color-mix(in oklab, var(--card) 82%, transparent)", padding: ".85rem 1rem", display: "flex", flexDirection: "column", gap: ".65rem" }}>
-              <MonoLabel>{UI.toolkitLabel}</MonoLabel>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: ".4rem" }}>
-                {UI.toolkit.map((t) => <span key={t} className="tag">{t}</span>)}
-              </div>
+          <Reveal d="5" className="about-toolkit stack" style={{ gap: ".7rem" }}>
+            <MonoLabel>{UI.toolkitLabel}</MonoLabel>
+            <div className="about-toolkit-card">
+              {UI.toolkit.map((t) => <span key={t} className="tag">{t}</span>)}
             </div>
           </Reveal>
         </div>
       )}
 
-      <div className="stack" style={{ gap: "1.5rem", height: "100%" }}>
+      <div className="about-text stack" style={{ gap: "1.5rem" }}>
         <Reveal as="h2" className="display" d="2" style={{ fontSize: "clamp(1.6rem,3.2vw,2.7rem)" }}>
           {hl(UI.aboutH2)}
         </Reveal>
         {Array.isArray(UI.aboutLead)
           ? <div className="stack" style={{ gap: "0.55em" }}>{UI.aboutLead.map((para, i) => <Reveal key={i} as="p" className="lead" d="3" style={{ margin: 0 }}>{hl(para)}</Reveal>)}</div>
           : <Reveal as="p" className="lead" d="3" style={{ margin: 0 }}>{hl(UI.aboutLead)}</Reveal>}
-        <Reveal d="3" className="row" style={{ gap: "2.4rem", flexWrap: "wrap", marginTop: ".2rem" }}>
-          <div className="stack"><span className="fact-k">5+</span><span className="fact-v">{UI.factPracticeV}</span></div>
-          <div className="stack"><span className="fact-k">3</span><span className="fact-v">{UI.factLangV} DE <span style={{color:"var(--accent)"}}>/ </span>EN <span style={{color:"var(--accent)"}}>/ </span>RU</span></div>
-          <div className="stack"><span className="fact-k">{UI.factLocK}</span><span className="fact-v">{UI.factLocV}</span></div>
-        </Reveal>
-        <Reveal d="4" className="stack" style={{ gap: ".7rem", marginTop: "auto" }}>
-          <MonoLabel>{UI.capMatrix}</MonoLabel>
-          <div className="cap-matrix">
-            {DISCIPLINES.map((t) => <span key={t} className="cap-cell">{t}</span>)}
+      </div>
+
+      <Reveal d="3" className="about-facts row" style={{ gap: "2.4rem", flexWrap: "wrap" }}>
+        <div className="stack"><span className="fact-k">5+</span><span className="fact-v">{UI.factPracticeV}</span></div>
+        <div className="stack"><span className="fact-k">3</span><span className="fact-v">{UI.factLangV} DE <span style={{color:"var(--accent)"}}>/ </span>EN <span style={{color:"var(--accent)"}}>/ </span>RU</span></div>
+        <div className="stack"><span className="fact-k">{UI.factLocK}</span><span className="fact-v">{UI.factLocV}</span></div>
+      </Reveal>
+
+      {!showPhoto && (
+        <Reveal d="5" className="about-toolkit stack" style={{ gap: ".7rem" }}>
+          <MonoLabel>{UI.toolkitLabel}</MonoLabel>
+          <div className="about-toolkit-card">
+            {UI.toolkit.map((t) => <span key={t} className="tag">{t}</span>)}
           </div>
         </Reveal>
-        {!showPhoto && (
-          <Reveal d="5" className="stack" style={{ gap: ".7rem", marginTop: ".2rem" }}>
-            <MonoLabel>{UI.toolkitLabel}</MonoLabel>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: ".5rem" }}>
-              {UI.toolkit.map((t) => <span key={t} className="tag">{t}</span>)}
-            </div>
-          </Reveal>
-        )}
-      </div>
+      )}
+
+      <Reveal d="4" className="about-cap stack" style={{ gap: ".7rem" }}>
+        <MonoLabel>{UI.capMatrix}</MonoLabel>
+        <div className="cap-matrix">
+          {DISCIPLINES.map((t) => <span key={t} className="cap-cell">{t}</span>)}
+        </div>
+      </Reveal>
     </div>
   );
 }
@@ -369,7 +370,7 @@ function CertificatesSection() {
       <div className="wrap-wide">
         <div className="section-head">
           <Reveal><MonoLabel>{UI.secCerts}</MonoLabel></Reveal>
-          <Reveal as="span" className="mono-sm" style={{ color: "var(--ink-faint)" }}>{UI.certsHint}</Reveal>
+          <Reveal as="span" className="mono-sm" style={{ color: "var(--ink-faint)" }}>{hl(UI.certsHint)}</Reveal>
         </div>
         <div className={"certlist" + (active ? " peeking" : "")} onMouseMove={onMove} onMouseLeave={() => setActive(null)}>
           {CERTS.map((c, i) => (
@@ -440,7 +441,6 @@ function ContactSection() {
       <div className="wrap-wide">
         <div className="section-head">
           <Reveal><MonoLabel>{UI.secContact}</MonoLabel></Reveal>
-          <Reveal as="span" className="avail" d="1"><span className="dot"></span> {UI.contactAvail}</Reveal>
         </div>
         <div className="contact-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(2rem,5vw,4.5rem)", alignItems: "start" }}>
           <div className="stack contact-info-col" style={{ gap: "1.6rem" }}>

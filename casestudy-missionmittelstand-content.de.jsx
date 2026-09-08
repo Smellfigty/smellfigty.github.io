@@ -209,11 +209,11 @@ function MMCase({ onPrototype }) {
             </div>
             <div className="cs-meta-cell">
               <div className="cs-meta-k">Format</div>
-              <div className="cs-meta-v">Unternehmensbriefing, Konzeptprojekt - keine Live-Daten verfügbar</div>
+              <div className="cs-meta-v">Unternehmensbriefing, eigenständiges Projekt</div>
             </div>
             <div className="cs-meta-cell">
               <div className="cs-meta-k">Rahmenbedingungen</div>
-              <div className="cs-meta-v">Schrift Barlow · bestehende visuelle Identität von Mission Mittelstand · Mobile Pflicht / Desktop zweitrangig · ohne Komponentenbibliotheken umsetzbar</div>
+              <div className="cs-meta-v">Bestehende visuelle Identität von Mission Mittelstand, Mobile Pflicht, Desktop zweitrangig, ohne Komponentenbibliotheken umsetzbar</div>
             </div>
           </Reveal>
           <Reveal className="cs-chips cs-mt-m" style={{ justifyContent: "center" }}>
@@ -421,7 +421,7 @@ function MMDisclaimer() {
               <strong style={{ color: "var(--ink-soft)" }}>Marken &amp; Nutzung.</strong> „Mission Mittelstand“, die BVMW-Marke sowie alle zugehörigen Namen, Logos, Bilder und Markenelemente, die hier gezeigt werden, sind Eigentum ihrer jeweiligen Inhaber. Ich besitze daran keine Rechte und erhebe auch keinen Anspruch darauf.
             </p>
             <p>
-              Diese Fallstudie entstand zu einem Briefing der Firma, und alle gezeigten Markenmaterialien wurden mir zu diesem Zweck bereitgestellt — hier ausschließlich wiedergegeben, um meine Arbeit zu dokumentieren. Es handelt sich um ein unabhängiges Konzept: nicht mit Mission Mittelstand verbunden, nicht von ihr unterstützt und kein offizielles Produkt, und es wurde nie auf einer Live-Seite eingesetzt.
+              Diese Fallstudie entstand zu einem Briefing der Firma, und alle gezeigten Markenmaterialien wurden mir zu diesem Zweck bereitgestellt — hier ausschließlich wiedergegeben, um meine Arbeit zu dokumentieren. Es handelt sich um ein eigenständiges Projekt: nicht mit Mission Mittelstand verbunden, nicht von ihr unterstützt und kein offizielles Produkt, und es wurde nie auf einer Live-Seite eingesetzt.
             </p>
           </div>
         </div>
